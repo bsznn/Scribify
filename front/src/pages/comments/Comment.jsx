@@ -167,27 +167,26 @@ const Comment = ({ bookId, commentId, total }) => {
               {new Date(comment.date).toLocaleTimeString()}
             </article>
 
-            {auth.user.role === "admin" ||
-              (auth.user.id === comment.userId._id && (
-                <article>
-                  <MdDeleteForever
-                    className="profile-icon"
-                    onClick={handleDelete}
+            {auth.user.id === comment.userId._id && (
+              <article>
+                <MdDeleteForever
+                  className="profile-icon"
+                  onClick={handleDelete}
+                />
+                <CiEdit className="profile-icon" onClick={toggleUpdateForm} />
+                <RiQuestionAnswerFill
+                  className="profile-icon"
+                  onClick={toggleAnswerInput}
+                />
+                {showAnswerInput && (
+                  <AddAnswer
+                    bookId={bookId}
+                    commentId={commentId}
+                    handleAnswer={handleAnswer}
                   />
-                  <CiEdit className="profile-icon" onClick={toggleUpdateForm} />
-                  <RiQuestionAnswerFill
-                    className="profile-icon"
-                    onClick={toggleAnswerInput}
-                  />
-                  {showAnswerInput && (
-                    <AddAnswer
-                      bookId={bookId}
-                      commentId={commentId}
-                      handleAnswer={handleAnswer}
-                    />
-                  )}{" "}
-                </article>
-              ))}
+                )}
+              </article>
+            )}
 
             {showAnswerInput && (
               <section>

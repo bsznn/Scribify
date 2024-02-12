@@ -124,7 +124,7 @@ const Profile = () => {
                   0,
                   MAX_DESCRIPTION_LENGTH
                 )}...`
-              : auth.user.description}{" "}
+              : auth.user.description}
             <p>
               <FaBookOpen />
               {books.length}

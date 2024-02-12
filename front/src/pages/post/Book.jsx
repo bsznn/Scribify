@@ -115,20 +115,19 @@ const Book = () => {
                     }}
                   />
                   {/* A tester avec un utilisateur qui est non admin */}
-                  {auth.user.role === "admin" ||
-                    (auth.user.id === book.userId._id && (
-                      <article>
-                        <MdDeleteForever
-                          className="profile-icon"
-                          onClick={() => handleDelete(book._id, chapter._id)}
-                        />
-                        <Link
-                          to={`/modifier-chapitre/${book._id}/${chapter._id}`}
-                        >
-                          <CiEdit className="profile-icon" />
-                        </Link>
-                      </article>
-                    ))}
+                  {auth.user.id === book.userId._id && (
+                    <article>
+                      <MdDeleteForever
+                        className="profile-icon"
+                        onClick={() => handleDelete(book._id, chapter._id)}
+                      />
+                      <Link
+                        to={`/modifier-chapitre/${book._id}/${chapter._id}`}
+                      >
+                        <CiEdit className="profile-icon" />
+                      </Link>
+                    </article>
+                  )}
                 </section>
               ))}
             <Link to={`/ajouter-chapitre/${book._id}`}>
