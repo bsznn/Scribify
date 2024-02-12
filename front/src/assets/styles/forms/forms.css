@@ -1,0 +1,207 @@
+@import "../root.css";
+
+.section-style {
+  display: flex;
+  justify-content: center;
+  padding: 3em 0;
+  text-align: center;
+}
+
+.section-style2 {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  border-radius: 1em;
+  padding: 1.25em;
+  width: 16em;
+  margin: 0 auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  box-shadow: var(--ombre);
+}
+
+.section-style h2,
+.section-style2 h2 {
+  color: var(--mediumGreen);
+  text-align: center;
+  font-family: var(--fontItalic);
+  font-size: 2.3em;
+  margin: 0.5em;
+}
+
+.form-style {
+  width: 14em;
+  background-color: var(--darkGreen);
+  padding: 2em;
+  font-family: var(--fontRegular);
+  border-radius: 1em;
+  box-shadow: var(--ombre);
+}
+
+.form-style2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form label {
+  font-family: var(--fontRegular);
+  color: var(--mediumGreen);
+  text-align: center;
+  display: block;
+  margin: 1em 0;
+}
+
+.form-image,
+.login-text,
+.text-signup {
+  display: none;
+}
+
+form input,
+form textarea,
+form select {
+  padding: 0.5em;
+  border-radius: 1em;
+  width: 16em;
+  font-family: var(--fontRegular);
+  border: none;
+  text-align: center;
+  color: var(--darkGreen);
+  transition: transform 0.3s ease; /* Add this line for the scaling effect */
+}
+
+form select {
+  text-align: center;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  width: 12em;
+}
+
+.form-textarea {
+  height: 10em;
+}
+
+form input:hover {
+  transform: scale(1.05); /* Adjust the scale factor as needed */
+}
+
+form button {
+  background-color: var(--mediumGreen);
+  color: var(--darkGreen);
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+  font-family: var(--fontRegular);
+  transition: transform 0.3s ease; /* Add this line for the scaling effect */
+}
+
+form button:hover {
+  background-color: var(--hoverGreen);
+  transition: var(--transitionBG), var(--transitionColor);
+  transform: scale(1.05);
+}
+
+form span {
+  color: var(--orange);
+  margin-top: 1.2em;
+  text-align: center;
+  font-size: 0.8em;
+  font-style: italic;
+  animation: slideIn 1s ease-in-out;
+}
+
+.form-button {
+  margin-top: 2em;
+  border-radius: 1em;
+  width: 10em;
+}
+
+.ql-editor {
+  border: none;
+  min-height: 20em;
+  padding: 0;
+  margin: 0;
+  /* color: var(--darkGreen);
+  font-family: var(--fontRegular);
+  font-style: normal; */
+}
+
+.ql-toolbar {
+  display: flex;
+  background-color: var(--mediumGreen);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .section-style {
+    box-shadow: var(--ombre);
+  }
+  .form-style {
+    box-shadow: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-image {
+    display: flex;
+    width: 16em;
+    height: 27.3em;
+    background-size: contain;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
+
+  .login-left {
+    position: relative;
+  }
+
+  .login-text {
+    display: flex;
+    position: absolute;
+    top: 2.8em;
+    left: 1.5em;
+    color: var(--darkGreen);
+    width: 8em;
+    font-family: var(--fontItalic);
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .form-style {
+    width: 17em;
+    height: 27em;
+  }
+
+  .text-signup {
+    display: flex;
+    color: var(--mediumGreen);
+    font-family: var(--fontRegular);
+    margin-top: 2em;
+  }
+
+  .login-redirection {
+    color: var(--orange);
+    padding-left: 0.3em;
+    font-weight: bold;
+  }
+
+  .form-image {
+    width: 21em;
+    height: 31em;
+  }
+
+  .login-text {
+    top: 3em;
+    left: 2.2em;
+    font-size: 1.7em;
+  }
+}

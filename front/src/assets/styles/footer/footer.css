@@ -1,0 +1,147 @@
+@import "../root.css";
+
+footer {
+  background-color: var(--darkGreen);
+  color: var(--mediumGreen);
+  font-family: var(--fontRegular);
+  font-size: 0.9em;
+  margin: 0;
+  padding: 1em;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.f-first-section,
+.f-second-section {
+  display: block; /* Afficher les sections comme blocs sur les appareils mobiles */
+  margin-bottom: 1em; /* Ajouter un espace entre les sections */
+}
+
+footer h3 {
+  text-transform: uppercase;
+}
+
+.f-article1 img {
+  height: 3em;
+  margin-left: 0.3em;
+}
+
+.aboutus {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  color: var(--mediumGreen);
+}
+
+.f-article1 p {
+  text-align: justify;
+}
+
+.f-link {
+  color: var(--mediumGreen);
+}
+
+.f-link:hover {
+  color: var(--hoverGreen);
+  transition: color 0.3s ease-in-out;
+}
+
+.f-article2 ul,
+.f-article3 ul,
+.f-article4 ul {
+  margin-top: 2em;
+}
+
+.f-article4 ul {
+  display: flex;
+  justify-content: center;
+}
+
+.f-article4 button {
+  background-color: var(--darkGreen);
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.f-article4 button:hover {
+  transform: rotate(360deg);
+}
+
+/* Appliquer l'animation de pulse aux icônes */
+.f-icon1,
+.f-icon2,
+.f-icon3,
+.f-icon4 {
+  animation: pulse 1s infinite alternate;
+}
+
+.f-icon1 {
+  color: #1877f2;
+}
+.f-icon2 {
+  color: #1da1f2;
+}
+.f-icon3 {
+  color: #d62976;
+}
+.f-icon4 {
+  color: #0e76a8;
+}
+
+.f-second-section {
+  font-family: var(--fontItalic);
+  font-size: 1.4em;
+  animation: slideIn 1s ease-in-out;
+}
+
+/* Animation de défilement pour la section 2 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation de pulse pour les icônes */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .f-first-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .f-first-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes égales */
+  }
+}

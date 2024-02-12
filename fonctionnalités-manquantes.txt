@@ -1,0 +1,36 @@
+ Voici un récapitulatif des fonctionnalités restantes et des problèmes à résoudre pour mon site :
+
+- Profil :
+Dans mon fichier Profile.jsx, la fonctionnalité "delete"pour supprimer un utilisateur ne fonctionne
+ pas côté front-end, bien que le back-end soit opérationnel.
+Je rencontre également des difficultés pour récupérer la description 
+de l'utilisateur sur ma page de profil (Profile.jsx)
+
+- Update Book :
+Dans mon fichier PostEdit.jsx, la fonctionnalité "update" pour modifier un livre ne fonctionne pas
+ car le "select" pour choisir les catégories ne s'affiche pas.
+
+- Livres par catégorie :
+Dans mes fichiers Categories.jsx et Home.jsx, la NavLink pour afficher les livres associés à une seule 
+catégorie ne fonctionne pas. Cela nécessite une mise à jour de la fonction "getBooksByCategoryName" 
+dans le back-end et une modification du fichier Category.jsx.
+
+- Livre (Book.jsx) :
+Lorsque je me connecte en tant qu'administrateur, les réponses en dessous des commentaires sur la page
+livre ne s'affichent plus. 
+
+- Actualisation en temps réel :
+Les fonctionnalités telles que les commentaires, les réponses et la suppression doivent être réalisées 
+sans actualisation de la page.
+
+- Système de pagination :
+Ajout d'un système de pagination pour les chapitres, les commentaires et les réponses afin de gérer 
+efficacement les grands ensembles de données.
+
+- Barre de recherche :
+Ajout d'une barre de recherche pour permettre aux utilisateurs de trouver rapidement des livres ou des 
+contenus spécifiques.
+
+- Page d'erreur et routes protégées :
+Création d'une page d'erreur pour gérer les erreurs de navigation et mise en place de routes protégées 
+pour restreindre l'accès à certaines fonctionnalités aux utilisateurs autorisés.
