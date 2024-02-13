@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { token } from "../../context/token";
 import { useAuth } from "../../context/AuthContext";
@@ -20,6 +21,8 @@ const Profile = () => {
   const [categories, setCategories] = useState([]);
   const [err, setErr] = useState();
   const [successMessage, setSuccessMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const auth = useAuth();
   useEffect(() => {
@@ -89,6 +92,10 @@ const Profile = () => {
           console.log(res.data.message);
           setSuccessMessage("L'utilisateur a été supprimé avec succès");
           setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+          if (res.data.message) {
+            navigate("/");
+            window.location.reload(successMessage);
+          }
         })
         .catch((err) => {
           console.error(err);

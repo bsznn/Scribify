@@ -194,6 +194,10 @@ form span {
     font-weight: bold;
   }
 
+  .login-redirection:hover {
+    color: var(--hoverOrange);
+  }
+
   .form-image {
     width: 21em;
     height: 31em;

@@ -5,17 +5,14 @@ import concoursImage from "../../assets/images/home/concours-ecriture.png";
 import conseilsImage from "../../assets/images/home/conseils-ecriture.png";
 import recrutementImage from "../../assets/images/home/recrutement.png";
 import axios from "axios";
-
-// import { IoIosArrowDroprightCircle } from "react-icons/io";
-// import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { useAuth } from "../../context/AuthContext";
 
 import { IoEllipsisVerticalOutline } from "react-icons/io5";
 
 import arrow1 from "../../assets/images/home/arrow2.png";
 import arrow2 from "../../assets/images/home/arrow1.png";
-// import back1 from "../../assets/images/home/homeback.png";
-// import back2 from "../../assets/images/home/homeback2.png";
-import { useAuth } from "../../context/AuthContext";
+import back1 from "../../assets/images/home/left.png";
+import back2 from "../../assets/images/home/right.png";
 
 const Home = () => {
   const [booksPopulars, setBooksPopulars] = useState([]);
@@ -94,7 +91,7 @@ const Home = () => {
     <>
       <main className="home">
         <section className="h-section1">
-          {/* <img src={back2} alt="fond-caroussel" className="fond-caroussel" /> */}
+          <img src={back1} alt="caroussel-fond" className="caroussel-fond1" />
           <article className="h-article1">
             <p>
               Célébrez les mots avec Scribify : un voyage littéraire au cœur de
@@ -135,8 +132,7 @@ const Home = () => {
               </Link>
             </span>
           </article>
-
-          {/* <img src={back1} alt="fond-caroussel" className="fond-caroussel" /> */}
+          <img src={back2} alt="caroussel-fond" className="caroussel-fond2" />
         </section>
 
         <section className="home-center">
@@ -157,9 +153,6 @@ const Home = () => {
             {/* <button className="scroll-button left" onClick={handleScrollLeft}>
             <IoIosArrowDropleftCircle />
           </button> */}
-            <span className="scroll-button left">
-              <IoEllipsisVerticalOutline />
-            </span>
             <section className="h-section2">
               {booksPopulars.map((oneBookPopular) => (
                 <article key={oneBookPopular._id} className="book-item">
@@ -180,9 +173,6 @@ const Home = () => {
             {/* <button className="scroll-button right" onClick={handleScrollRight}>
             <IoIosArrowDroprightCircle />
           </button>          */}
-            <span className="scroll-button right">
-              <IoEllipsisVerticalOutline />
-            </span>
           </section>
 
           <span className="home-title1">
@@ -203,9 +193,6 @@ const Home = () => {
             <IoIosArrowDropleftCircle />
           </button> */}
 
-            <span className="scroll-button left">
-              <IoEllipsisVerticalOutline />
-            </span>
             <section className="h-section2">
               {newBooks.map((oneNewBook) => (
                 <article key={oneNewBook._id} className="book-item">
@@ -225,10 +212,6 @@ const Home = () => {
             {/* <button className="scroll-button">
             <IoIosArrowDroprightCircle />
           </button> */}
-
-            <span className="scroll-button right">
-              <IoEllipsisVerticalOutline />
-            </span>
           </section>
 
           <aside>
@@ -279,6 +262,56 @@ const Home = () => {
                     </NavLink>
                   </article>
                 ))}
+              </section>
+            </section>
+
+            <section className="aside-3">
+              <span className="home-title2">
+                <img
+                  src={arrow1}
+                  alt="title-left-arrow4"
+                  className="title-left-arrow4"
+                />
+                <h2>Actualités</h2>
+                <img
+                  src={arrow2}
+                  alt="title-right-arrow4"
+                  className="title-right-arrow4"
+                />
+              </span>
+              <section className="h-news-section">
+                <article className="h-news-article">
+                  <span>
+                    <NavLink to="/concours">
+                      <h3>Concours</h3>
+                    </NavLink>
+                    <blockquote>
+                      ❝Explorez nos concours d'écriture en cours et
+                      préparez-vous à laisser libre cours à votre créativité. ❞
+                    </blockquote>
+                  </span>
+
+                  <span>
+                    <NavLink to="/conseils">
+                      <h3>Conseils</h3>
+                    </NavLink>
+                    <blockquote>
+                      ❝Que vous soyez un écrivain chevronné ou un novice
+                      passionné, nous sommes ravis de partager des conseils qui
+                      vous aideront à affiner vos compétences littéraires. ❞
+                    </blockquote>
+                  </span>
+
+                  <span>
+                    <NavLink to="/recrutement">
+                      <h3>Recrutement</h3>
+                    </NavLink>
+                    <blockquote>
+                      ❝Explorez nos concours d'écriture en cours et
+                      préparez-vous à laisser libre cours à votre créativité. ❞
+                    </blockquote>
+                  </span>
+                </article>
               </section>
             </section>
           </aside>

@@ -11,7 +11,7 @@
   text-align: center;
   background-color: var(--orange);
   height: 22em;
-  margin-bottom: 1em;
+  margin: 2em 0.5em;
 }
 
 .h-section1 p {
@@ -19,6 +19,22 @@
 }
 .h-section1 ul {
   margin: 0;
+}
+
+.caroussel-fond1,
+.caroussel-fond2 {
+  height: 22em;
+  width: 1.5em;
+}
+
+.caroussel-fond1 {
+  position: absolute;
+  left: 0;
+}
+
+.caroussel-fond2 {
+  position: absolute;
+  right: 0;
 }
 
 .h-article1 {
@@ -75,10 +91,6 @@
   animation-iteration-count: infinite;
 }
 
-.fond-caroussel {
-  display: none;
-}
-
 /* Ajoutez ces styles à votre feuille de style existante */
 
 .home h2 {
@@ -87,10 +99,7 @@
   color: #fff;
   background-color: var(--blue);
   font-family: var(--fontItalic);
-  justify-content: center;
-  /* border-radius: 0.5em; */
   text-align: center;
-  margin-top: 1.5em auto; /* Auto pour centrer verticalement */
   width: 6.2em;
 }
 .home-title1,
@@ -101,8 +110,6 @@
 }
 .title-right-arrow,
 .title-left-arrow,
-.title-right-arrow2,
-.title-left-arrow2,
 .title-right-arrow3,
 .title-left-arrow3,
 .title-right-arrow4,
@@ -111,11 +118,17 @@
   height: 2.85em;
 }
 
+.title-right-arrow2,
+.title-left-arrow2 {
+  width: 2.5em;
+  height: 2.8em;
+}
+
 .h-popular-section {
   display: flex;
   align-items: center;
   overflow: hidden;
-  margin-top: 1em;
+  padding: 0 1em;
 }
 
 .h-section2 {
@@ -211,6 +224,10 @@
 
 .h-categories:hover {
   color: var(--mediumGreen);
+}
+
+.aside-3 {
+  display: none;
 }
 
 @keyframes fadeIn {
@@ -311,6 +328,11 @@
     font-size: 0.9em;
   }
 
+  .title-right-arrow2,
+  .title-left-arrow2 {
+    height: 2.85em;
+  }
+
   .scroll-button {
     display: none;
   }
@@ -352,17 +374,32 @@
 
 @media screen and (min-width: 1200px) {
   .home {
-    position: relative;
+    width: 75em;
+    margin: 0 auto;
   }
 
-  /* .home-center {
-    width: 50em;
-  } */
-
-  .fond-caroussel {
-    display: flex;
-    width: 15em;
+  .h-section1 {
     height: 22em;
+    margin: 2em 0;
+    border-radius: 1em;
+    box-shadow: var(--ombre);
+  }
+  .images {
+    animation: none;
+    justify-content: center;
+  }
+
+  .h-article2 {
+    overflow: visible;
+    width: 80em;
+  }
+
+  .h-article2 img {
+    width: 18em;
+  }
+
+  .home {
+    position: relative;
   }
 
   .home-title1 {
@@ -372,6 +409,7 @@
 
   .h-section2 {
     margin-left: 2em;
+    margin-bottom: 1.5em;
   }
 
   aside {
@@ -380,12 +418,52 @@
     width: 22em;
     position: absolute;
     right: 2em;
-    top: 23em;
+    top: 24em;
+  }
+
+  .h-recent-section {
+    margin-bottom: 1.5em;
+  }
+
+  .aside-3 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .h-news-section {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    width: 18em;
+  }
+
+  .h-news-article {
+    background-color: #fff;
+    border-radius: 0.5em;
+    box-shadow: var(--ombre);
+  }
+
+  .h-news-article h3 {
+    color: var(--orange);
+    font-family: var(--fontItalic);
+    font-size: 1.5em;
+    border-radius: 0.5em;
+  }
+
+  .h-news-article h3:hover {
+    color: var(--hoverOrange);
+  }
+
+  .h-news-article blockquote {
+    color: var(--darkGreen);
+    font-weight: bold;
+    font-style: italic;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 
 @media screen and (min-width: 1400px) {
-  .fond-caroussel {
-    width: 20em;
-  }
 }

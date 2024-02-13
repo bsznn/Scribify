@@ -3,11 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-
 import { RiMenu3Fill } from "react-icons/ri";
 import { HiUser } from "react-icons/hi2";
 import { GrClose } from "react-icons/gr";
-import { IoSearchOutline } from "react-icons/io5";
 import { GrLogout } from "react-icons/gr";
 import { IoHome } from "react-icons/io5";
 
