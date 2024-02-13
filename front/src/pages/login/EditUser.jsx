@@ -4,6 +4,8 @@ import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
+import fond from "../../assets/images/forms/8.png";
+
 const MAX_DESCRIPTION_LENGTH = 250;
 
 const EditUser = () => {
@@ -114,17 +116,24 @@ const EditUser = () => {
       {message && <span className="success">{message}</span>}
       {descriptionError && (
         <span className="error">
-          La description ne peut pas dépasser {MAX_DESCRIPTION_LENGTH}{" "}
+          La description ne peut pas dépasser {MAX_DESCRIPTION_LENGTH}
           caractères.
         </span>
       )}
       <section className="section-style2">
-        <h2>Modifier</h2>
+        <img src={fond} alt="image-fond" className="image-fond3" />
+
         {inputs && (
           <>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              className="form-style2"
+            >
+              <h2>Modifier</h2>
               <label htmlFor="image">Image de profil : </label>
               <input
+                className="file-input"
                 onChange={handleChange}
                 type="file"
                 id="image"
@@ -133,7 +142,7 @@ const EditUser = () => {
 
               <label htmlFor="login">Nom d'utilisateur : </label>
               <input
-                className="form-input"
+                className="form-input2"
                 onChange={handleChange}
                 value={inputs.login}
                 type="text"
@@ -145,7 +154,7 @@ const EditUser = () => {
               <label htmlFor="email">Email : </label>
 
               <input
-                className="form-input"
+                className="form-input2"
                 onChange={handleChange}
                 value={inputs.email}
                 type="email"

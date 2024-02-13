@@ -6,6 +6,8 @@ import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
+import fond from "../../assets/images/forms/8.png";
+
 const ChapterUpdate = () => {
   const [inputs, setInputs] = useState({
     chapterContent: "",
@@ -89,25 +91,25 @@ const ChapterUpdate = () => {
     <main>
       {message && <span className="success">{message}</span>}
       <section className="section-style2">
-        <h2>Modifier un chapitre</h2>
+        <img src={fond} alt="image-fond" className="image-fond4" />
         <form onSubmit={handleSubmit} className="form-style2">
+          <h2>Modifier un chapitre</h2>
           <label htmlFor="chapterTitle">Titre du chapitre : </label>
           <input
-            className="form-input"
+            className="form-input2"
             onChange={handleChange}
             value={inputs.chapterTitle}
             type="text"
             id="chapterTitle"
             name="chapterTitle"
-            placeholder="Titre du chapitre"
           />
 
+          <label htmlFor="chapterContent">Contenu du chapitre : </label>
           <ReactQuill
             className="ql-editor"
             theme="snow"
             value={inputs.chapterContent}
             onChange={handleQuill}
-            placeholder="Contenu du chapitre"
           />
 
           <button className="form-button">Valider</button>

@@ -11,10 +11,11 @@
 
   --hoverColor: #7f8572;
   --hoverBG: rgba(255, 255, 255, 0.1);
-
   --hoverBlue: #3b5883;
   --hoverGreen: #ebf9e2;
   --hoverOrange: #ffb483;
+
+  --formGreen: #f0f0f0;
 
   --transitionColor: color 0.3s ease-in-out;
   --transitionBG: background-color 0.3s ease-in-out;

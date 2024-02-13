@@ -6,6 +6,8 @@ import { token } from "../../context/token";
 
 import "../../assets/styles/forms/forms.css";
 
+import fond from "../../assets/images/forms/8.png";
+
 const Post = () => {
   const [inputs, setInputs] = useState({
     title: "",
@@ -109,76 +111,90 @@ const Post = () => {
       {message && <span className="success">{message}</span>}
 
       <section className="section-style2">
-        <h2>Publier</h2>
+        <img src={fond} alt="image-fond" className="image-fond1" />
+
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="form-style2"
         >
-          <label htmlFor="image">Couverture de livre : </label>
-          <input onChange={handleChange} type="file" id="image" name="image" />
-          <label htmlFor="title">Titre : </label>
-          <input
-            className="form-input"
-            onChange={handleChange}
-            value={inputs.title}
-            type="text"
-            id="title"
-            name="title"
-            placeholder="Titre"
-          />
+          <section>
+            <h2>Publier</h2>
 
-          <label htmlFor="description">Description : </label>
+            <label htmlFor="image">Couverture de livre : </label>
+            <input
+              className="file-input"
+              onChange={handleChange}
+              type="file"
+              id="image"
+              name="image"
+            />
+            <label htmlFor="title">Titre : </label>
+            <input
+              className="form-input2"
+              onChange={handleChange}
+              value={inputs.title}
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Titre"
+            />
 
-          <textarea
-            className="form-textarea"
-            onChange={handleChange}
-            value={inputs.description}
-            type="text"
-            id="description"
-            name="description"
-            placeholder="Description"
-          />
+            <label htmlFor="description">Description : </label>
 
-          <label htmlFor="categories">Catégories : </label>
-          <select
-            multiple
-            name="categories"
-            id="categories"
-            value={inputs.categories}
-            onChange={handleChange}
-          >
-            {inputs.categories.map((category, index) => (
-              <option value={category._id} key={index}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+            <textarea
+              className="form-textarea"
+              onChange={handleChange}
+              value={inputs.description}
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Description"
+            />
 
-          <label htmlFor="chapterTitle">Titre du chapitre : </label>
-          <input
-            className="form-input"
-            onChange={handleChange}
-            value={inputs.chapterTitle}
-            type="text"
-            id="chapterTitle"
-            name="chapterTitle"
-            placeholder="Titre du chapitre"
-          />
+            <label htmlFor="categories">Catégories : </label>
+            <select
+              multiple
+              name="categories"
+              id="categories"
+              value={inputs.categories}
+              onChange={handleChange}
+            >
+              {inputs.categories.map((category, index) => (
+                <option value={category._id} key={index}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </section>
 
-          <label htmlFor="chapterContent">Contenu du chapitre : </label>
-          <ReactQuill
-            className="ql-editor"
-            theme="snow"
-            value={inputs.chapterContent}
-            onChange={handleQuill}
-            placeholder="Contenu du chapitre"
-          />
+          <section>
+            <label htmlFor="chapterTitle">Titre du chapitre : </label>
+            <input
+              className="form-input2"
+              onChange={handleChange}
+              value={inputs.chapterTitle}
+              type="text"
+              id="chapterTitle"
+              name="chapterTitle"
+              placeholder="Titre du chapitre"
+            />
 
-          <button className="form-button">Valider</button>
+            <label htmlFor="chapterContent">Contenu du chapitre : </label>
+            <ReactQuill
+              className="ql-editor"
+              theme="snow"
+              value={inputs.chapterContent}
+              onChange={handleQuill}
+              placeholder="Il était une fois..."
+            />
+          </section>
+
+          <button className="form-button2">Valider</button>
         </form>
-        {err && <span>{err}</span>}
       </section>
+
+      {err && <span>{err}</span>}
     </main>
   );
 };

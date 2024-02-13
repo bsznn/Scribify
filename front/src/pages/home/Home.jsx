@@ -307,8 +307,9 @@ const Home = () => {
                       <h3>Recrutement</h3>
                     </NavLink>
                     <blockquote>
-                      ❝Explorez nos concours d'écriture en cours et
-                      préparez-vous à laisser libre cours à votre créativité. ❞
+                      ❝Si vous partagez notre passion pour l'écriture et
+                      l'innovation, alors Scribify est l'endroit idéal pour
+                      vous. ❞
                     </blockquote>
                   </span>
                 </article>

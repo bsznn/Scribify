@@ -6,6 +6,8 @@ import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
+import fond from "../../assets/images/forms/8.png";
+
 const PostEdit = () => {
   const [inputs, setInputs] = useState({
     title: "",
@@ -108,12 +110,20 @@ const PostEdit = () => {
     <main>
       {message && <span className="success">{message}</span>}
       <section className="section-style2">
-        <h2>Modifier</h2>
+        <img src={fond} alt="image-fond" className="image-fond2" />
+
         {inputs._id && (
           <>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              className="form-style2"
+            >
+              <h2>Modifier</h2>
+
               <label htmlFor="image">Couverture du livre : </label>
               <input
+                className="file-input"
                 onChange={handleChange}
                 type="file"
                 id="image"
@@ -122,7 +132,7 @@ const PostEdit = () => {
 
               <label htmlFor="title">Titre du livre : </label>
               <input
-                className="form-input"
+                className="form-input2"
                 onChange={handleChange}
                 value={inputs.title}
                 type="text"

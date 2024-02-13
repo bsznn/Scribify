@@ -1,5 +1,7 @@
 @import "../root.css";
 
+/* Styles des pages Register et Login */
+
 .section-style {
   display: flex;
   justify-content: center;
@@ -7,21 +9,51 @@
   text-align: center;
 }
 
+/* Style de la page Post + toutes mes pages redirection vers Edit/Update */
 .section-style2 {
   display: flex;
   flex-direction: column;
-  background-color: #f0f0f0;
+  justify-content: center;
+  background-color: var(--darkGreen);
   border-radius: 1em;
   padding: 1.25em;
-  width: 16em;
-  margin: 0 auto;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  padding-left: 2.3em;
+  width: 15em;
+  margin: 3em auto;
   box-shadow: var(--ombre);
+  position: relative;
+}
+
+.image-fond1,
+.image-fond2,
+.image-fond3,
+.image-fond4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+
+.image-fond1 {
+  height: 78.4em;
+}
+
+.image-fond2 {
+  height: 45.7em;
+}
+
+.image-fond3 {
+  height: 40.6em;
+}
+.image-fond4 {
+  height: 48.4em;
 }
 
 .section-style h2,
-.section-style2 h2 {
+.section-style2 h2,
+.section-style3 h2 {
   color: var(--mediumGreen);
   text-align: center;
   font-family: var(--fontItalic);
@@ -38,7 +70,8 @@
   box-shadow: var(--ombre);
 }
 
-.form-style2 {
+.form-style2,
+.form-style2 section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,8 +91,9 @@ form label {
   display: none;
 }
 
-form input,
-form textarea,
+.form-input,
+.form-textarea,
+.form-input2,
 form select {
   padding: 0.5em;
   border-radius: 1em;
@@ -69,6 +103,12 @@ form select {
   text-align: center;
   color: var(--darkGreen);
   transition: transform 0.3s ease; /* Add this line for the scaling effect */
+}
+
+.file-input {
+  border: none;
+  color: var(--mediumGreen);
+  font-family: var(--fontRegular);
 }
 
 form select {
@@ -89,6 +129,8 @@ form input:hover {
 form button {
   background-color: var(--mediumGreen);
   color: var(--darkGreen);
+  border-radius: 1em;
+  width: 10em;
   padding: 0.5em;
   border: none;
   cursor: pointer;
@@ -113,8 +155,6 @@ form span {
 
 .form-button {
   margin-top: 2em;
-  border-radius: 1em;
-  width: 10em;
 }
 
 .ql-editor {
@@ -122,14 +162,39 @@ form span {
   min-height: 20em;
   padding: 0;
   margin: 0;
-  /* color: var(--darkGreen);
-  font-family: var(--fontRegular);
-  font-style: normal; */
 }
-
 .ql-toolbar {
   display: flex;
   background-color: var(--mediumGreen);
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.ql-picker-label,
+.ql-snow .ql-picker-options .ql-picker-item {
+  color: var(--darkGreen);
+}
+
+.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+  margin-top: 1em;
+}
+
+.ql-snow .ql-picker-options .ql-picker-item:hover {
+  color: var(--hoverGreen);
+}
+
+.ql-picker-item .ql-selected {
+  color: var(--mediumGreen);
+}
+
+.ql-container.ql-snow {
+  background-color: #fff;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.ql-snow .ql-picker-label:hover {
+  color: var(--orange);
 }
 
 @keyframes slideIn {
@@ -141,15 +206,52 @@ form span {
   }
 }
 
+@media screen and (min-width: 480px) {
+  .section-style2,
+  .section-style3 {
+    width: 26em;
+  }
+
+  .image-fond1 {
+    height: 74.9em;
+  }
+
+  .image-fond4 {
+    height: 42.1em;
+  }
+
+  .form-input2,
+  .form-textarea {
+    width: 26em;
+  }
+
+  .ql-toolbar.ql-snow {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .ql-header.ql-picker {
+    position: absolute;
+    bottom: 1.5em;
+  }
+}
+
 @media screen and (min-width: 720px) {
   .section-style {
     box-shadow: var(--ombre);
   }
+
+  .section-style2 {
+    padding-left: 1.4em;
+  }
+
   .form-style {
     box-shadow: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
+
   .form-image {
     display: flex;
     width: 16em;
@@ -173,12 +275,59 @@ form span {
     font-family: var(--fontItalic);
     font-size: 1.5em;
   }
+
+  .section-style2,
+  .section-style3,
+  .ql-editor {
+    width: 40em;
+  }
+
+  .ql-editor {
+    margin-left: 2em;
+  }
+
+  .ql-container.ql-snow {
+    height: 50em;
+  }
+  .ql-toolbar.ql-snow {
+    justify-content: center;
+  }
+
+  .section-style2,
+  .section-style3 {
+    position: relative;
+  }
+
+  .image-fond1 {
+    height: 99.2em;
+  }
+
+  .image-fond4 {
+    height: 66.4em;
+  }
+
+  .image-fond1,
+  .image-fond2,
+  .image-fond3,
+  .image-fond4 {
+    width: 1.8em;
+  }
 }
 
 @media screen and (min-width: 990px) {
+  .section-style2 {
+    padding-right: 3em;
+  }
+
   .form-style {
     width: 17em;
     height: 27em;
+  }
+
+  .form-style2,
+  .section-style2 h3,
+  .section-style3 {
+    margin-left: 14em;
   }
 
   .text-signup {
@@ -207,5 +356,21 @@ form span {
     top: 3em;
     left: 2.2em;
     font-size: 1.7em;
+  }
+
+  .section-style2,
+  .section-style3 {
+    width: 57em;
+  }
+
+  .image-fond1 {
+    height: 99.2em;
+  }
+
+  .image-fond1,
+  .image-fond2,
+  .image-fond3,
+  .image-fond4 {
+    width: 14em;
   }
 }

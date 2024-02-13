@@ -13,7 +13,7 @@ import { FaBookOpen } from "react-icons/fa";
 import "../../assets/styles/profile/profile.css";
 import DashboardAdmin from "../../components/dashboard/DashboardAdmin";
 
-const MAX_DESCRIPTION_LENGTH = 250;
+// const MAX_DESCRIPTION_LENGTH = 250;
 
 const Profile = () => {
   const [books, setBooks] = useState([]);
@@ -125,13 +125,14 @@ const Profile = () => {
             <article className="p-article2">
               <h3>{auth.user.login}</h3>
             </article>
-            {auth.user.description &&
+            <p>{auth.user.description}</p>
+            {/* {auth.user.description &&
             auth.user.description.length > MAX_DESCRIPTION_LENGTH
               ? `${auth.user.description.substring(
                   0,
                   MAX_DESCRIPTION_LENGTH
                 )}...`
-              : auth.user.description}
+              : auth.user.description} */}
             <p>
               <FaBookOpen />
               {books.length}
