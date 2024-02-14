@@ -15,15 +15,15 @@ import "../../assets/styles/header/header.css";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 990);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [searchActive, setSearchActive] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 990);
-      if (window.innerWidth >= 990) {
+      setIsMobile(window.innerWidth < 1024);
+      if (window.innerWidth >= 1024) {
         setToggle(false); // Close toggle if screen size increases
       }
     };

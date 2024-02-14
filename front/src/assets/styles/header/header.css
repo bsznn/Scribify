@@ -116,6 +116,7 @@ header label {
 .img-profil {
   width: 2em;
   height: 2em;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -198,7 +199,7 @@ header label {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .navbar_burger {
     display: none;
   }
@@ -217,7 +218,7 @@ header label {
     justify-content: center; /* Centrage horizontal des éléments */
     align-items: center; /* Centrage vertical des éléments */
     margin: 0;
-    padding-left: 7em;
+    padding-left: 5em;
     padding-top: 2em;
   }
 

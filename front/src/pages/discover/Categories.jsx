@@ -95,7 +95,7 @@ const Categories = () => {
               {/* <p>{category.description}</p> */}
             </article>
 
-            <article className="category-icon">
+            <article>
               <Link to={`/modifier-categorie/${category._id}`}>
                 <IoIosSettings className="category-icon" />
               </Link>
