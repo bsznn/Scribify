@@ -11,7 +11,8 @@
   text-align: center;
   background-color: var(--orange);
   height: 22em;
-  margin: 2em 0.5em;
+  width: 100%;
+  margin: 2em auto;
 }
 
 .h-section1 p {
@@ -24,7 +25,7 @@
 .caroussel-fond1,
 .caroussel-fond2 {
   height: 22em;
-  width: 1.5em;
+  width: 1.1em;
 }
 
 .caroussel-fond1 {
@@ -258,11 +259,11 @@
 }
 
 @media screen and (min-width: 480px) {
-  .home ul {
+  .h-section-ul {
     display: flex;
   }
 
-  .home ul li {
+  .h-section-ul li {
     margin-right: 0.5em;
   }
   .h-article2 {
@@ -305,13 +306,13 @@
     color: var(--darkGreen);
     font-family: var(--fontItalic);
     font-size: 1.6em;
-    width: 10em;
+    width: 9.5em;
     line-height: 1.4;
     margin: 0.8em;
     text-shadow: var(--ombre);
   }
 
-  .home ul {
+  .h-section1 ul {
     display: flex;
     flex-direction: column;
   }
@@ -389,9 +390,14 @@
     justify-content: center;
   }
 
+  .h-article1 {
+    padding-left: 0.5em;
+  }
+
   .h-article2 {
     overflow: visible;
     width: 80em;
+    padding-right: 1em;
   }
 
   .h-article2 img {
@@ -458,6 +464,7 @@
     color: var(--darkGreen);
     font-weight: bold;
     font-style: italic;
+    font-size: 0.88em;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);

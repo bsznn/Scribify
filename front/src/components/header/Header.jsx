@@ -10,6 +10,7 @@ import { GrLogout } from "react-icons/gr";
 import { IoHome } from "react-icons/io5";
 
 import Logo from "../../assets/images/logo/logo.png";
+import userImage from "../../assets/images/users/default-profil.png";
 
 import "../../assets/styles/header/header.css";
 
@@ -134,10 +135,21 @@ const Header = () => {
                   onClick={handleClick}
                 >
                   <span className="h-username">
-                    <img
-                      className="img-profil"
-                      src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-                    />
+                    {/* METTRE UNE IMAGE PAR DEFAUT  */}
+                    {auth.user.image ? (
+                      <img
+                        className="img-profil"
+                        src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+                        // alt="user-profile"
+                      />
+                    ) : (
+                      <img
+                        className="img-profil"
+                        src={userImage}
+                        alt="default-user-profile"
+                      />
+                    )}
+
                     <p className="h-login"> {auth.user.login}</p>
                   </span>
                 </NavLink>

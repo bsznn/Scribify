@@ -11,7 +11,7 @@
   background-color: var(--darkGreen);
   font-family: var(--fontRegular);
   border-radius: 0.5em;
-  width: 15em;
+  width: 14em;
   margin: 0.5em;
   margin-left: 0.8em;
   margin-right: 1em;
@@ -94,6 +94,10 @@
     margin: 0.4em;
   }
 
+  .reader-link {
+    font-size: 0.7em;
+  }
+
   .reader-title {
     width: 43.5em;
     display: flex;
@@ -108,9 +112,6 @@
     width: 4em;
   }
 
-  .reader-name {
-    font-size: 1.1em;
-  }
   .reader-icon {
     font-size: 1.1em;
   }

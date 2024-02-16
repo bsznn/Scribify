@@ -45,19 +45,13 @@ const Readers = () => {
             <article className="reader-image">
               {oneReader.image && ( // Vérification si 'image' est défini
                 <img
-                  style={{ width: "200px" }}
                   src={`http://localhost:9000/assets/img/${oneReader.image.src}`}
                   alt={oneReader.image.alt}
                   className="reader-img"
                 />
               )}
               {!oneReader.image && (
-                <img
-                  style={{ width: "200px" }}
-                  src={userImage}
-                  alt="user-image"
-                  className="reader-img"
-                />
+                <img src={userImage} alt="user-image" className="reader-img" />
               )}
             </article>
 

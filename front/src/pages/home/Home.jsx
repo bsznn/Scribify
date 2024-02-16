@@ -11,8 +11,7 @@ import { IoEllipsisVerticalOutline } from "react-icons/io5";
 
 import arrow1 from "../../assets/images/home/arrow2.png";
 import arrow2 from "../../assets/images/home/arrow1.png";
-import back1 from "../../assets/images/home/left.png";
-import back2 from "../../assets/images/home/right.png";
+import back from "../../assets/images/home/fond.png";
 
 const Home = () => {
   const [booksPopulars, setBooksPopulars] = useState([]);
@@ -91,13 +90,13 @@ const Home = () => {
     <>
       <main className="home">
         <section className="h-section1">
-          <img src={back1} alt="caroussel-fond" className="caroussel-fond1" />
+          <img src={back} alt="caroussel-fond" className="caroussel-fond1" />
           <article className="h-article1">
             <p>
               Célébrez les mots avec Scribify : un voyage littéraire au cœur de
               l'imagination.
             </p>
-            <ul>
+            <ul className="h-section-ul">
               <li>
                 <Link to="/publier" className="h-link1">
                   Postez votre premier livre
@@ -132,7 +131,7 @@ const Home = () => {
               </Link>
             </span>
           </article>
-          <img src={back2} alt="caroussel-fond" className="caroussel-fond2" />
+          <img src={back} alt="caroussel-fond" className="caroussel-fond2" />
         </section>
 
         <section className="home-center">
@@ -214,7 +213,7 @@ const Home = () => {
           </button> */}
           </section>
 
-          <aside>
+          <aside className="h-aside">
             <section>
               <span className="home-title2">
                 <img

@@ -355,6 +355,55 @@ export const getBooksByCategoryName = async (req, res) => {
   }
 };
 
+// Définir une fonction pour récupérer le nombre total de vues
+export const getTotalViewsByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Trouver tous les livres postés par l'utilisateur
+    const books = await Book.find({ userId: userId });
+
+    // Utiliser la méthode reduce pour calculer le nombre total de vues
+    const totalViews = books.reduce((total, book) => total + book.views, 0);
+
+    // Retourner le nombre total de vues
+    res.status(200).json({ totalViews });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message:
+        "Une erreur est survenue lors de la récupération du nombre total de vues",
+      error: error.message,
+    });
+  }
+};
+
+// Définir une fonction pour calculer le nombre total de likes
+export const getTotalLikesByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Trouver tous les livres postés par l'utilisateur
+    const books = await Book.find({ userId: userId });
+
+    // Utiliser Array.reduce() pour obtenir le nombre total de likes
+    const totalLikes = books.reduce(
+      (total, book) => total + book.likes.length,
+      0
+    );
+
+    // Retourner le nombre total de likes
+    res.status(200).json({ totalLikes });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message:
+        "Une erreur est survenue lors du calcul du nombre total de likes",
+      error: error.message,
+    });
+  }
+};
+
 // ------------ ESPACE ADMIN ------------ //
 
 // Supprimer tous les livres d'un utilisateur
