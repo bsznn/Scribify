@@ -114,15 +114,11 @@
 .title-right-arrow3,
 .title-left-arrow3,
 .title-right-arrow4,
-.title-left-arrow4 {
-  width: 2.5em;
-  height: 2.85em;
-}
-
+.title-left-arrow4,
 .title-right-arrow2,
 .title-left-arrow2 {
   width: 2.5em;
-  height: 2.8em;
+  height: 2.85em;
 }
 
 .h-popular-section {
@@ -136,7 +132,7 @@
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  -ms-overflow-style: none;
+  padding-top: 0.6em;
   transition: all 0.5s ease;
 }
 
@@ -327,11 +323,6 @@
 
   .h-title {
     font-size: 0.9em;
-  }
-
-  .title-right-arrow2,
-  .title-left-arrow2 {
-    height: 2.85em;
   }
 
   .scroll-button {

@@ -209,7 +209,7 @@ export const deleteBook = async (req, res) => {
   try {
     const book = await Book.findOneAndDelete({
       _id: req.params.id,
-      userId: req.userId,
+      userId: req.params.userId,
     });
 
     if (!book) {

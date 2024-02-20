@@ -58,7 +58,7 @@ bookRouter.put(
 );
 
 bookRouter.delete(
-  "/books/delete/:id",
+  "/books/delete/:id/:userId",
   isLogged,
   isAuthorized(["admin", "user"]),
   deleteBook

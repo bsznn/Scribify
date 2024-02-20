@@ -25,8 +25,8 @@
 }
 
 .reader-title h1 {
-  color: var(--white);
-  background-color: var(--blue);
+  color: var(--darkGreen);
+  background-color: var(--orange);
 }
 
 .reader-link {

@@ -20,7 +20,7 @@
 }
 
 .p-section1 ul,
-.p-sous-section ul {
+.p-article4 ul {
   display: flex;
 }
 
@@ -52,6 +52,7 @@
 .p-section1 h3 {
   text-transform: capitalize;
   animation: slideIn 1s ease-in-out;
+  font-size: 1em;
 }
 
 .p-section1 p {
@@ -74,10 +75,9 @@
 .p-new-article {
   display: flex;
   flex-direction: row;
-  margin-top: 0.5em;
 }
 
-.p-new-article span {
+.p-new-article ul li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,36 +105,13 @@
   display: none;
 }
 
-.p-article-6 ul {
-  display: flex;
-  flex-direction: row;
-}
-
-/* .p-sous-section pre {
-  padding-left: 1em;
-  font-style: italic;
-  font-size: 0.8em;
-} */
-
-.p-section2 {
-  color: var(--darkGreen);
-  font-family: var(--fontRegular);
-}
-
-.p-section2 h2 {
-  font-family: var(--fontItalic);
-  font-size: 2em;
-  padding-left: 1em;
-}
-
 .p-sous-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: var(--textBG); */
+  color: var(--darkGreen);
   font-family: var(--fontRegular);
-  /* width: 17em; */
   width: 85%;
   border-radius: 0.5em;
   box-shadow: var(--ombre);
@@ -152,10 +129,7 @@
 }
 
 .p-sous-section .p-couverture {
-  height: 12em;
-  width: 8em;
-  box-shadow: var(--ombre);
-  animation: zoomIn 1s ease-in-out; /* Add this line for the zoomIn animation */
+  display: none;
 }
 
 .p-title {
@@ -164,8 +138,12 @@
   animation: fadeIn 1s ease-in-out;
 }
 
-.p-article4 {
+.p-article4 li {
   text-align: center;
+}
+
+.p-article4 li:nth-child(2) {
+  padding-top: 1.5em;
 }
 
 .p-article5 pre {
@@ -175,7 +153,7 @@
 
 .p-article4 .description {
   text-align: justify;
-  padding: 2em;
+  padding-left: 0.8em;
 }
 
 .p-article4 .categories {
@@ -184,9 +162,19 @@
   color: var(--mediumGreen);
 }
 
-.p-article6 {
+.p-article6 ul {
+  display: flex;
+  flex-direction: row;
   padding-top: 0.5em;
   padding-bottom: 1.5em;
+}
+
+.p-logo-img {
+  width: 3em;
+}
+
+.p-sous-section p {
+  text-align: justify;
 }
 
 @keyframes fadeIn {
@@ -208,12 +196,16 @@
 }
 
 @media screen and (min-width: 480px) {
-  .p-text-none {
+  .p-sous-section .p-couverture {
     display: flex;
+    height: 12em;
+    width: 8em;
+    box-shadow: var(--ombre);
+    animation: zoomIn 1s ease-in-out;
   }
 
-  .p-section1 p {
-    font-size: 1em;
+  .p-text-none {
+    display: flex;
   }
 
   .profile-icon {
@@ -230,20 +222,33 @@
     align-items: center;
   }
 
+  .p-section h3 {
+    font-size: 1.3em;
+  }
+
+  .p-section1 p {
+    font-size: 1em;
+  }
+
   .fond1,
   .fond2 {
     height: 20.6em;
   }
 
   .p-new-article {
-    display: block;
-    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .p-new-article ul {
+    flex-direction: column;
   }
 
   .p-article-ul ul#pic2 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .p-section-bio {
@@ -272,16 +277,22 @@
   }
 
   .p-sous-section {
+    display: flex;
+    flex-direction: column;
     width: 39em;
     margin: 2em auto;
   }
 
-  .p-couverture {
-    margin-top: 1.4em;
-  }
-
   .p-title {
     text-align: center;
+  }
+
+  .p-article5 {
+    display: flex;
+  }
+
+  .p-article5 pre {
+    padding-right: 1.5em;
   }
 }
 
@@ -325,10 +336,6 @@
     margin-left: 3em;
   }
 
-  .p-logo-img {
-    width: 3em;
-  }
-
   .p-aside {
     display: flex;
     flex-direction: column;
@@ -348,6 +355,12 @@
     width: 20em;
     overflow: auto;
     overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    flex-direction: row;
+  }
+  .p-section-3 {
+    align-items: center;
   }
 
   .p-author-img {
@@ -358,21 +371,8 @@
   }
 
   .p-book-img {
-    width: 4em;
-    height: 6.5em;
-  }
-
-  .p-section3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    align-items: center;
-    flex-direction: row;
-  }
-
-  .p-section4 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    flex-direction: row;
+    width: 4.5em;
+    height: 7em;
   }
 
   .p-section4 ul {
@@ -380,7 +380,7 @@
   }
 
   .p-book-title {
-    font-size: 0.7em;
+    font-size: 0.8em;
     width: 5em;
     text-align: center;
     color: var(--orange);

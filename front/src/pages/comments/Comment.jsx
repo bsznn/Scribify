@@ -133,16 +133,18 @@ const Comment = ({ bookId, commentId, total }) => {
 
   return (
     <main>
-      <section className="b-section">
+      <section className="comment-section">
         {comment && (
           <>
-            <article className="b-article1">
-              <img
-                className="style-base2"
-                src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-                alt={auth.user.image.alt}
-              />
-              <h4>{auth.user.login}</h4>
+            <article className="comment-article">
+              <span>
+                <img
+                  className="comment-img"
+                  src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+                  alt={auth.user.image.alt}
+                />
+                <h4 className="name-none">{auth.user.login}</h4>
+              </span>
 
               {showUpdateForm ? (
                 <>
@@ -169,6 +171,8 @@ const Comment = ({ bookId, commentId, total }) => {
 
             {auth.user.id === comment.userId._id && (
               <article>
+                {console.log(auth.user.id)}
+                {console.log(comment.userId._id)}
                 <MdDeleteForever
                   className="profile-icon"
                   onClick={handleDelete}

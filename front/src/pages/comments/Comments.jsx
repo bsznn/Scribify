@@ -27,7 +27,7 @@ const Comments = ({ bookId }) => {
 
   return (
     <main>
-      <h1 className="b-title">Commentaires</h1>
+      <h2 className="label-comment">Tous les commentaires :</h2>
 
       {comments.map((oneComment) => (
         <section key={oneComment._id}>

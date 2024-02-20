@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 import "../../assets/styles/book/book.css";
 
@@ -29,7 +30,12 @@ const LikeCounter = ({}) => {
       .then((res) => {
         console.log(res.data);
         setLikes(res.data.likes);
-        setLiked(res.data.liked);
+        setLiked(!liked);
+        if (!liked) {
+          alert("Vous avez enlevé votre like !");
+        } else {
+          alert("Vous avez liké avec succès le livre !");
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -37,10 +43,28 @@ const LikeCounter = ({}) => {
   };
 
   return (
-    <div>
-      <button onClick={handleLike}>{liked ? "Unlike" : "Like"}</button>
+    <span className="btn-likecounter">
+      <button onClick={handleLike} className="btn-likecounter">
+        {liked ? (
+          <FaHeart
+            style={{
+              color: "var(--darkGreen)",
+              fontSize: "1.2em",
+            }}
+          />
+        ) : (
+          <FaHeart
+            style={{
+              color: "var(--orange)",
+              fontSize: "1.2em",
+            }}
+          />
+        )}
+      </button>
+      {/* <FaHeart /> */}
+
       {/* <span>{likes.length} Likes</span> */}
-    </div>
+    </span>
   );
 };
 

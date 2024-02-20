@@ -29,7 +29,7 @@ const Readers = () => {
   return (
     <main className="m-container">
       <section className="reader-title">
-        <h1>Les lecteurs</h1>
+        <h1>Lecteurs</h1>
         <p className="reader-none">
           Découvrez la communauté des lecteurs sur Scribify : un lieu de
           rencontre pour explorer de nouvelles œuvres littéraires, partager des

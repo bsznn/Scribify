@@ -8,6 +8,8 @@ import { NavLink, useParams } from "react-router-dom";
 import arrow1 from "../../assets/images/home/arrow2.png";
 import arrow2 from "../../assets/images/home/arrow1.png";
 
+import { FaUser } from "react-icons/fa6";
+
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [newRoles, setNewRoles] = useState({});
@@ -130,8 +132,8 @@ const DashboardAdmin = () => {
           <thead>
             <tr>
               <th>Utilisateurs</th>
+              <th>Profils</th>
               <th>Rôles</th>
-              <th>Détails</th>
               <th className="th-none">Vues</th>
               <th>Livres</th>
               <th className="th-none">Likes</th>
@@ -153,6 +155,11 @@ const DashboardAdmin = () => {
                   {oneUser.login}
                 </td>
                 <td>
+                  <NavLink to={`/profil/${oneUser._id}`} className="see-more">
+                    <FaUser />
+                  </NavLink>
+                </td>
+                <td>
                   <select
                     value={newRoles[oneUser._id] || oneUser.role}
                     onChange={(e) =>
@@ -163,11 +170,7 @@ const DashboardAdmin = () => {
                     <option value="user">User</option>
                   </select>
                 </td>
-                <td>
-                  <NavLink to={`/profil/${oneUser._id}`} className="see-more">
-                    <p>Voir plus</p>
-                  </NavLink>
-                </td>
+
                 <td className="td-none">{userViewsCount[oneUser._id] || 0}</td>
 
                 <td>{userBooksCount[oneUser._id] || 0}</td>

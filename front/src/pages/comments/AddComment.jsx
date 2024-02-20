@@ -3,6 +3,7 @@ import axios from "axios";
 import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
+import "../../assets/styles/book/book.css";
 import { useAuth } from "../../context/AuthContext";
 
 const AddComment = ({ bookId }) => {
@@ -56,24 +57,28 @@ const AddComment = ({ bookId }) => {
       {message && <span className="success">{message}</span>}
 
       <form onSubmit={handleSubmit} className="form-style2">
-        <label htmlFor="content">Ajouter un commentaire : </label>
+        <label htmlFor="content" className="label-comment">
+          Ajouter un commentaire :
+        </label>
 
-        <img
-          className="style-base2"
-          src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-          alt={auth.user.image.alt}
-        />
-        <h5>{auth.user.login}</h5>
+        <article className="comment-article">
+          <img
+            className="style-base2"
+            src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+            alt={auth.user.image.alt}
+          />
+          <h5 className="name-none">{auth.user.login}</h5>
 
-        <textarea
-          className="form-textarea"
-          onChange={handleChange}
-          value={inputs.content}
-          type="text"
-          id="content"
-          name="content"
-          placeholder="Votre commentaire"
-        />
+          <textarea
+            className="form-textarea2"
+            onChange={handleChange}
+            value={inputs.content}
+            type="text"
+            id="content"
+            name="content"
+            placeholder="Votre commentaire"
+          />
+        </article>
 
         <button className="form-button">Valider</button>
       </form>

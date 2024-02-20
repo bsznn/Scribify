@@ -9,8 +9,8 @@ import { FaHeart } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
 
 import { IoIosAddCircle } from "react-icons/io";
-import { MdDeleteForever } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
 
 import "../../assets/styles/book/book.css";
 import { useAuth } from "../../context/AuthContext";
@@ -68,74 +68,115 @@ const Book = () => {
   };
 
   return (
-    <main>
-      <section className="b-section">
+    <main className="m-container">
+      <section className="bk-section">
         {book && (
           <>
-            <h1 className="b-title">{book.title}</h1>
-            <article className="b-article1">
-              <img
-                className="style-base2"
-                src={`http://localhost:9000/assets/img/${book.image.src}`}
-                alt={book.image.alt}
-                aria-label="book-image"
-                title={book.image.alt}
-              />
-              <ul>
-                <li className="style-base">{book.description}</li>
-                <li className="categories">
-                  {categories &&
-                    categories.map((category, index) => (
-                      <span key={index}>#{category.name} </span>
-                    ))}
+            <article className="bk-article1">
+              <ul className="bk-ul1">
+                <li>
+                  <h2 className="bk-title">{book.title}</h2>
+                </li>
+              </ul>
+
+              <ul className="bk-ul2">
+                <li>
+                  <img
+                    className="bk-img"
+                    src={`http://localhost:9000/assets/img/${book.image.src}`}
+                    alt={book.image.alt}
+                    aria-label="book-image"
+                    title={book.image.alt}
+                  />
+                  <li className="description">{book.description}</li>
+                  <li className="categories">
+                    {categories &&
+                      categories.map((category, index) => (
+                        <span key={index}>#{category.name} </span>
+                      ))}
+                  </li>
+                </li>
+              </ul>
+
+              <ul className="bk-ul3">
+                <li>
+                  <IoEyeSharp className="book-icon" id="bic1" />
+                  <pre>{book.views}</pre>
+                </li>
+                <li>
+                  <FaHeart className="book-icon" id="bic2" />
+                  {/* {book.likes} */} <pre>{book.likes.length}</pre>
+                </li>
+
+                <li>
+                  <FaComment
+                    className="book-icon"
+                    id="bic3"
+                    onClick={() => setShowComments(!showComments)}
+                  />
+                  <pre>{book.comments.length}</pre>
                 </li>
               </ul>
             </article>
-            <article className="b-article2">
-              <IoEyeSharp className="book-icon" id="bic1" />
-              <pre>{book.views}</pre>
-              <FaHeart className="book-icon" id="bic2" />
-              {/* {book.likes} */} <pre>{book.likes.length}</pre>
-              <FaComment
-                className="book-icon"
-                id="bic3"
-                onClick={() => setShowComments(!showComments)}
-              />
-              <pre>{book.comments.length}</pre>
-            </article>
+
             {chapters &&
               chapters.map((chapter, index) => (
-                <section key={index}>
-                  <h5>{chapter.title}</h5>
-                  {console.log(chapter)}
-                  <p
-                    className="style-base3"
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(chapter.content),
-                    }}
-                  />
-                  {/* A tester avec un utilisateur qui est non admin */}
-                  {auth.user.id === book.userId._id && (
-                    <article>
-                      <MdDeleteForever
-                        className="profile-icon"
-                        onClick={() => handleDelete(book._id, chapter._id)}
+                <article key={index} className="bk-article2">
+                  <ul className="bk-ul4">
+                    <li>
+                      <h4>{chapter.title}</h4>
+                      {console.log(chapter)}
+                    </li>
+                    <li>
+                      <p
+                        className="description"
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(chapter.content),
+                        }}
                       />
-                      <Link
-                        to={`/modifier-chapitre/${book._id}/${chapter._id}`}
-                      >
-                        <CiEdit className="profile-icon" />
-                      </Link>
-                    </article>
+                    </li>
+                  </ul>
+                  {auth.user && auth.user.id === book.userId._id ? (
+                    <ul className="bk-ul5">
+                      <li>
+                        <Link
+                          to={`/modifier-chapitre/${book._id}/${chapter._id}`}
+                        >
+                          <IoIosSettings className="profile-icon" />
+                        </Link>
+                      </li>
+                      <li>
+                        <MdDelete
+                          className="profile-icon"
+                          onClick={() => handleDelete(book._id, chapter._id)}
+                        />
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul className="bk-ul5"></ul>
                   )}
-                </section>
+                </article>
               ))}
-            <Link to={`/ajouter-chapitre/${book._id}`}>
-              <IoIosAddCircle />
-            </Link>
-            <LikeCounter />
-            <AddComment bookId={id} />
-            {showComments && <Comments bookId={id} />}
+
+            <article className="bk-article3">
+              <ul className="bk-ul6">
+                <span>
+                  <li>
+                    <Link to={`/ajouter-chapitre/${book._id}`}>
+                      <IoIosAddCircle className="chapter-button" />
+                    </Link>
+                  </li>
+                  <li>
+                    <LikeCounter />
+                  </li>
+                </span>
+
+                <li>
+                  <AddComment bookId={id} />
+                  {showComments && <Comments bookId={id} />}
+                </li>
+              </ul>
+            </article>
           </>
         )}
       </section>

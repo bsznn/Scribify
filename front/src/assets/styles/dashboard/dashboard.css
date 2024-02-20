@@ -33,10 +33,6 @@
   background-color: var(--hoverGreen);
 }
 
-/* .dashboard-table tbody tr:hover {
-  background-color: #ddd;
-} */
-
 .dashboard-table select {
   width: 100%;
   padding: 0.3em;
@@ -48,17 +44,8 @@
   text-align: center;
 }
 
-/* .dashboard-table img {
-  vertical-align: middle;
-  width: 1em;
-  height: 1em;
-  object-fit: cover;
-  margin-right: 0.3em;
-} */
-
 .see-more {
   color: var(--darkGreen);
-  font-family: var(--fontItalic);
   font-size: 1.2em;
 }
 

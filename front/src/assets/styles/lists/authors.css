@@ -25,8 +25,8 @@
 }
 
 .author-title h1 {
-  color: var(--darkGreen);
-  background-color: var(--orange);
+  color: var(--mediumGreen);
+  background-color: var(--darkGreen);
 }
 
 .author-link {

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 import { token } from "../../context/token";
 
+import fond from "../../assets/images/forms/8.png";
+
 const UpdateCategory = () => {
   const { id } = useParams();
   const [inputs, setInputs] = useState({
@@ -76,13 +78,25 @@ const UpdateCategory = () => {
     <main>
       {message && <span className="success">{message}</span>}
       <section className="section-style2">
-        <h2>Modifier une catégorie</h2>
+        <img src={fond} alt="image-fond" className="image-fond5" />
 
-        <label htmlFor="image">Couverture de la catégorie : </label>
-        <input onChange={handleChange} type="file" id="image" name="image" />
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="form-style2"
+        >
+          <h2>Modifier une catégorie</h2>
+          <label htmlFor="image">Couverture de la catégorie : </label>
+          <input
+            onChange={handleChange}
+            type="file"
+            id="image"
+            name="image"
+            className="file-input"
+          />
           <label htmlFor="name">Nom de la catégorie :</label>
           <input
+            className="form-input2"
             type="text"
             id="name"
             name="name"
@@ -93,10 +107,13 @@ const UpdateCategory = () => {
           <textarea
             id="description"
             name="description"
+            className="form-input2"
             value={inputs.description}
             onChange={handleChange}
           ></textarea>
-          <button type="submit">Valider</button>
+          <button type="submit" className="form-button">
+            Valider
+          </button>
         </form>
         {error && <span>{error}</span>}
       </section>

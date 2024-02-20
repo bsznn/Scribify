@@ -21,7 +21,7 @@ import arrow2 from "../../assets/images/home/arrow1.png";
 import userImage from "../../assets/images/users/default-profil.png";
 import logo from "../../assets/images/logo/logo2.png";
 
-// const MAX_DESCRIPTION_LENGTH = 250;
+const MAX_DESCRIPTION_LENGTH = 250;
 
 const Profile = () => {
   const [books, setBooks] = useState([]);
@@ -98,20 +98,6 @@ const Profile = () => {
       });
   }, [auth.user._id]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:9000/books/total-likes/${auth.user._id}`, {
-  //       headers: token(),
-  //     })
-  //     .then((res) => {
-  //       setTotalLikes(res.data.totalLikes);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setErr("Impossible de charger les données");
-  //     });
-  // }, []);
-
   useEffect(() => {
     axios
       .get("http://localhost:9000/books/newest-books")
@@ -132,7 +118,7 @@ const Profile = () => {
 
     if (confirmDelete) {
       axios
-        .delete(`http://localhost:9000/books/delete/${id}`, {
+        .delete(`http://localhost:9000/books/delete/${id}/${auth.user.id}`, {
           headers: token(),
         })
         .then((res) => {
@@ -162,14 +148,26 @@ const Profile = () => {
           setSuccessMessage("L'utilisateur a été supprimé avec succès");
           setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
           if (res.data.message) {
-            navigate("/");
-            window.location.reload(successMessage);
+            setTimeout(() => {
+              auth.logout();
+              navigate("/");
+            }, 3000);
+
+            alert("L'utilisateur a été supprimé avec succès !");
           }
         })
         .catch((err) => {
           console.error(err);
         });
     }
+  };
+
+  // Fonction pour tronquer la description à 250 caractères
+  const truncateDescription = (description) => {
+    if (description.length > 250) {
+      return description.substring(0, 250) + "...";
+    }
+    return description;
   };
 
   return (
@@ -193,31 +191,32 @@ const Profile = () => {
               </span>
 
               <article>
-                <p className="description">{auth.user.description}</p>
-                {/* {auth.user.description &&
-            auth.user.description.length > MAX_DESCRIPTION_LENGTH
-              ? `${auth.user.description.substring(
-                  0,
-                  MAX_DESCRIPTION_LENGTH
-                )}...`
-              : auth.user.description} */}
+                {auth.user.description &&
+                auth.user.description.length > MAX_DESCRIPTION_LENGTH
+                  ? `${auth.user.description.substring(
+                      0,
+                      MAX_DESCRIPTION_LENGTH
+                    )}...`
+                  : auth.user.description}
               </article>
             </section>
 
             <article className="p-new-article">
-              <span>
-                <FaBookOpen className="book-icon" />
-                {books.length} <p className="p-text-none">Oeuvres</p>
-              </span>
-              <span>
-                <FaHeart className="heart-icon" /> {totalLikes}
-                <p className="p-text-none">Likes</p>
-              </span>
-              <span>
-                <FaEye className="view-icon" />
-                {totalViews}
-                <p className="p-text-none">Vues</p>
-              </span>
+              <ul>
+                <li>
+                  <FaBookOpen className="book-icon" />
+                  {books.length} <p className="p-text-none">Oeuvres</p>
+                </li>
+                <li>
+                  <FaHeart className="heart-icon" /> {totalLikes}
+                  <p className="p-text-none">Likes</p>
+                </li>
+                <li>
+                  <FaEye className="view-icon" />
+                  {totalViews}
+                  <p className="p-text-none">Vues</p>
+                </li>
+              </ul>
             </article>
 
             <article className="p-article-ul">
@@ -264,30 +263,39 @@ const Profile = () => {
           <>
             {oneBook.image && (
               <section key={oneBook._id} className="p-sous-section">
-                <section className="p-section-bloc">
-                  <article className="p-article3">
-                    <img
-                      src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
-                      alt={oneBook.image.alt}
-                      className="p-couverture"
-                    />
+                <article className="p-section-bloc">
+                  <ul className="p-article3">
+                    <li>
+                      <img
+                        src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
+                        alt={oneBook.image.alt}
+                        className="p-couverture"
+                      />
+                    </li>
 
-                    <Link to={`/livre/${oneBook._id}`} className="p-title">
-                      <h4> {oneBook.title}</h4>
-                    </Link>
-                    <pre>{oneBook.chapters.length} chapitre(s)</pre>
-                  </article>
+                    <li>
+                      <Link to={`/livre/${oneBook._id}`} className="p-title">
+                        <h4> {oneBook.title}</h4>
+                      </Link>
+                    </li>
 
-                  <article className="p-article4">
-                    <p className="description">{oneBook.description}</p>
-                    <p className="categories">
+                    <li>
+                      <pre>{oneBook.chapters.length} chapitre(s)</pre>
+                    </li>
+                  </ul>
+
+                  <ul className="p-article4">
+                    <li className="description">
+                      {truncateDescription(oneBook.description)}
+                    </li>
+                    <li className="categories">
                       {oneBook.categoryId &&
                         oneBook.categoryId.map((category, index) => (
                           <span key={index}>#{category.name} </span>
                         ))}
-                    </p>
-                  </article>
-                </section>
+                    </li>
+                  </ul>
+                </article>
 
                 <article className="p-article5">
                   <pre>
