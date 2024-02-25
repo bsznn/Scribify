@@ -20,7 +20,6 @@ import arrow2 from "../../assets/images/home/arrow1.png";
 
 import userImage from "../../assets/images/users/default-profil.png";
 import logo from "../../assets/images/logo/logo2.png";
-import lune from "../../assets/images/forms/lune3.png";
 
 const Profile = () => {
   const [books, setBooks] = useState([]);

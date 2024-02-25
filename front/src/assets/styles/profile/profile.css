@@ -41,7 +41,8 @@
   right: 0;
 }
 
-.lune-fond {
+.lune-fond,
+.lune-fond2 {
   display: none;
 }
 
@@ -276,6 +277,12 @@
     height: 20.6em;
   }
 
+  .lune-fond2 {
+    display: flex;
+    width: 5em;
+    margin: 1em auto;
+  }
+
   .p-new-article {
     display: flex;
     justify-content: center;
@@ -432,7 +439,7 @@
   }
 
   .p-section2 {
-    margin-bottom: 5em;
+    margin-bottom: 2.5em;
   }
 
   .p-sous-section {
@@ -454,7 +461,7 @@
 
   .p-section3,
   .p-section4 {
-    height: 10em;
+    height: 8em;
     width: 20em;
     overflow: auto;
     overflow-x: hidden;
@@ -477,7 +484,10 @@
 
   .p-author-article,
   .p-book-article {
-    animation: pulse 5s infinite alternate;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .p-book-img {
@@ -519,7 +529,7 @@
     font-weight: bold;
   }
 
-  @keyframes pulse {
+  /* @keyframes pulse {
     0% {
       transform: scale(1);
     }
@@ -529,7 +539,7 @@
     100% {
       transform: scale(1);
     }
-  }
+  } */
 }
 
 @media screen and (min-width: 1250px) {

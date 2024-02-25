@@ -12,6 +12,7 @@ import { IoEllipsisVerticalOutline } from "react-icons/io5";
 import arrow1 from "../../assets/images/home/arrow2.png";
 import arrow2 from "../../assets/images/home/arrow1.png";
 import back from "../../assets/images/home/fond.png";
+import lune from "../../assets/images/forms/lune5.png";
 
 const Home = () => {
   const [booksPopulars, setBooksPopulars] = useState([]);
@@ -91,6 +92,7 @@ const Home = () => {
       <main className="home">
         <section className="h-section1">
           <img src={back} alt="caroussel-fond" className="caroussel-fond1" />
+          <img src={lune} alt="lune-fond" className="lune-bg" />
           <article className="h-article1">
             <p>
               Célébrez les mots avec Scribify : un voyage littéraire au cœur de

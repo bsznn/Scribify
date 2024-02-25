@@ -130,75 +130,71 @@ const Post = () => {
 
             <h2>Publier un livre</h2>
 
-            <article>
-              <label htmlFor="image">Couverture de livre : </label>
-              <input
-                className="file-input"
-                onChange={handleChange}
-                type="file"
-                id="image"
-                name="image"
-              />
-              <label htmlFor="title">Titre : </label>
-              <input
-                className="form-input2"
-                onChange={handleChange}
-                value={inputs.title}
-                type="text"
-                id="title"
-                name="title"
-                placeholder="Titre"
-              />
+            <label htmlFor="image">Couverture de livre : </label>
+            <input
+              className="file-input"
+              onChange={handleChange}
+              type="file"
+              id="image"
+              name="image"
+            />
+            <label htmlFor="title">Titre : </label>
+            <input
+              className="form-input2"
+              onChange={handleChange}
+              value={inputs.title}
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Titre"
+            />
 
-              <label htmlFor="description">Description : </label>
+            <label htmlFor="description">Description : </label>
 
-              <textarea
-                className="form-textarea"
-                onChange={handleChange}
-                value={inputs.description}
-                type="text"
-                id="description"
-                name="description"
-                placeholder="Description"
-              />
+            <textarea
+              className="form-textarea"
+              onChange={handleChange}
+              value={inputs.description}
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Description"
+            />
 
-              <label htmlFor="categories">Catégories : </label>
-              <select
-                multiple
-                name="categories"
-                id="categories"
-                value={inputs.categories}
-                onChange={handleChange}
-              >
-                {inputs.categories.map((category, index) => (
-                  <option value={category._id} key={index}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </article>
+            <label htmlFor="categories">Catégories : </label>
+            <select
+              multiple
+              name="categories"
+              id="categories"
+              value={inputs.categories}
+              onChange={handleChange}
+            >
+              {inputs.categories.map((category, index) => (
+                <option value={category._id} key={index}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
 
-            <article>
-              <label htmlFor="chapterTitle">Titre du chapitre : </label>
-              <input
-                className="form-input2"
-                onChange={handleChange}
-                value={inputs.chapterTitle}
-                type="text"
-                id="chapterTitle"
-                name="chapterTitle"
-                placeholder="Titre du chapitre"
-              />
+            <label htmlFor="chapterTitle">Titre du chapitre : </label>
+            <input
+              className="form-input2"
+              onChange={handleChange}
+              value={inputs.chapterTitle}
+              type="text"
+              id="chapterTitle"
+              name="chapterTitle"
+              placeholder="Titre du chapitre"
+            />
 
-              <label htmlFor="chapterContent">Contenu du chapitre : </label>
-              <ReactQuill
-                className="ql-editor"
-                theme="snow"
-                value={inputs.chapterContent}
-                onChange={handleQuill}
-                placeholder="Il était une fois..."
-              />
-            </article>
+            <label htmlFor="chapterContent">Contenu du chapitre : </label>
+            <ReactQuill
+              className="ql-editor"
+              theme="snow"
+              value={inputs.chapterContent}
+              onChange={handleQuill}
+              placeholder="Il était une fois..."
+            />
 
             <button className="form-button2 " id="form-btn2">
               Valider

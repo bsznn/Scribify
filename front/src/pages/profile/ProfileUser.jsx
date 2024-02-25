@@ -21,6 +21,7 @@ import arrow2 from "../../assets/images/home/arrow1.png";
 import userImage from "../../assets/images/users/default-profil.png";
 import logo from "../../assets/images/logo/logo2.png";
 import lune from "../../assets/images/forms/lune3.png";
+import lune2 from "../../assets/images/forms/lune4.png";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -333,26 +334,32 @@ const ProfileUser = () => {
                       </li>
                     </span>
 
-                    <ul className="span-align">
-                      <li>
-                        <Link
-                          to={`/modifier-livre/${oneBook._id}`}
-                          className="link-bio"
+                    {auth.user &&
+                    (auth.user.role === "admin" ||
+                      auth.user.id === auth.user) ? (
+                      <ul className="span-align">
+                        <li>
+                          <Link
+                            to={`/modifier-livre/${oneBook._id}`}
+                            className="link-bio"
+                          >
+                            <IoIosSettings className="profile-icon" id="pic3" />
+                            <p className="no-text-icon">⚙️ Modifier</p>
+                          </Link>
+                        </li>
+                        <li
+                          onClick={() =>
+                            handleDelete(oneBook._id, oneBook.userId._id)
+                          }
                         >
-                          <IoIosSettings className="profile-icon" id="pic3" />
-                          <p className="no-text-icon">⚙️ Modifier</p>
-                        </Link>
-                      </li>
-                      <li
-                        onClick={() =>
-                          handleDelete(oneBook._id, oneBook.userId._id)
-                        }
-                      >
-                        {console.log(oneBook)}
-                        <MdDelete className="profile-icon" id="pic4" />
-                        <p className="no-text-icon">🗑️ Supprimer</p>
-                      </li>
-                    </ul>
+                          {console.log(oneBook)}
+                          <MdDelete className="profile-icon" id="pic4" />
+                          <p className="no-text-icon">🗑️ Supprimer</p>
+                        </li>
+                      </ul>
+                    ) : (
+                      <img src={lune2} alt="lune-fond" className="lune-fond2" />
+                    )}
                   </ul>
                 </article>
               </section>
@@ -476,7 +483,7 @@ const ProfileUser = () => {
 
           <section className="p-section4">
             {newBooks.map((oneNewBook) => (
-              <article key={oneNewBook._id}>
+              <article key={oneNewBook._id} className="p-book-article">
                 <Link to={`/livre/${oneNewBook._id}`}>
                   <ul>
                     <li>

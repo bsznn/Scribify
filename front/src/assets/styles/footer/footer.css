@@ -11,6 +11,11 @@ footer {
   animation: fadeIn 1s ease-in-out;
 }
 
+.lune-left,
+.vert-fond {
+  display: none;
+}
+
 .f-first-section,
 .f-second-section {
   display: block; /* Afficher les sections comme blocs sur les appareils mobiles */
@@ -21,9 +26,18 @@ footer h3 {
   text-transform: uppercase;
 }
 
+.f-article1 {
+  width: 18em;
+  margin: 0 auto;
+}
+
 .f-article1 img {
   height: 3em;
   margin-left: 0.3em;
+}
+
+.f-article2 {
+  padding-left: 4em;
 }
 
 .aboutus {
@@ -47,17 +61,20 @@ footer h3 {
 }
 
 .f-article2 ul,
-.f-article3 ul,
-.f-article4 ul {
+.f-article3 ul {
   margin-top: 2em;
 }
 
-.f-article4 ul {
+.f-article3 ul {
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }
 
-.f-article4 button {
+.f-article3 h3 {
+  padding-left: 4.5em;
+}
+
+.f-article3 button {
   background-color: var(--darkGreen);
   border: none;
   font-size: 2em;
@@ -65,7 +82,7 @@ footer h3 {
   transition: transform 0.3s ease-in-out;
 }
 
-.f-article4 button:hover {
+.f-article3 button:hover {
   transform: rotate(360deg);
 }
 
@@ -132,16 +149,61 @@ footer h3 {
   }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 720px) {
+  .f-main-section {
+    width: 47.5em;
+    margin: 0 auto;
+  }
   .f-first-section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (min-width: 720px) {
-  .f-first-section {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes égales */
+@media screen and (min-width: 990px) {
+  .f-main-section {
+    width: 67em;
+  }
+
+  .f-article1 p {
+    width: 27em;
+    padding-left: 1.5em;
+  }
+
+  .f-article1 h3 {
+    padding-left: 7em;
+  }
+
+  .f-article2 {
+    padding-left: 14em;
+    width: 14em;
+  }
+
+  .f-article3 {
+    padding-right: 4em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .f-main-section {
+    position: relative;
+  }
+  .lune-left {
+    display: flex;
+    width: 14em;
+  }
+
+  .lune-left {
+    position: absolute;
+    left: -15em;
+  }
+
+  .vert-fond {
+    display: flex;
+    position: absolute;
+    width: 17em;
+    height: 17.4em;
+    right: -19.25em;
+    bottom: -2.3em;
   }
 }
