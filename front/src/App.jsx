@@ -36,12 +36,16 @@ import ProfileUser from "./pages/profile/ProfileUser";
 import Category from "./pages/categories/Category";
 import UpdateCategory from "./pages/categories/UpdateCategory";
 import AddCategory from "./pages/categories/AddCategory";
+import NotFound from "./pages/error/NotFound";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route path="*" element={<NotFound />} />
 
         <Route path="/a-propos" element={<AboutUs />} />
 
@@ -51,40 +55,49 @@ function App() {
 
         <Route path="/categories" element={<Categories />} />
         <Route path="/categorie/:categoryId" element={<Category />} />
-        <Route path="/modifier-categorie/:id" element={<UpdateCategory />} />
-        <Route path="/ajouter-categorie" element={<AddCategory />} />
+
+        <Route path="/" element={<PrivateRoute roles={["admin"]} />}>
+          <Route path="/modifier-categorie/:id" element={<UpdateCategory />} />
+          <Route path="/ajouter-categorie" element={<AddCategory />} />
+        </Route>
 
         <Route path="/faq" element={<FAQ />} />
 
         <Route path="/lecteurs" element={<Readers />} />
 
-        <Route path="/publier" element={<Post />} />
-        <Route path="/modifier-livre/:id" element={<PostEdit />} />
         <Route path="/livre/:id" element={<Book />} />
 
-        <Route
-          path="/modifier-chapitre/:bookId/:chapterId"
-          element={<ChapterUpdate />}
-        />
-        <Route path="/ajouter-chapitre/:bookId" element={<ChapterAdd />} />
+        <Route path="/" element={<PrivateRoute roles={["admin", "user"]} />}>
+          <Route path="/ajouter-commentaire/:bookId" element={<AddComment />} />
+          <Route
+            path="/modifier-commentaire/:bookId/:commentId"
+            element={<UpdateComment />}
+          />
 
-        <Route path="/ajouter-commentaire/:bookId" element={<AddComment />} />
+          <Route
+            path="/modifier-chapitre/:bookId/:chapterId"
+            element={<ChapterUpdate />}
+          />
+          <Route path="/ajouter-chapitre/:bookId" element={<ChapterAdd />} />
+
+          <Route path="/modifier-livre/:id" element={<PostEdit />} />
+
+          <Route path="/modifier-utilisateur/:id" element={<EditUser />} />
+
+          <Route path="/profil" element={<Profile />} />
+          <Route path="/profil/:id" element={<ProfileUser />} />
+        </Route>
+
+        <Route path="/publier" element={<Post />} />
+
         <Route path="/commentaires/:bookId" element={<Comments />} />
         <Route path="/commentaire/:bookId/:commentId" element={<Comment />} />
-        <Route
-          path="/modifier-commentaire/:bookId/:commentId"
-          element={<UpdateComment />}
-        />
-
-        <Route path="/profil" element={<Profile />} />
-        <Route path="/profil/:id" element={<ProfileUser />} />
 
         <Route path="/se-connecter" element={<Login />} />
         <Route path="/s-inscrire" element={<Register />} />
 
         <Route path="/utilisateurs" element={<Users />} />
         <Route path="/utilisateur/:id" element={<User />} />
-        <Route path="/modifier-utilisateur/:id" element={<EditUser />} />
 
         <Route path="/recrutement" element={<Recruitement />} />
         <Route path="/conseils" element={<Advice />} />

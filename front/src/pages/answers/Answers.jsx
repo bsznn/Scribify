@@ -4,6 +4,8 @@ import { useAuth } from "../../context/AuthContext";
 import { token } from "../../context/token";
 import Answer from "./Answer";
 
+import "../../assets/styles/book/comment.css";
+
 const Answers = ({ bookId, commentId }) => {
   const [answers, setAnswers] = useState([]);
   const [err, setErr] = useState();
@@ -30,7 +32,7 @@ const Answers = ({ bookId, commentId }) => {
 
   return (
     <main>
-      <h5 className="b-title">Réponses</h5>
+      <h5 className="label-answer">Réponses au commentaire :</h5>
 
       {answers.map((oneAnswer) => (
         <section key={oneAnswer._id}>

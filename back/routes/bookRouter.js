@@ -30,9 +30,9 @@ bookRouter.get("/books/:id", getOneBook);
 
 bookRouter.get("/books/category/:id", getBooksByCategoryName);
 
-bookRouter.get("/books/my-book/:userId", isLogged, getBooksByUser);
-bookRouter.get("/books/total-views/:userId", isLogged, getTotalViewsByUser);
-bookRouter.get("/books/total-likes/:userId", isLogged, getTotalLikesByUser);
+bookRouter.get("/books/my-book/:userId", getBooksByUser);
+bookRouter.get("/books/total-views/:userId", getTotalViewsByUser);
+bookRouter.get("/books/total-likes/:userId", getTotalLikesByUser);
 
 bookRouter.post(
   "/books/new",

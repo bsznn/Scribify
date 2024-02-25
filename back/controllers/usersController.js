@@ -75,6 +75,7 @@ export const login = async (req, res) => {
       id: user._id,
       login: user.login,
       role: user.role,
+      description: user.description,
       image: user.image,
       token: token,
     });
@@ -205,6 +206,14 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
+    const books = await Book.deleteMany({
+      userId: req.params.id,
+    });
+
+    if (!books) {
+      res.status(404).json({ message: "Livre non trouvé" });
+    }
+
     const user = await User.findOneAndDelete({
       _id: req.params.id,
     });

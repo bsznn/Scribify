@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 import AddAnswer from "../answers/AddAnswer";
 import Answers from "../answers/Answers";
 
-import { CiEdit } from "react-icons/ci";
-import { MdDeleteForever } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 import { RiQuestionAnswerFill } from "react-icons/ri";
+import { IoIosSend } from "react-icons/io";
 
 import "../../assets/styles/book/book.css";
+import "../../assets/styles/book/comment.css";
 
 const Comment = ({ bookId, commentId, total }) => {
   const [comment, setComment] = useState("");
@@ -136,52 +138,57 @@ const Comment = ({ bookId, commentId, total }) => {
       <section className="comment-section">
         {comment && (
           <>
-            <article className="comment-article">
+            <article className="comment-article2">
               <span>
                 <img
                   className="comment-img"
                   src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
                   alt={auth.user.image.alt}
                 />
-                <h4 className="name-none">{auth.user.login}</h4>
+                <h5 className="name-none">{auth.user.login}</h5>
               </span>
 
               {showUpdateForm ? (
                 <>
                   <textarea
-                    className="form-textarea"
+                    className="comment-area"
                     value={updateContent}
                     onChange={(e) => setUpdateContent(e.target.value)}
                   />
-                  <button onClick={handleUpdate} className="form-button">
-                    Valider
+                  <button onClick={handleUpdate}>
+                    <IoIosSend className="icon-none" />
+                    <p className="name-none"> ↪️ Valider</p>
                   </button>
                 </>
               ) : (
                 <span>
-                  <p className="style-base">{comment.content}</p>
+                  <p className="comment-area">{comment.content}</p>
                 </span>
               )}
             </article>
 
-            <article className="b-article-pre">
+            <article className="b-article-pre" id="comment-pre">
               Posté le {new Date(comment.date).toLocaleDateString()} à{" "}
               {new Date(comment.date).toLocaleTimeString()}
             </article>
 
             {auth.user.id === comment.userId._id && (
               <article>
-                {console.log(auth.user.id)}
-                {console.log(comment.userId._id)}
-                <MdDeleteForever
-                  className="profile-icon"
-                  onClick={handleDelete}
-                />
-                <CiEdit className="profile-icon" onClick={toggleUpdateForm} />
-                <RiQuestionAnswerFill
-                  className="profile-icon"
-                  onClick={toggleAnswerInput}
-                />
+                <ul className="comment-article3">
+                  <li onClick={toggleUpdateForm}>
+                    <IoIosSettings className="profile-icon" />
+                    <p className="name-none">⚙️ Modifier</p>
+                  </li>
+                  <li onClick={handleDelete}>
+                    <MdDelete className="profile-icon" />
+                    <p className="name-none">🗑️ Supprimer</p>
+                  </li>
+                  <li onClick={toggleAnswerInput}>
+                    <RiQuestionAnswerFill className="orange-icon" />
+                    <p className="name-none">🗨️ Réponses</p>
+                  </li>
+                </ul>
+
                 {showAnswerInput && (
                   <AddAnswer
                     bookId={bookId}

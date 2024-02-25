@@ -6,6 +6,9 @@ import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
+import rotate from "../../assets/images/forms/lune.png";
+import rotate2 from "../../assets/images/forms/lune2.png";
+
 const ChapterAdd = () => {
   const [inputs, setInputs] = useState({
     chapterContent: "",
@@ -71,6 +74,9 @@ const ChapterAdd = () => {
       <section className="section-style2">
         <h2>Ajouter un chapitre</h2>
         <form onSubmit={handleSubmit} className="form-style2">
+          <img src={rotate} alt="image-lune" className="rotate-gif3" />
+          <img src={rotate2} alt="image-lune" className="rotate-gif2" />
+
           <label htmlFor="chapterTitle">Titre du chapitre : </label>
           <input
             className="form-input"
@@ -82,6 +88,7 @@ const ChapterAdd = () => {
             placeholder="Titre du chapitre"
           />
 
+          <label htmlFor="chapterContent">Contenu du chapitre : </label>
           <ReactQuill
             className="ql-editor"
             theme="snow"
@@ -90,10 +97,10 @@ const ChapterAdd = () => {
             placeholder="Contenu du chapitre"
           />
 
-          <button className="form-button">Valider</button>
+          <button className="form-button2">Valider</button>
         </form>
         {err && <span>{err}</span>}
-      </section>{" "}
+      </section>
     </main>
   );
 };

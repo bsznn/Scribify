@@ -6,6 +6,8 @@ import "../../assets/styles/book/books.css";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [currentBooks, setCurrentBooks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
   const [err, setErr] = useState();
 
   useEffect(() => {
@@ -14,6 +16,7 @@ const Books = () => {
       .then((res) => {
         console.log(res);
         setBooks(res.data);
+        setCurrentBooks(res.data.slice(0, 5));
       })
       .catch((res) => {
         console.log(res);
@@ -27,6 +30,19 @@ const Books = () => {
       return description.substring(0, 250) + "...";
     }
     return description;
+  };
+
+  const nextBook = () => {
+    setCurrentPage((prev) => {
+      const nextPage = prev + 5;
+      const endPage = nextPage + 5;
+      setCurrentBooks(books.slice(nextPage, endPage));
+    });
+    console.log(currentPage);
+  };
+
+  const prevBook = () => {
+    setCurrentPage((prev) => prev - 1);
   };
 
   return (
@@ -44,7 +60,7 @@ const Books = () => {
       </section>
 
       <section className="books-section2">
-        {books.map((oneBook) => (
+        {currentBooks.map((oneBook) => (
           <NavLink to={`/livre/${oneBook._id}`} key={oneBook._id}>
             <section className="books-sous-section">
               <article className="books-section-bloc">
@@ -90,6 +106,8 @@ const Books = () => {
             </section>
           </NavLink>
         ))}
+        <button onClick={prevBook}>Précédent</button>
+        <button onClick={nextBook}>Suivant</button>
       </section>
     </main>
   );

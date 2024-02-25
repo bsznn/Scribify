@@ -376,6 +376,17 @@
     border-radius: 1em;
     box-shadow: var(--ombre);
   }
+
+  .caroussel-fond1 {
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
+
+  .caroussel-fond2 {
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+
   .images {
     animation: none;
     justify-content: center;
@@ -463,5 +474,11 @@
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1250px) {
+  .h-section1 {
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
 }

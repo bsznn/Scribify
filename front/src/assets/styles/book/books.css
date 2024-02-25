@@ -136,10 +136,10 @@
     padding: 0.5em;
   }
 
-  .books-sous-title,
+  /* .books-sous-title,
   .cat-sous-title {
     font-size: 0.9em;
-  }
+  } */
 }
 
 @media screen and (min-width: 990px) {
@@ -173,10 +173,10 @@
     height: 18em;
   }
 
-  .books-sous-title,
+  /* .books-sous-title,
   .cat-sous-title {
     font-size: 0.7em;
-  }
+  } */
 
   /* .books-article2 .description {
     padding-right: 5.5em;

@@ -23,6 +23,7 @@
 .bk-title {
   color: var(--orange);
   padding-top: 1em;
+  text-align: center;
 }
 
 .bk-section ul {
@@ -52,6 +53,7 @@
   display: flex;
   align-items: center;
   margin: 1em 0;
+  cursor: pointer;
 }
 
 .book-icon {
@@ -81,10 +83,8 @@
   content: "⚘ ⚘ ⚘";
 }
 
-.bk-ul2 img {
+.article-livre img {
   display: none;
-  height: 12em;
-  width: 7em;
 }
 
 .bk-ul5,
@@ -105,6 +105,32 @@
   object-fit: cover;
 }
 
+.page-buttonL,
+.page-buttonR {
+  color: var(--orange);
+  font-family: var(--fontItalic);
+  background-color: var(--hoverGreen);
+  font-size: 1.2em;
+  border: none;
+  margin: 0.5em 0.2em;
+  cursor: pointer;
+}
+
+.page-buttonL::before {
+  content: "<<< ";
+  font-size: 1.8em;
+}
+
+.page-buttonR::after {
+  content: " >>>";
+  font-size: 1.8em;
+}
+
+.page-buttonL:hover,
+.page-buttonR:hover {
+  color: var(--hoverOrange);
+}
+
 .bk-ul6 span {
   justify-content: center;
 }
@@ -121,51 +147,15 @@
 
 /* Like Counter */
 
-.btn-likecounter button {
+.btn-likecounter {
   border: none;
   background-color: var(--hoverGreen);
-  color: var(--hoverGreen);
 }
 
-/* ESPACE COMMENTAIRE */
-
-.label-comment {
-  color: var(--darkGreen);
-  font-family: var(--fontItalic);
-  font-size: 1.5em;
-  text-align: center;
-  font-weight: bold;
-}
-
-.comment-article {
-  display: flex;
-  align-items: center;
-}
-
-.name-none {
+.bk-text-none,
+.bk-text-none2 {
   display: none;
 }
-
-.comment-article img {
-  width: 2.8em;
-  height: 2.8em;
-  margin-right: 0.5em;
-  border-radius: 50%;
-}
-
-.form-textarea2 {
-  padding: 0.5em;
-  border-radius: 1em;
-  width: 12em;
-  font-family: var(--fontRegular);
-  border: none;
-  text-align: center;
-  color: var(--darkGreen);
-}
-/* 
-.comment-article1 {
-  sp
-} */
 
 @keyframes fadeIn {
   from {
@@ -182,5 +172,156 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .bk-section-livre {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    position: relative;
+    width: 40em;
+    margin: 1em auto;
+    background-color: var(--darkGreen);
+    color: var(--mediumGreen);
+    border-radius: 0.5em;
+    box-shadow: var(--ombre);
+  }
+
+  .bk-section-livre,
+  .section-chapitre {
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .article-livre img {
+    display: flex;
+    margin-left: 1em;
+    width: 15em;
+  }
+
+  .bk-img {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .bk-img:hover {
+    transform: rotateY(-20deg); /* Rotation de l'image sur l'axe Y */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre portée */
+  }
+
+  .bk-title {
+    text-align: start;
+  }
+
+  .bk-section {
+    background-color: var(--white);
+    box-shadow: none;
+  }
+
+  .bk-article1::after {
+    content: "";
+  }
+
+  .section-chapitre {
+    margin-top: 2em;
+    background-color: var(--mediumGreen);
+    width: 36em;
+    margin: 2em auto;
+    padding: 2em;
+    border-radius: 0.5em;
+    box-shadow: var(--ombre);
+  }
+
+  #bic3 {
+    color: var(--mediumGreen);
+  }
+
+  .bk-text-none,
+  .bk-text-none2 {
+    display: flex;
+  }
+
+  .bk-ul5 p,
+  .bk-ul6 p {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin: 2em 0.5em;
+    padding: 0.5em;
+    width: 6em;
+    justify-content: center;
+    border-radius: 0.5em;
+  }
+
+  .bk-ul5 p {
+    color: var(--white);
+    background-color: var(--blue);
+  }
+
+  .bk-ul5 p:hover {
+    background-color: var(--hoverBlue);
+  }
+
+  .bk-ul5 .profile-icon,
+  .chapter-button {
+    display: none;
+  }
+
+  .page-button {
+    position: relative;
+  }
+
+  .page-buttonL,
+  .page-buttonR {
+    background-color: var(--mediumGreen);
+    font-size: 1.6em;
+    color: var(--darkGreen);
+    width: 6em;
+  }
+
+  .bk-ul6 .bk-text-none {
+    background-color: var(--darkGreen);
+    color: var(--mediumGreen);
+  }
+
+  .btn-likecounter {
+    color: var(--darkGreen);
+    display: flex;
+    align-items: center;
+    background-color: var(--hoverGreen);
+    height: 2.3em;
+    border-radius: 0.5em;
+    margin: 1.8em auto;
+    width: 5.5em;
+  }
+
+  .page-buttonL:hover,
+  .page-buttonR:hover {
+    color: var(--hoverGreen);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .bk-section-livre {
+    width: 56em;
+    grid-template-columns: 30% 70%;
+    padding: 1em;
+  }
+
+  .section-chapitre {
+    width: 54em;
+  }
+
+  .bk-article2 {
+    width: 50em;
+  }
+
+  .form-style2,
+  .section-style2 h3,
+  .section-style3 {
+    margin: 0;
   }
 }

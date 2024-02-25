@@ -8,11 +8,15 @@ import { IoIosAddCircle } from "react-icons/io";
 import { token } from "../../context/token";
 
 import "../../assets/styles/categories/categories.css";
+import logoImage from "../../assets/images/logo/logo2.png";
+import { useAuth } from "../../context/AuthContext";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState(null);
+
+  const auth = useAuth();
 
   useEffect(() => {
     axios
@@ -63,13 +67,15 @@ const Categories = () => {
           contenu.
         </p>
 
-        <Link to={`/ajouter-categorie`}>
-          <pre className="category-none" id="c-pre">
-            Nouvelle Catégorie
-          </pre>
+        {auth.user && auth.user.role === "admin" && (
+          <Link to={`/ajouter-categorie`}>
+            <pre className="category-none" id="c-pre">
+              Nouvelle Catégorie
+            </pre>
 
-          <IoIosAddCircle className="category-button" />
-        </Link>
+            <IoIosAddCircle className="category-button" />
+          </Link>
+        )}
       </section>
 
       <section className="category-scroll">
@@ -95,15 +101,25 @@ const Categories = () => {
               {/* <p>{category.description}</p> */}
             </article>
 
-            <article>
-              <Link to={`/modifier-categorie/${category._id}`}>
-                <IoIosSettings className="category-icon" />
-              </Link>
+            {auth.user && auth.user.role === "admin" ? (
+              <article>
+                <Link to={`/modifier-categorie/${category._id}`}>
+                  <IoIosSettings className="category-icon" />
+                </Link>
 
-              <span onClick={() => handleDelete(category._id)}>
-                <MdDelete className="category-icon" />
-              </span>
-            </article>
+                <span onClick={() => handleDelete(category._id)}>
+                  <MdDelete className="category-icon" />
+                </span>
+              </article>
+            ) : (
+              <article>
+                <img
+                  src={logoImage}
+                  alt="logo-image"
+                  className="category-icon2"
+                />
+              </article>
+            )}
           </section>
         ))}
       </section>

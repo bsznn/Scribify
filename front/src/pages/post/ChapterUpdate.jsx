@@ -6,7 +6,8 @@ import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
-import fond from "../../assets/images/forms/8.png";
+import rotate from "../../assets/images/forms/lune.png";
+import rotate2 from "../../assets/images/forms/lune2.png";
 
 const ChapterUpdate = () => {
   const [inputs, setInputs] = useState({
@@ -91,7 +92,9 @@ const ChapterUpdate = () => {
     <main>
       {message && <span className="success">{message}</span>}
       <section className="section-style2">
-        <img src={fond} alt="image-fond" className="image-fond4" />
+        <img src={rotate} alt="image-lune" className="rotate-gif3" />
+        <img src={rotate2} alt="image-lune" className="rotate-gif2" />
+
         <form onSubmit={handleSubmit} className="form-style2">
           <h2>Modifier un chapitre</h2>
           <label htmlFor="chapterTitle">Titre du chapitre : </label>

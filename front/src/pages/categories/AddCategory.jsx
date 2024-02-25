@@ -4,6 +4,9 @@ import { token } from "../../context/token";
 
 import "../../assets/styles/forms/forms.css";
 
+import rotate from "../../assets/images/forms/lune.png";
+import rotate2 from "../../assets/images/forms/lune2.png";
+
 const AddCategory = () => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -62,7 +65,9 @@ const AddCategory = () => {
     <main>
       {message && <span className="success">{message}</span>}
 
-      <section className="section-style2">
+      <section className="section-style2" id="section-detail">
+        <img src={rotate} alt="image-lune" className="rotate-gif1" />
+        <img src={rotate2} alt="image-lune" className="rotate-gif2" />
         <h2>Ajouter une catégorie</h2>
         <form
           onSubmit={handleSubmit}

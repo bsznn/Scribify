@@ -4,6 +4,8 @@ import { useAuth } from "../../context/AuthContext";
 import { token } from "../../context/token";
 import Comment from "./Comment";
 
+import "../../assets/styles/book/comment.css";
+
 const Comments = ({ bookId }) => {
   const [comments, setComments] = useState([]);
   const [err, setErr] = useState();

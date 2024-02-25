@@ -20,6 +20,7 @@ import arrow2 from "../../assets/images/home/arrow1.png";
 
 import userImage from "../../assets/images/users/default-profil.png";
 import logo from "../../assets/images/logo/logo2.png";
+import lune from "../../assets/images/forms/lune3.png";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -85,7 +86,7 @@ const ProfileUser = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/books/total-views/${userId}`, {
+      .get(`http://localhost:9000/books/total-views/${id}`, {
         headers: token(),
       })
       .then((res) => {
@@ -95,11 +96,11 @@ const ProfileUser = () => {
         console.error(error);
         setErr("Impossible de charger les données");
       });
-  }, [userId]);
+  }, [id]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/books/total-likes/${userId}`, {
+      .get(`http://localhost:9000/books/total-likes/${id}`, {
         headers: token(),
       })
       .then((res) => {
@@ -109,7 +110,7 @@ const ProfileUser = () => {
         console.error(error);
         setErr("Impossible de charger les données");
       });
-  }, [userId]);
+  }, [id]);
 
   useEffect(() => {
     axios
@@ -179,6 +180,14 @@ const ProfileUser = () => {
     }
   };
 
+  // Fonction pour tronquer la description à 250 caractères
+  const truncateDescription = (description) => {
+    if (description.length > 250) {
+      return description.substring(0, 250) + "...";
+    }
+    return description;
+  };
+
   return (
     <main className="home">
       {successMessage && <span className="success">{successMessage}</span>}
@@ -230,18 +239,26 @@ const ProfileUser = () => {
             </article>
 
             <article className="p-article-ul">
-              <ul id="pic2">
-                <li>
-                  <Link to={`/modifier-utilisateur/${id}`} className="link-bio">
-                    <IoIosSettings className="profile-icon" />
-                    <p className="no-text-icon">Modifier</p>
-                  </Link>
-                </li>
-                <li onClick={() => handleDeleteUser(id)}>
-                  <MdDelete className="profile-icon" />
-                  <p className="no-text-icon">Supprimer</p>
-                </li>
-              </ul>
+              {auth.user &&
+              (auth.user.role === "admin" || auth.user.id === auth.user) ? (
+                <ul id="pic2">
+                  <li>
+                    <Link
+                      to={`/modifier-utilisateur/${id}`}
+                      className="link-bio"
+                    >
+                      <IoIosSettings className="profile-icon" />
+                      <p className="no-text-icon">⚙️ Modifier</p>
+                    </Link>
+                  </li>
+                  <li onClick={() => handleDeleteUser(id)}>
+                    <MdDelete className="profile-icon" />
+                    <p className="no-text-icon">🗑️ Supprimer</p>
+                  </li>
+                </ul>
+              ) : (
+                <img src={lune} alt="lune-fond" className="lune-fond" />
+              )}
             </article>
           </>
         )}
@@ -264,18 +281,21 @@ const ProfileUser = () => {
           <>
             {oneBook.image && (
               <section key={oneBook._id} className="p-sous-section">
-                <article className="p-section-bloc">
-                  <ul className="p-article3">
+                <article className="books-section-bloc">
+                  <ul className="books-article1">
                     <li>
                       <img
                         src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
                         alt={oneBook.image.alt}
-                        className="p-couverture"
+                        className="books-img"
                       />
                     </li>
 
                     <li>
-                      <Link to={`/livre/${oneBook._id}`} className="p-title">
+                      <Link
+                        to={`/livre/${oneBook._id}`}
+                        className="books-sous-title"
+                      >
                         <h4> {oneBook.title}</h4>
                       </Link>
                     </li>
@@ -284,48 +304,55 @@ const ProfileUser = () => {
                       <pre>{oneBook.chapters.length} chapitre(s)</pre>
                     </li>
                   </ul>
+                </article>
 
-                  <ul className="p-article4">
-                    <li className="description">{oneBook.description}</li>
+                <article className="books-article2">
+                  <ul>
+                    <li className="description">
+                      {truncateDescription(oneBook.description)}
+                    </li>
                     <li className="categories">
                       {oneBook.categoryId &&
                         oneBook.categoryId.map((category, index) => (
                           <span key={index}>#{category.name} </span>
                         ))}
                     </li>
-                  </ul>
-                </article>
 
-                <article className="p-article5">
-                  <pre>
-                    Créé le : {new Date(oneBook.createdAt).toLocaleDateString()}
-                  </pre>
-                  <pre>
-                    Modifié le :{" "}
-                    {new Date(oneBook.updatedAt).toLocaleDateString()}
-                  </pre>
-                </article>
+                    <span className="ul-prebooks">
+                      <li>
+                        <pre>
+                          Créé le :{" "}
+                          {new Date(oneBook.createdAt).toLocaleDateString()}
+                        </pre>{" "}
+                      </li>
+                      <li>
+                        <pre>
+                          Modifié le :{" "}
+                          {new Date(oneBook.updatedAt).toLocaleDateString()}
+                        </pre>{" "}
+                      </li>
+                    </span>
 
-                <article className="p-article6">
-                  <ul>
-                    <li>
-                      <Link
-                        to={`/modifier-livre/${oneBook._id}`}
-                        className="link-bio"
+                    <ul className="span-align">
+                      <li>
+                        <Link
+                          to={`/modifier-livre/${oneBook._id}`}
+                          className="link-bio"
+                        >
+                          <IoIosSettings className="profile-icon" id="pic3" />
+                          <p className="no-text-icon">⚙️ Modifier</p>
+                        </Link>
+                      </li>
+                      <li
+                        onClick={() =>
+                          handleDelete(oneBook._id, oneBook.userId._id)
+                        }
                       >
-                        <IoIosSettings className="profile-icon" id="pic3" />
-                        <p className="no-text-icon">Modifier</p>
-                      </Link>
-                    </li>
-                    <li
-                      onClick={() =>
-                        handleDelete(oneBook._id, oneBook.userId._id)
-                      }
-                    >
-                      {console.log(oneBook)}
-                      <MdDelete className="profile-icon" id="pic4" />
-                      <p className="no-text-icon">Supprimer</p>
-                    </li>
+                        {console.log(oneBook)}
+                        <MdDelete className="profile-icon" id="pic4" />
+                        <p className="no-text-icon">🗑️ Supprimer</p>
+                      </li>
+                    </ul>
                   </ul>
                 </article>
               </section>

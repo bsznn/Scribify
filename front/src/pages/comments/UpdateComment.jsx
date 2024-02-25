@@ -70,29 +70,30 @@ const UpdateComment = () => {
   };
 
   return (
-    <section>
+    <section className="comment-section">
       {message && <span className="success">{message}</span>}
-
       <form onSubmit={handleSubmit} className="form-style2">
-        <label htmlFor="content">Modifier le commentaire : </label>
+        <article className="comment-article2">
+          <label htmlFor="content">Modifier le commentaire : </label>
 
-        <img
-          className="style-base2"
-          src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-          alt={auth.user.image.alt}
-        />
-        <h5>{auth.user.login}</h5>
-        <textarea
-          className="form-textarea"
-          onChange={handleChange}
-          value={inputs.content}
-          type="text"
-          id="content"
-          name="content"
-          placeholder="Votre commentaire"
-        />
+          <img
+            className="comment-img"
+            src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+            alt={auth.user.image.alt}
+          />
+          <h5 className="name-none">{auth.user.login}</h5>
+          <textarea
+            className="form-textarea2"
+            onChange={handleChange}
+            value={inputs.content}
+            type="text"
+            id="content"
+            name="content"
+            placeholder="Votre commentaire"
+          />
 
-        <button className="form-button">Valider</button>
+          <button className="comment-area">Valider</button>
+        </article>
       </form>
       {err && <span>{err}</span>}
     </section>

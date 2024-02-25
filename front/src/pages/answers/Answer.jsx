@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { token } from "../../context/token";
-import { CiEdit } from "react-icons/ci";
-import { MdDeleteForever } from "react-icons/md";
-import UpdateAnswer from "./UpdateAnswer";
+import { MdDelete } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import { IoIosSend } from "react-icons/io";
+
+import "../../assets/styles/book/comment.css";
 
 const Answer = ({ bookId, commentId, answerId }) => {
   const [answer, setAnswer] = useState("");
@@ -70,47 +72,63 @@ const Answer = ({ bookId, commentId, answerId }) => {
       <section className="b-section">
         {answer && (
           <>
-            <article className="b-article1">
-              <img
-                className="style-base2"
-                src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-                alt={auth.user.image.alt}
-              />
-              <h4>{auth.user.login}</h4>
+            <article className="answer-article">
+              <ul>
+                <li>
+                  <img
+                    className="style-base2"
+                    src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+                    alt={auth.user.image.alt}
+                  />
+                </li>
+                <li>
+                  <h5 className="name-none">{auth.user.login}</h5>
+                </li>
+              </ul>
 
               {editMode ? (
-                <>
-                  <textarea
-                    className="form-textarea"
-                    value={updateContent}
-                    onChange={(e) => setUpdateContent(e.target.value)}
-                  />
-                  <button onClick={handleUpdateSuccess} className="form-button">
-                    Validate
-                  </button>
-                </>
+                <ul className="answer-ul">
+                  <li>
+                    <textarea
+                      className="answer-area"
+                      value={updateContent}
+                      onChange={(e) => setUpdateContent(e.target.value)}
+                    />
+                  </li>
+
+                  <li>
+                    <button onClick={() => handleUpdateSuccess()}>
+                      <IoIosSend className="icon-none" />
+                      <p className="name-none"> ↪️ Valider</p>
+                    </button>
+                  </li>
+                </ul>
               ) : (
                 <span>
-                  <p className="style-base">{answer.content}</p>
+                  <p className="answer-area">{answer.content}</p>
                 </span>
               )}
             </article>
 
-            <article className="b-article-pre">
-              Posted on {new Date(answer.date).toLocaleDateString()} at{" "}
+            <article className="b-article-pre" id="answer-pre">
+              Posté le {new Date(answer.date).toLocaleDateString()} à{" "}
               {new Date(answer.date).toLocaleTimeString()}
             </article>
 
-            {auth.user.role === "admin" ||
-              (auth.user.id === answer.userId._id && (
-                <article>
-                  <MdDeleteForever
-                    className="profile-icon"
-                    onClick={handleDelete}
-                  />
-                  <CiEdit className="profile-icon" onClick={toggleEditMode} />
-                </article>
-              ))}
+            {auth.user.id === answer.userId._id && (
+              <article>
+                <ul className="answer-article3">
+                  <li onClick={toggleEditMode}>
+                    <IoIosSettings className="profile-icon" />
+                    <p className="name-none">⚙️ Modifier</p>
+                  </li>
+                  <li onClick={handleDelete}>
+                    <MdDelete className="profile-icon" />
+                    <p className="name-none">🗑️ Supprimer</p>
+                  </li>
+                </ul>
+              </article>
+            )}
 
             {err && <span>{err}</span>}
           </>

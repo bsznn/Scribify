@@ -1,3 +1,5 @@
+/* REVOIR LA FONCTION UPDATE */
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { token } from "../../context/token";
@@ -5,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
 import "../../assets/styles/book/book.css";
+import "../../assets/styles/book/comment.css";
 
 const LikeCounter = ({}) => {
   const [likes, setLikes] = useState(0);
@@ -43,28 +46,28 @@ const LikeCounter = ({}) => {
   };
 
   return (
-    <span className="btn-likecounter">
-      <button onClick={handleLike} className="btn-likecounter">
-        {liked ? (
+    <button onClick={handleLike} className="btn-likecounter">
+      <p className="bk-text-none2">J'aime</p>
+      {liked ? (
+        <>
           <FaHeart
             style={{
               color: "var(--darkGreen)",
               fontSize: "1.2em",
             }}
-          />
-        ) : (
+          ></FaHeart>
+        </>
+      ) : (
+        <>
           <FaHeart
             style={{
               color: "var(--orange)",
               fontSize: "1.2em",
             }}
           />
-        )}
-      </button>
-      {/* <FaHeart /> */}
-
-      {/* <span>{likes.length} Likes</span> */}
-    </span>
+        </>
+      )}
+    </button>
   );
 };
 

@@ -6,7 +6,8 @@ import { token } from "../../context/token";
 import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
-import fond from "../../assets/images/forms/8.png";
+import rotate from "../../assets/images/forms/lune.png";
+import rotate2 from "../../assets/images/forms/lune2.png";
 
 const PostEdit = () => {
   const [inputs, setInputs] = useState({
@@ -109,9 +110,7 @@ const PostEdit = () => {
   return (
     <main>
       {message && <span className="success">{message}</span>}
-      <section className="section-style2">
-        <img src={fond} alt="image-fond" className="image-fond2" />
-
+      <section className="section-style2" id="section-detail">
         {inputs._id && (
           <>
             <form
@@ -119,7 +118,10 @@ const PostEdit = () => {
               encType="multipart/form-data"
               className="form-style2"
             >
-              <h2>Modifier</h2>
+              <img src={rotate} alt="image-lune" className="rotate-gif1" />
+              <img src={rotate2} alt="image-lune" className="rotate-gif2" />
+
+              <h2>Modifier votre livre</h2>
 
               <label htmlFor="image">Couverture du livre : </label>
               <input

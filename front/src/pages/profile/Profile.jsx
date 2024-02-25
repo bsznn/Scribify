@@ -20,8 +20,7 @@ import arrow2 from "../../assets/images/home/arrow1.png";
 
 import userImage from "../../assets/images/users/default-profil.png";
 import logo from "../../assets/images/logo/logo2.png";
-
-const MAX_DESCRIPTION_LENGTH = 250;
+import lune from "../../assets/images/forms/lune3.png";
 
 const Profile = () => {
   const [books, setBooks] = useState([]);
@@ -72,7 +71,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/books/total-views/${auth.user._id}`, {
+      .get(`http://localhost:9000/books/total-views/${auth.user.id}`, {
         headers: token(),
       })
       .then((res) => {
@@ -86,7 +85,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/books/total-likes/${auth.user._id}`, {
+      .get(`http://localhost:9000/books/total-likes/${auth.user.id}`, {
         headers: token(),
       })
       .then((res) => {
@@ -190,15 +189,7 @@ const Profile = () => {
                 </article>
               </span>
 
-              <article>
-                {auth.user.description &&
-                auth.user.description.length > MAX_DESCRIPTION_LENGTH
-                  ? `${auth.user.description.substring(
-                      0,
-                      MAX_DESCRIPTION_LENGTH
-                    )}...`
-                  : auth.user.description}
-              </article>
+              <article>{auth.user.description}</article>
             </section>
 
             <article className="p-new-article">
@@ -227,12 +218,12 @@ const Profile = () => {
                     className="link-bio"
                   >
                     <IoIosSettings className="profile-icon" />
-                    <p className="no-text-icon">Modifier</p>
+                    <p className="no-text-icon">⚙️ Modifier</p>
                   </Link>
                 </li>
                 <li onClick={() => handleDeleteUser(auth.user.id)}>
                   <MdDelete className="profile-icon" />
-                  <p className="no-text-icon">Supprimer</p>
+                  <p className="no-text-icon">🗑️ Supprimer</p>
                 </li>
               </ul>
             </article>
@@ -263,18 +254,21 @@ const Profile = () => {
           <>
             {oneBook.image && (
               <section key={oneBook._id} className="p-sous-section">
-                <article className="p-section-bloc">
-                  <ul className="p-article3">
+                <article className="books-section-bloc">
+                  <ul className="books-article1">
                     <li>
                       <img
                         src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
                         alt={oneBook.image.alt}
-                        className="p-couverture"
+                        className="books-img"
                       />
                     </li>
 
                     <li>
-                      <Link to={`/livre/${oneBook._id}`} className="p-title">
+                      <Link
+                        to={`/livre/${oneBook._id}`}
+                        className="books-sous-title"
+                      >
                         <h4> {oneBook.title}</h4>
                       </Link>
                     </li>
@@ -283,8 +277,10 @@ const Profile = () => {
                       <pre>{oneBook.chapters.length} chapitre(s)</pre>
                     </li>
                   </ul>
+                </article>
 
-                  <ul className="p-article4">
+                <article className="books-article2">
+                  <ul>
                     <li className="description">
                       {truncateDescription(oneBook.description)}
                     </li>
@@ -294,83 +290,86 @@ const Profile = () => {
                           <span key={index}>#{category.name} </span>
                         ))}
                     </li>
-                  </ul>
-                </article>
 
-                <article className="p-article5">
-                  <pre>
-                    Créé le : {new Date(oneBook.createdAt).toLocaleDateString()}
-                  </pre>
-                  <pre>
-                    Modifié le :{" "}
-                    {new Date(oneBook.updatedAt).toLocaleDateString()}
-                  </pre>
-                </article>
+                    <span className="ul-prebooks">
+                      <li>
+                        <pre>
+                          Créé le :{" "}
+                          {new Date(oneBook.createdAt).toLocaleDateString()}
+                        </pre>
+                      </li>
+                      <li>
+                        <pre>
+                          Modifié le :
+                          {new Date(oneBook.updatedAt).toLocaleDateString()}
+                        </pre>
+                      </li>
+                    </span>
 
-                <article className="p-article6">
-                  <ul>
-                    <li>
-                      <Link
-                        to={`/modifier-livre/${oneBook._id}`}
-                        className="link-bio"
-                      >
-                        <IoIosSettings className="profile-icon" id="pic3" />
-                        <p className="no-text-icon">Modifier</p>
-                      </Link>
-                    </li>
-                    <li onClick={() => handleDeleteBook(oneBook._id)}>
-                      <MdDelete className="profile-icon" id="pic4" />
-                      <p className="no-text-icon">Supprimer</p>
-                    </li>
+                    <ul className="span-align">
+                      <li>
+                        <Link
+                          to={`/modifier-livre/${oneBook._id}`}
+                          className="link-bio"
+                        >
+                          <IoIosSettings className="profile-icon" id="pic3" />
+                          <p className="no-text-icon">⚙️ Modifier</p>
+                        </Link>
+                      </li>
+                      <li onClick={() => handleDeleteBook(oneBook._id)}>
+                        <MdDelete className="profile-icon" id="pic4" />
+                        <p className="no-text-icon">🗑️ Supprimer</p>
+                      </li>
+                    </ul>
                   </ul>
                 </article>
               </section>
             )}
           </>
         ))}
-
-        {books.length === 0 && (
-          <article className="p-sous-section" id="none-book">
-            <h1>Votre profil est encore vierge de publications.</h1>
-            <p>
-              Il semble que vous n'ayez pas encore eu l'occasion de partager vos
-              récits et vos idées avec notre communauté. Ne vous inquiétez pas,
-              c'est le moment idéal pour commencer à écrire et à partager vos
-              créations !
-            </p>
-
-            <p>
-              L'écriture est une aventure passionnante où chaque mot peut
-              inspirer, émouvoir et divertir. Que vous soyez un romancier en
-              herbe, un poète ou un essayiste, votre voix est importante pour
-              enrichir notre communauté littéraire.
-            </p>
-
-            <p>
-              Prenez un moment pour explorer vos idées, laisser libre cours à
-              votre imagination et écrire votre première publication. Cliquez
-              <Link to="/publier" className="none-book-link">
-                [ici]
-              </Link>
-              pour commencer dès maintenant !
-            </p>
-
-            <p>
-              Rappelez-vous, chaque contribution compte. Vos mots peuvent avoir
-              un impact sur d'autres lecteurs et écrivains. Rejoignez-nous dans
-              cette merveilleuse aventure littéraire et partagez votre passion
-              pour l'écriture avec le monde entier.
-            </p>
-
-            <p>
-              Nous sommes impatients de découvrir vos histoires uniques et de
-              vous accueillir dans notre communauté d'écrivains. À vos plumes !
-            </p>
-
-            <img src={logo} alt="logo-img" className="p-logo-img" />
-          </article>
-        )}
       </section>
+
+      {books.length === 0 && (
+        <section className="p-sous-section2" id="none-book">
+          <h1>Votre profil est encore vierge de publications.</h1>
+          <p>
+            Il semble que vous n'ayez pas encore eu l'occasion de partager vos
+            récits et vos idées avec notre communauté. Ne vous inquiétez pas,
+            c'est le moment idéal pour commencer à écrire et à partager vos
+            créations !
+          </p>
+
+          <p>
+            L'écriture est une aventure passionnante où chaque mot peut
+            inspirer, émouvoir et divertir. Que vous soyez un romancier en
+            herbe, un poète ou un essayiste, votre voix est importante pour
+            enrichir notre communauté littéraire.
+          </p>
+
+          <p>
+            Prenez un moment pour explorer vos idées, laisser libre cours à
+            votre imagination et écrire votre première publication. Cliquez
+            <Link to="/publier" className="none-book-link">
+              [ici]
+            </Link>
+            pour commencer dès maintenant !
+          </p>
+
+          <p>
+            Rappelez-vous, chaque contribution compte. Vos mots peuvent avoir un
+            impact sur d'autres lecteurs et écrivains. Rejoignez-nous dans cette
+            merveilleuse aventure littéraire et partagez votre passion pour
+            l'écriture avec le monde entier.
+          </p>
+
+          <p>
+            Nous sommes impatients de découvrir vos histoires uniques et de vous
+            accueillir dans notre communauté d'écrivains. À vos plumes !
+          </p>
+
+          <img src={logo} alt="logo-img" className="p-logo-img" />
+        </section>
+      )}
 
       <aside className="p-aside">
         <section className="p-aside-section">
@@ -445,7 +444,7 @@ const Profile = () => {
 
           <section className="p-section4">
             {newBooks.map((oneNewBook) => (
-              <article key={oneNewBook._id}>
+              <article key={oneNewBook._id} className="p-book-article">
                 <Link to={`/livre/${oneNewBook._id}`}>
                   <ul>
                     <li>

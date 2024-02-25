@@ -6,6 +6,8 @@ import "../../assets/styles/forms/forms.css";
 import "../../assets/styles/book/book.css";
 import { useAuth } from "../../context/AuthContext";
 
+import { IoIosSend } from "react-icons/io";
+
 const AddComment = ({ bookId }) => {
   const [inputs, setInputs] = useState({
     content: "",
@@ -56,32 +58,44 @@ const AddComment = ({ bookId }) => {
     <section>
       {message && <span className="success">{message}</span>}
 
-      <form onSubmit={handleSubmit} className="form-style2">
-        <label htmlFor="content" className="label-comment">
-          Ajouter un commentaire :
-        </label>
+      {auth && auth.user && (
+        <form onSubmit={handleSubmit} className="form-style2">
+          <label htmlFor="content" className="label-comment">
+            Ajouter un commentaire :
+          </label>
 
-        <article className="comment-article">
-          <img
-            className="style-base2"
-            src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-            alt={auth.user.image.alt}
-          />
-          <h5 className="name-none">{auth.user.login}</h5>
+          <article className="comment-article">
+            <ul>
+              <li>
+                <img
+                  className="style-base2"
+                  src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+                  alt={auth.user.image.alt}
+                />
+              </li>
+              <li>
+                <h5 className="name-none">{auth.user.login}</h5>
+              </li>
+            </ul>
 
-          <textarea
-            className="form-textarea2"
-            onChange={handleChange}
-            value={inputs.content}
-            type="text"
-            id="content"
-            name="content"
-            placeholder="Votre commentaire"
-          />
-        </article>
+            <textarea
+              className="form-textarea2"
+              onChange={handleChange}
+              value={inputs.content}
+              type="text"
+              id="content"
+              name="content"
+              placeholder="Votre commentaire"
+            />
 
-        <button className="form-button">Valider</button>
-      </form>
+            <button className="comment-button">
+              <IoIosSend className="icon-none" />
+              <p className="name-none"> ↪️ Commenter</p>
+            </button>
+          </article>
+        </form>
+      )}
+
       {err && <span>{err}</span>}
     </section>
   );

@@ -1,0 +1,39 @@
+#error-post {
+  color: var(--mediumGreen);
+  font-family: var(--fontRegular);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+#error-post p:nth-child(3) {
+  text-align: center;
+}
+
+.error-link {
+  color: var(--orange);
+  font-family: var(--fontRegular);
+  font-weight: bold;
+}
+
+.lune-error {
+  display: none;
+}
+
+@media screen and (min-width: 720px) {
+  .lune-error {
+    display: flex;
+    width: 15em;
+    position: absolute;
+    top: 2em;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .lune-error {
+    top: 4em;
+    left: 3em;
+  }
+}

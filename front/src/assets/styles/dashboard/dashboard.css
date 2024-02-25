@@ -1,6 +1,6 @@
 .dashboard-table {
   margin: 0 auto;
-  width: 94%;
+  width: 90%;
   border-collapse: collapse;
   margin-bottom: 1em;
 }
@@ -53,6 +53,15 @@
 .th-none,
 .td-none {
   display: none;
+}
+
+@media screen and (min-width: 480px) {
+  .dashboard-table {
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
 }
 
 @media screen and (min-width: 720px) {

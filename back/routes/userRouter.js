@@ -16,13 +16,7 @@ const userRouter = express.Router();
 userRouter.post("/register", register);
 userRouter.post("/login", login);
 
-userRouter.get(
-  "/users",
-  isLogged,
-  isAuthorized(["admin", "user"]),
-  upload.single("image"),
-  getAllUsers
-);
+userRouter.get("/users", getAllUsers);
 
 userRouter.get(
   "/users/:id",

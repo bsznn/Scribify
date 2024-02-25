@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 import { token } from "../../context/token";
 
-import fond from "../../assets/images/forms/8.png";
+import rotate from "../../assets/images/forms/lune.png";
+import rotate2 from "../../assets/images/forms/lune2.png";
 
 const UpdateCategory = () => {
   const { id } = useParams();
@@ -77,14 +78,15 @@ const UpdateCategory = () => {
   return (
     <main>
       {message && <span className="success">{message}</span>}
-      <section className="section-style2">
-        <img src={fond} alt="image-fond" className="image-fond5" />
-
+      <section className="section-style2" id="section-detail">
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="form-style2"
         >
+          <img src={rotate} alt="image-lune" className="rotate-gif1" />
+          <img src={rotate2} alt="image-lune" className="rotate-gif2" />
+
           <h2>Modifier une catégorie</h2>
           <label htmlFor="image">Couverture de la catégorie : </label>
           <input
@@ -107,7 +109,7 @@ const UpdateCategory = () => {
           <textarea
             id="description"
             name="description"
-            className="form-input2"
+            className="form-textarea"
             value={inputs.description}
             onChange={handleChange}
           ></textarea>
