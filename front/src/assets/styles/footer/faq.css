@@ -15,6 +15,11 @@
   transform: scale(1.05);
 }
 
+#contact-section {
+  background-color: var(--hoverBlue);
+  color: var(--white);
+}
+
 #aboutus-section h4:hover {
   color: var(--mediumGreen);
 }
@@ -39,7 +44,9 @@
 .term-fond,
 .term-fond2,
 .aboutus-fond,
-.aboutus-fond2 {
+.aboutus-fond2,
+.contact-fond,
+.contact-fond2 {
   display: none;
 }
 
@@ -73,7 +80,8 @@
   .faq-fond,
   .privacy-fond,
   .term-fond,
-  .aboutus-fond {
+  .aboutus-fond,
+  .contact-fond {
     display: flex;
     position: absolute;
     width: 12em;
@@ -82,7 +90,8 @@
   .faq-fond,
   .privacy-fond,
   .term-fond,
-  .aboutus-fond {
+  .aboutus-fond,
+  .contact-fond {
     left: 0;
     top: 1em;
   }
@@ -106,7 +115,8 @@
   .faq-fond2,
   .privacy-fond2,
   .term-fond2,
-  .aboutus-fond2 {
+  .aboutus-fond2,
+  .contact-fond2 {
     display: flex;
     position: absolute;
     width: 12em;

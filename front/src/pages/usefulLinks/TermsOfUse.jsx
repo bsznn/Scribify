@@ -15,8 +15,6 @@ const TermsOfUse = () => {
     question4: false,
     question5: false,
     question6: false,
-    question7: false,
-    question8: false,
   });
 
   const toggleAnswer = (question) => {
