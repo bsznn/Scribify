@@ -99,8 +99,8 @@ function App() {
         <Route path="/concours" element={<Competition />} />
 
         <Route path="/contact" element={<Contact />} />
-        <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
-        <Route path="/conditions-utilisation" element={<TermsOfUse />} />
+        <Route path="/confidentialite" element={<PrivacyPolicy />} />
+        <Route path="/mentions-legales" element={<TermsOfUse />} />
       </Routes>
     </>
   );

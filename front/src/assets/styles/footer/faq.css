@@ -1,0 +1,117 @@
+.faq-section {
+  text-align: justify;
+  padding: 2em;
+  margin-top: 1.5em;
+  background-color: var(--orange);
+  color: var(--darkGreen);
+  box-shadow: var(--ombre);
+  border-radius: 1em;
+  width: 80%;
+}
+
+.faq-section h4:hover {
+  color: var(--hoverGreen);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+#aboutus-section h4:hover {
+  color: var(--mediumGreen);
+}
+
+#privacy-section {
+  background-color: var(--mediumGreen);
+}
+
+#aboutus-section {
+  background-color: var(--hoverGreen);
+}
+
+#term-section {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.faq-fond,
+.faq-fond2,
+.privacy-fond,
+.privacy-fond2,
+.term-fond,
+.term-fond2,
+.aboutus-fond,
+.aboutus-fond2 {
+  display: none;
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-family: var(--fontItalic);
+  font-size: 2.3em;
+  margin: 0.5em;
+}
+
+.arrow-faq,
+.arrow-aboutus {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 720px) {
+  .faq-section {
+    width: 40em;
+    position: relative;
+  }
+
+  .faq-section article {
+    margin-left: 10em;
+  }
+
+  #privacy-section article {
+    margin-left: 11em;
+  }
+
+  .faq-fond,
+  .privacy-fond,
+  .term-fond,
+  .aboutus-fond {
+    display: flex;
+    position: absolute;
+    width: 12em;
+  }
+
+  .faq-fond,
+  .privacy-fond,
+  .term-fond,
+  .aboutus-fond {
+    left: 0;
+    top: 1em;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .faq-section {
+    width: 50em;
+  }
+
+  .faq-section article {
+    margin-right: 10em;
+    margin-left: 13em;
+  }
+
+  #privacy-section article,
+  #aboutus-section article {
+    margin-left: 15em;
+  }
+
+  .faq-fond2,
+  .privacy-fond2,
+  .term-fond2,
+  .aboutus-fond2 {
+    display: flex;
+    position: absolute;
+    width: 12em;
+    right: 0;
+    bottom: 1em;
+    transform: scaleX(-1);
+  }
+}

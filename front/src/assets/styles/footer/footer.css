@@ -36,10 +36,6 @@ footer h3 {
   margin-left: 0.3em;
 }
 
-.f-article2 {
-  padding-left: 4em;
-}
-
 .aboutus {
   display: flex;
   justify-content: center;
@@ -60,18 +56,9 @@ footer h3 {
   transition: color 0.3s ease-in-out;
 }
 
-.f-article2 ul,
-.f-article3 ul {
-  margin-top: 2em;
-}
-
 .f-article3 ul {
   display: flex;
-  justify-content: right;
-}
-
-.f-article3 h3 {
-  padding-left: 4.5em;
+  justify-content: center;
 }
 
 .f-article3 button {
@@ -158,6 +145,18 @@ footer h3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .f-article2 {
+    padding-left: 4em;
+  }
+
+  .f-article3 h3 {
+    padding-left: 4em;
+  }
+
+  .f-article3 ul {
+    justify-content: right;
+  }
 }
 
 @media screen and (min-width: 990px) {
@@ -201,9 +200,9 @@ footer h3 {
   .vert-fond {
     display: flex;
     position: absolute;
-    width: 17em;
-    height: 17.4em;
-    right: -19.25em;
-    bottom: -2.3em;
+    width: 12em;
+    height: 17.5em;
+    right: -15em;
+    bottom: -2.4em;
   }
 }

@@ -42,25 +42,26 @@ const Footer = () => {
 
             <ul>
               <li>
-                <Link to="/faq" className="f-link">
-                  Foire aux Questions
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="f-link">
-                  Nous Contacter
+                  Contact{" "}
                 </Link>
               </li>
 
               <li>
-                <Link to="/politique-confidentialite" className="f-link">
-                  Politique de Confidentialité
+                <Link to="/confidentialite" className="f-link">
+                  Confidentialité
                 </Link>
               </li>
 
               <li>
-                <Link to="/conditions-utilisation" className="f-link">
-                  Conditions d'Utilisation
+                <Link to="/mentions-legales" className="f-link">
+                  Mentions Légales
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/faq" className="f-link">
+                  FAQ
                 </Link>
               </li>
             </ul>
