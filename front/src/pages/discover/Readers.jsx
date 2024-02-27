@@ -7,6 +7,9 @@ import "../../assets/styles/lists/readers.css";
 import userImage from "../../assets/images/users/default-profil.png";
 import logoImage from "../../assets/images/logo/logo2.png";
 
+import panelImg from "../../assets/images/list/reader.png";
+import lune from "../../assets/images/forms/lune6.png";
+
 const Readers = () => {
   const [readers, setReaders] = useState([]);
   const [err, setErr] = useState(null);
@@ -28,15 +31,32 @@ const Readers = () => {
 
   return (
     <main className="m-container">
-      <section className="reader-title">
-        <h1>Lecteurs</h1>
-        <p className="reader-none">
-          Découvrez la communauté des lecteurs sur Scribify : un lieu de
-          rencontre pour explorer de nouvelles œuvres littéraires, partager des
-          recommandations et échanger des impressions de lecture. Rejoignez-nous
-          pour une expérience de lecture enrichissante et une interaction avec
-          une communauté de passionnés de livres sur Scribify.
-        </p>
+      <section className="reader-title" id="list-first">
+        <h1 className="reader-h1">Lecteurs</h1>
+        <ul className="list-ul">
+          <li>
+            <img src={panelImg} alt="reader-title" className="list-title-img" />
+          </li>
+          <li>
+            <p className="list-none" id="reader-none">
+              Découvrez la communauté des lecteurs sur Scribify : un lieu de
+              rencontre pour explorer de nouvelles œuvres littéraires, partager
+              des recommandations et échanger des impressions de lecture.
+              Rejoignez-nous pour une expérience de lecture enrichissante et une
+              interaction avec une communauté de passionnés de livres sur
+              Scribify.
+            </p>
+          </li>
+
+          <li>
+            <img
+              src={lune}
+              alt="fond-lune"
+              className="list-fond-img"
+              id="reader-fond-img"
+            />
+          </li>
+        </ul>
       </section>
 
       <section className="reader-scroll">

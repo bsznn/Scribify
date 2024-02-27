@@ -11,6 +11,9 @@ import "../../assets/styles/categories/categories.css";
 import logoImage from "../../assets/images/logo/logo2.png";
 import { useAuth } from "../../context/AuthContext";
 
+import panelImg from "../../assets/images/list/categories.png";
+import lune from "../../assets/images/forms/lune7.png";
+
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
@@ -58,24 +61,47 @@ const Categories = () => {
     <main className="m-container">
       {error && <p>{error}</p>}
 
-      <section className="category-title">
-        <h1>Catégories</h1>
-        <p className="category-none">
-          Découvrez les catégories sur Scribify : votre outil d'organisation
-          essentiel pour classer et structurer vos écrits selon thèmes et
-          genres, simplifiant ainsi la navigation et la gestion de votre
-          contenu.
-        </p>
+      <section className="category-title" id="list-first">
+        <h1 className="category-h1">Catégories</h1>
 
-        {auth.user && auth.user.role === "admin" && (
-          <Link to={`/ajouter-categorie`}>
-            <pre className="category-none" id="c-pre">
-              Nouvelle Catégorie
-            </pre>
-
-            <IoIosAddCircle className="category-button" />
-          </Link>
-        )}
+        <ul className="list-ul">
+          <li>
+            <img
+              src={panelImg}
+              alt="category-title"
+              className="list-title-img"
+              id="category-title-img"
+            />
+          </li>
+          <li>
+            <p className="list-none" id="p-category-none">
+              Découvrez les catégories sur Scribify : votre outil indispensable
+              pour organiser et structurer vos écrits selon thèmes et genres.
+              Simplifiez la navigation et la gestion de votre contenu en
+              regroupant vos œuvres de manière logique. Les catégories offrent
+              une expérience de lecture fluide pour vos lecteurs tout en vous
+              permettant de suivre facilement vos progrès d'écriture et
+              d'explorer de nouveaux thèmes et genres littéraires.
+            </p>
+            <li>
+              {auth.user && auth.user.role === "admin" ? (
+                <Link to={`/ajouter-categorie`}>
+                  <pre className="category-none" id="c-pre">
+                    Nouvelle Catégorie
+                  </pre>
+                  <IoIosAddCircle className="category-button" />
+                </Link>
+              ) : (
+                <img
+                  src={lune}
+                  alt="fond-lune"
+                  className="list-fond-img"
+                  id="category-fond-img"
+                />
+              )}
+            </li>
+          </li>
+        </ul>
       </section>
 
       <section className="category-scroll">

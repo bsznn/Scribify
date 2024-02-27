@@ -1,0 +1,198 @@
+.panel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1em 0;
+  font-family: var(--fontRegular);
+}
+
+.panel-first {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-first h1 {
+  padding: 0.2em;
+  padding-left: 2.7em;
+  padding-right: 2.7em;
+  font-size: 2em;
+  font-family: var(--fontItalic);
+  box-shadow: var(--ombre);
+  border-radius: 0.5em;
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.panel-none,
+.panel-title-img,
+.panel-fond-img {
+  display: none;
+}
+
+.panel {
+  background-color: var(--panelBlue);
+  width: 85%;
+  padding: 1em;
+  color: var(--white);
+  margin: 1em auto;
+  border-radius: 0.5em;
+  box-shadow: var(--ombre);
+  height: 26em;
+
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+#advice-panel .panel {
+  height: 33em;
+}
+
+#recruitement-panel .panel {
+  height: 34em;
+}
+
+.panel-iframe {
+  width: 100%;
+  height: 15em;
+  margin: 1em auto;
+}
+
+.panel ul li {
+  margin-bottom: 1em;
+}
+
+.panel p,
+.panel ul li {
+  text-align: justify;
+}
+
+@media screen and (min-width: 480px) {
+  .panel {
+    width: 26em;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .panel-first h1 {
+    display: none;
+  }
+
+  .panel-first {
+    background-color: var(--blue);
+    width: 43em;
+    border-radius: 1em;
+    height: 18em;
+    box-shadow: var(--ombre);
+    margin: 1em;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .panel-ul {
+    position: relative;
+    width: 30em;
+  }
+
+  .panel-title-img {
+    display: flex;
+    position: absolute;
+    left: -6em;
+    bottom: -7em;
+    width: 17em;
+    height: 14em;
+  }
+
+  .panel-none {
+    display: flex;
+    position: absolute;
+    width: 22em;
+    right: -5.5em;
+    bottom: -6em;
+    color: var(--white);
+    text-align: justify;
+    background-color: var(--panelBlue);
+    padding: 1em;
+    border-radius: 0.5em;
+  }
+
+  .panel-second {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+
+  .panel {
+    width: 18.5em;
+    height: 30em;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .panel-first {
+    width: 60em;
+    border-radius: 1em;
+  }
+
+  .panel-title-img {
+    left: -15em;
+    height: 14em;
+  }
+
+  .panel-none {
+    right: -2.5em;
+    width: 25.3em;
+  }
+
+  .panel-fond-img {
+    display: flex;
+    position: absolute;
+    width: 12em;
+    top: -5em;
+    right: -15em;
+  }
+
+  .panel-second h3 {
+    width: 15em;
+    margin: 1em auto;
+  }
+
+  #advice-panel .panel {
+    height: 35em;
+  }
+
+  .panel {
+    width: 27em;
+    height: 31em;
+    margin-left: 0.5em;
+  }
+
+  .panel-content {
+    padding: 0 5em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .panel-first {
+    width: 72em;
+  }
+
+  #advice-panel .panel {
+    height: 31em;
+  }
+  #recruitement-panel .panel {
+    height: 28em;
+  }
+
+  .panel {
+    width: 33em;
+    height: 25em;
+  }
+}

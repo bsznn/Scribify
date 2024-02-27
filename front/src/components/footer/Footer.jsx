@@ -111,9 +111,8 @@ const Footer = () => {
         <section className="f-second-section">
           <p>© 2024 Scribify. Tous droits réservés</p>
         </section>
-
-        <img src={fond} alt="couleur-fond" className="vert-fond" />
       </section>
+      <img src={fond} alt="couleur-fond" className="vert-fond" />
     </footer>
   );
 };
