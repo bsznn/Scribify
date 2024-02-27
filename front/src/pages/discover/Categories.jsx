@@ -84,22 +84,20 @@ const Categories = () => {
               d'explorer de nouveaux thèmes et genres littéraires.
             </p>
             <li>
-              {auth.user && auth.user.role === "admin" ? (
-                <Link to={`/ajouter-categorie`}>
-                  <pre className="category-none" id="c-pre">
-                    Nouvelle Catégorie
-                  </pre>
-                  <IoIosAddCircle className="category-button" />
-                </Link>
-              ) : (
-                <img
-                  src={lune}
-                  alt="fond-lune"
-                  className="list-fond-img"
-                  id="category-fond-img"
-                />
-              )}
+              <img
+                src={lune}
+                alt="fond-lune"
+                className="list-fond-img"
+                id="category-fond-img"
+              />
             </li>
+          </li>
+          <li>
+            {auth.user && auth.user.role === "admin" && (
+              <Link to={`/ajouter-categorie`}>
+                <IoIosAddCircle className="category-button" />
+              </Link>
+            )}
           </li>
         </ul>
       </section>

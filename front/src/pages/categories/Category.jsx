@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 
+import panelImg from "../../assets/images/list/cat.png";
+import lune from "../../assets/images/forms/lune8.png";
+
 const Category = () => {
   const { categoryId } = useParams();
   const [category, setCategory] = useState([]);
@@ -35,10 +38,38 @@ const Category = () => {
     <main className="m-container">
       {error && <p>{error}</p>}
 
-      <section className="cat-title">
-        <h1>{category.name}</h1>
-        <p className="cat-none">{category.description}</p>
+      <section className="cat-title" id="list-first">
+        <h1 className="cat-h1">{category.name}</h1>
+
+        <ul className="list-ul">
+          <li>
+            <h2 className="cat-h1-v2">{category.name}</h2>
+            <img
+              src={panelImg}
+              alt="category-title"
+              className="list-title-img"
+              id="cat-title-img"
+            />
+          </li>
+          <li>
+            <p className="list-none" id="cat-none">
+              {category.description}
+            </p>
+          </li>
+          <li>
+            <img
+              src={lune}
+              alt="fond-lune"
+              className="list-fond-img"
+              id="cat-fond-img"
+            />
+          </li>
+        </ul>
       </section>
+
+      <ul>
+        <li></li>
+      </ul>
 
       <section className="cat-section2">
         {books.map((book) => (
