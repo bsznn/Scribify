@@ -5,7 +5,8 @@
 }
 
 .books-title {
-  margin: 2em auto;
+  margin: 0 auto;
+  padding-bottom: 1em;
 }
 
 .books-title h1,

@@ -357,9 +357,7 @@ const ProfileUser = () => {
                           <p className="no-text-icon">🗑️ Supprimer</p>
                         </li>
                       </ul>
-                    ) : (
-                      <img src={lune2} alt="lune-fond" className="lune-fond2" />
-                    )}
+                    ) : null}
                   </ul>
                 </article>
               </section>

@@ -52,7 +52,7 @@ const LikeCounter = ({}) => {
         <>
           <FaHeart
             style={{
-              color: "var(--darkGreen)",
+              color: "var(--white)",
               fontSize: "1.2em",
             }}
           ></FaHeart>
@@ -61,7 +61,7 @@ const LikeCounter = ({}) => {
         <>
           <FaHeart
             style={{
-              color: "var(--orange)",
+              color: "var(--hoverOrange)",
               fontSize: "1.2em",
             }}
           />

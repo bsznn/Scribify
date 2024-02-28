@@ -7,6 +7,7 @@
   justify-content: center;
   padding: 3em 0;
   text-align: center;
+  transition: transform 0.3s ease;
 }
 
 /* Style de la page Post + toutes mes pages redirection vers Edit/Update */
@@ -19,8 +20,15 @@
   padding: 2em;
   width: 75%;
   margin: 3em auto;
-  box-shadow: var(--ombre);
   position: relative;
+}
+
+.section-style,
+.section-style2 {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .section-style h2,
@@ -209,10 +217,6 @@ form span {
 }
 
 @media screen and (min-width: 720px) {
-  .section-style {
-    box-shadow: var(--ombre);
-  }
-
   .section-style2 {
     padding-left: 1.4em;
   }

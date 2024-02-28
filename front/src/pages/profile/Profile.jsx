@@ -188,7 +188,9 @@ const Profile = () => {
                 </article>
               </span>
 
-              <article>{auth.user.description}</article>
+              <article className="p-description">
+                {auth.user.description}
+              </article>
             </section>
 
             <article className="p-new-article">
@@ -228,7 +230,6 @@ const Profile = () => {
             </article>
           </>
         )}
-        <img src={back} alt="caroussel-fond" className="fond2" />
       </section>
 
       {auth.user.role === "admin" && (

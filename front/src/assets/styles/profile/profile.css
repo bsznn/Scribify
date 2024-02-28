@@ -11,12 +11,18 @@
   text-align: center;
   background-color: var(--darkGreen);
   height: 22em;
-  margin: 2em 0 1em 0;
-  padding: 1.3em;
+  margin: 2em auto;
+  width: 95%;
+  border-radius: 1em;
   font-family: var(--fontRegular);
   color: var(--mediumGreen);
   animation: fadeIn 1s ease-in-out;
   position: relative;
+
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .p-section1 ul,
@@ -24,21 +30,12 @@
   display: flex;
 }
 
-.fond1,
-.fond2 {
+.fond1 {
+  display: none;
   position: absolute;
   height: 24.6em;
-  width: 1.1em;
-  top: 0;
-}
-
-.fond1 {
   left: 0;
   top: 0;
-}
-
-.fond2 {
-  right: 0;
 }
 
 .lune-fond,
@@ -47,8 +44,8 @@
 }
 
 .p-article1 img {
-  height: 5em;
-  width: 5em;
+  height: 4em;
+  width: em;
   border-radius: 50%;
   object-fit: cover;
   animation: zoomIn 1s ease-in-out;
@@ -60,7 +57,8 @@
   font-size: 1em;
 }
 
-.p-section1 p {
+.p-section1 p,
+.p-description {
   font-size: 0.9em;
   text-align: justify;
   padding-left: 0.5em;
@@ -114,9 +112,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--darkGreen);
+  color: var(--white);
   font-family: var(--fontRegular);
-  background-color: var(--hoverGreen);
+  background-color: var(--panelBlue);
   border-radius: 0.5em;
   width: 80%;
   box-shadow: var(--ombre);
@@ -128,7 +126,7 @@
 
   transition: transform 0.3s ease;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 }
 
@@ -151,7 +149,7 @@
 
 .span-align .link-bio,
 .span-align .profile-icon {
-  color: var(--darkGreen);
+  color: var(--white);
 }
 
 .p-article3 {
@@ -243,6 +241,7 @@
 
   .ul-prebooks {
     display: flex;
+    color: var(--blue);
     justify-content: center;
   }
 
@@ -372,14 +371,14 @@
 
 @media screen and (min-width: 990px) {
   .p-section1 {
-    grid-template-columns: 55% 30% 13%;
+    grid-template-columns: 50% 30% 13%;
   }
 
   .lune-fond {
     display: flex;
     width: 12em;
     position: relative;
-    right: 3em;
+    right: 4em;
   }
 
   .p-article1 img {
@@ -414,7 +413,7 @@
 
     transition: transform 0.3s ease;
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
   }
 }
@@ -449,14 +448,14 @@
   .p-aside {
     display: flex;
     flex-direction: column;
-    width: 42em;
+    width: 30em;
     gap: 1em;
     position: absolute;
     top: 21.6em;
   }
 
   .p-aside-section {
-    padding-left: 21em;
+    padding-left: 8em;
   }
 
   .p-section3,
@@ -528,18 +527,6 @@
     text-transform: capitalize;
     font-weight: bold;
   }
-
-  /* @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  } */
 }
 
 @media screen and (min-width: 1250px) {

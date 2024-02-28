@@ -1,11 +1,17 @@
 .bk-section {
   width: 95%;
-  background-color: var(--hoverGreen);
-  color: var(--darkGreen);
+  background-color: var(--panelBlue);
+  color: var(--white);
   font-family: var(--fontRegular);
   border-radius: 0.5em;
   box-shadow: var(--ombre);
   padding: 0 1em;
+  margin-top: 2em;
+
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.01);
+  }
 }
 
 .bk-article1,
@@ -21,7 +27,7 @@
 }
 
 .bk-title {
-  color: var(--orange);
+  color: var(--hoverOrange);
   padding-top: 1em;
   text-align: center;
 }
@@ -45,7 +51,7 @@
   font-size: 0.7em;
   margin-top: 2em;
   text-transform: uppercase;
-  color: var(--mediumGreen);
+  color: var(--blue);
 }
 
 .bk-ul3,
@@ -65,11 +71,11 @@
 }
 
 #bic2 {
-  color: var(--orange);
+  color: var(--hoverOrange);
 }
 
 #bic3 {
-  color: var(--darkGreen);
+  color: var(--hoverGreen);
 }
 
 .b-article-pre {
@@ -93,7 +99,7 @@
 }
 
 .bk-ul5 .profile-icon {
-  color: var(--darkGreen);
+  color: var(--white);
   font-size: 1.2em;
   padding: 1em 0;
 }
@@ -107,9 +113,9 @@
 
 .page-buttonL,
 .page-buttonR {
-  color: var(--orange);
+  color: var(--blue);
   font-family: var(--fontItalic);
-  background-color: var(--hoverGreen);
+  background-color: var(--panelBlue);
   font-size: 1.2em;
   border: none;
   margin: 0.5em 0.2em;
@@ -128,7 +134,7 @@
 
 .page-buttonL:hover,
 .page-buttonR:hover {
-  color: var(--hoverOrange);
+  color: var(--hoverBlue);
 }
 
 .bk-ul6 span {
@@ -148,8 +154,9 @@
 /* Like Counter */
 
 .btn-likecounter {
+  cursor: pointer;
   border: none;
-  background-color: var(--hoverGreen);
+  background-color: var(--panelBlue);
 }
 
 .bk-text-none,
@@ -183,8 +190,8 @@
     position: relative;
     width: 40em;
     margin: 1em auto;
-    background-color: var(--darkGreen);
-    color: var(--mediumGreen);
+    background-color: var(--blue);
+    color: var(--white);
     border-radius: 0.5em;
     box-shadow: var(--ombre);
   }
@@ -192,9 +199,18 @@
   .bk-section-livre,
   .section-chapitre {
     transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.02);
-    }
+  }
+
+  .bk-section:hover {
+    transform: scale(1);
+  }
+
+  .bk-section-livre:hover {
+    transform: scale(1.02);
+  }
+
+  .section-chapitre:hover {
+    transform: scale(1.01);
   }
 
   .article-livre img {
@@ -227,7 +243,7 @@
 
   .section-chapitre {
     margin-top: 2em;
-    background-color: var(--mediumGreen);
+    background-color: var(--panelBlue);
     width: 36em;
     margin: 2em auto;
     padding: 2em;
@@ -235,8 +251,8 @@
     box-shadow: var(--ombre);
   }
 
-  #bic3 {
-    color: var(--mediumGreen);
+  #bic1 {
+    color: var(--panelBlue);
   }
 
   .bk-text-none,
@@ -276,19 +292,17 @@
 
   .page-buttonL,
   .page-buttonR {
-    background-color: var(--mediumGreen);
     font-size: 1.6em;
-    color: var(--darkGreen);
     width: 6em;
   }
 
   .bk-ul6 .bk-text-none {
-    background-color: var(--darkGreen);
-    color: var(--mediumGreen);
+    background-color: var(--hoverOrange);
+    color: var(--blue);
   }
 
   .btn-likecounter {
-    color: var(--darkGreen);
+    color: var(--blue);
     display: flex;
     align-items: center;
     background-color: var(--hoverGreen);
@@ -296,11 +310,6 @@
     border-radius: 0.5em;
     margin: 1.8em auto;
     width: 5.5em;
-  }
-
-  .page-buttonL:hover,
-  .page-buttonR:hover {
-    color: var(--hoverGreen);
   }
 }
 

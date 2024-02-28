@@ -65,15 +65,25 @@ const Header = () => {
         className="navbar_first"
       >
         <ul>
+          {auth.user && (
+            <li>
+              <NavLink to="/" className="navbar_link">
+                Accueil
+              </NavLink>
+            </li>
+          )}
+
           <li>
-            <NavLink to="/publier" className="navbar_link">
-              Publier
+            <NavLink to="/livres" className="navbar_link">
+              Livres
             </NavLink>
           </li>
 
-          {/* <li>
-            { <p className="discover"> Discover </p> }
-            <ul> */}
+          <li>
+            <NavLink to="/categories" className="navbar_link">
+              Categories
+            </NavLink>
+          </li>
 
           <li>
             <NavLink to="/auteurs" className="navbar_link">
@@ -88,26 +98,10 @@ const Header = () => {
           </li>
 
           <li>
-            <NavLink to="/livres" className="navbar_link">
-              Livres
+            <NavLink to="/publier" className="navbar_link">
+              Publier
             </NavLink>
           </li>
-
-          <li>
-            <NavLink to="/categories" className="navbar_link">
-              Categories
-            </NavLink>
-          </li>
-          {/* </ul>
-          </li> */}
-
-          {auth.user && (
-            <li>
-              <NavLink to="/" className="navbar_link">
-                Accueil
-              </NavLink>
-            </li>
-          )}
         </ul>
       </nav>
 

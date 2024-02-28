@@ -133,7 +133,6 @@ const Home = () => {
               </Link>
             </span>
           </article>
-          <img src={back} alt="caroussel-fond" className="caroussel-fond2" />
         </section>
 
         <section className="home-center">
