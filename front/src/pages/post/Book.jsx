@@ -45,7 +45,7 @@ const Book = () => {
         setHandleCurrentChapter([res.data.chapters[0]]);
       })
       .catch((res) => {
-        console.log(res.data);
+        setErr("Impossible de récuperer le livre !");
       });
   }, [id]);
 
@@ -61,13 +61,13 @@ const Book = () => {
           { headers: token() }
         )
         .then((res) => {
-          setSuccessMessage("Le chapitre a été supprimé avec succès");
           setChapters((prevChapters) =>
             prevChapters.filter((chapter) => chapter._id !== id)
           );
+          alert(res.data.message);
         })
-        .catch((err) => {
-          console.error(err);
+        .catch((error) => {
+          return alert(error.response.data.message);
         });
     }
   };
@@ -104,6 +104,7 @@ const Book = () => {
   return (
     <main className="m-container">
       <section className="bk-section">
+        {err && <span>{err}</span>}
         {book && (
           <>
             <section className="bk-section-livre">
@@ -172,7 +173,8 @@ const Book = () => {
                         />
                       </li>
                     </ul>
-                    {auth && auth.user && auth.user._id === book.userId.id ? (
+                    {(auth && auth.user) ||
+                    auth.user._id === book.userId._id ? (
                       <ul className="bk-ul5">
                         <li>
                           <Link
@@ -182,11 +184,8 @@ const Book = () => {
                             <p className="bk-text-none">Modifier</p>
                           </Link>
                         </li>
-                        <li>
-                          <MdDelete
-                            className="profile-icon"
-                            onClick={() => handleDelete(book._id, chapter._id)}
-                          />
+                        <li onClick={() => handleDelete(book._id, chapter._id)}>
+                          <MdDelete className="profile-icon" />
                           <p className="bk-text-none">Supprimer</p>
                         </li>
                       </ul>

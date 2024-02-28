@@ -24,8 +24,6 @@ const Post = () => {
     chapterContent: "",
     chapterTitle: "",
   });
-  const [err, setErr] = useState();
-  const [message, setMessage] = useState();
 
   const auth = useAuth();
 
@@ -57,9 +55,6 @@ const Post = () => {
     } else {
       setInputs({ ...inputs, [name]: value });
     }
-
-    setErr("");
-    setMessage("");
   };
 
   const handleQuill = (chapterContent, delta, source, editor) => {
@@ -76,7 +71,7 @@ const Post = () => {
       inputs.chapterContent.trim() === "" ||
       inputs.chapterTitle.trim() === ""
     ) {
-      return setErr("Veuillez remplir tous les champs");
+      return alert("Veuillez remplir tous les champs !");
     }
 
     const formData = new FormData();
@@ -97,7 +92,6 @@ const Post = () => {
         headers: token(),
       })
       .then((res) => {
-        setMessage(res.data.message);
         setInputs({
           ...inputs,
           title: "",
@@ -108,16 +102,15 @@ const Post = () => {
           categoryId: [],
           image: null,
         });
+        alert(res.data.message);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        alert(error.response.data.message);
       });
   };
 
   return (
     <main>
-      {message && <span className="success">{message}</span>}
-
       {auth.user ? (
         <section className="section-style2">
           <form
@@ -230,8 +223,6 @@ const Post = () => {
           </article>
         </section>
       )}
-
-      {err && <span>{err}</span>}
     </main>
   );
 };

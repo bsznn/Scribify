@@ -16,7 +16,6 @@ import lune from "../../assets/images/forms/lune7.png";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState(null);
 
   const auth = useAuth();
@@ -46,13 +45,13 @@ const Categories = () => {
         })
         .then((res) => {
           console.log(res.data.message);
-          setSuccessMessage("La catégorie a été supprimée avec succès");
           setCategories((prevCategories) =>
             prevCategories.filter((category) => category._id !== id)
           );
+          alert("La catégorie a été supprimée avec succès !");
         })
         .catch((err) => {
-          console.error(err);
+          alert("Impossible de supprimer la catégorie !");
         });
     }
   };

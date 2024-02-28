@@ -70,10 +70,12 @@ export const updateChapter = async (req, res) => {
     await book.save();
     console.log(chapter);
 
-    res.status(200).json({ message: "Le chapitre a été modifié avec succès" });
+    res
+      .status(200)
+      .json({ message: "Le chapitre a été modifié avec succès !" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Impossible de modifier le chapitre" });
+    res.status(500).json({ message: "Impossible de modifier le chapitre !" });
   }
 };
 

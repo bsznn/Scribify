@@ -39,7 +39,7 @@ const ChapterAdd = () => {
         inputs.chapterContent.trim() === "" ||
         inputs.chapterTitle.trim() === ""
       ) {
-        throw new Error("Veuillez remplir tous les champs");
+        return alert("Veuillez remplir tous les champs !");
       }
 
       const chapter = {
@@ -56,15 +56,15 @@ const ChapterAdd = () => {
           headers: token(),
         })
         .then((res) => {
-          setMessage("Le chapitre a bien été ajouté");
           setInputs({
             chapterContent: "",
             chapterTitle: "",
           });
+          alert("Le chapitre a bien été ajouté !");
         });
     } catch (error) {
       console.error(error);
-      setErr(error.message);
+      return alert("Une erreur est suvenue lors de l'ajout du chapitre.");
     }
   };
 

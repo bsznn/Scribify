@@ -451,7 +451,7 @@
     width: 30em;
     gap: 1em;
     position: absolute;
-    top: 21.6em;
+    top: 20em;
   }
 
   .p-aside-section {
@@ -505,6 +505,9 @@
     color: var(--orange);
   }
 
+  #none-book {
+    margin-top: 1em;
+  }
   #none-book p,
   #none-book h1 {
     color: var(--darkGreen);
@@ -514,6 +517,7 @@
 
   .none-book-link {
     color: var(--orange);
+    padding: 0 0.3em;
   }
 
   .none-book-link:hover {

@@ -50,7 +50,7 @@ const AddComment = ({ bookId }) => {
         });
     } catch (error) {
       console.error(error);
-      setErr(error.message);
+      setErr("Impossible d'ajouter le chapitre");
     }
   };
 

@@ -17,9 +17,6 @@ const ChapterUpdate = () => {
 
   const { bookId, chapterId } = useParams();
 
-  const [err, setErr] = useState();
-  const [message, setMessage] = useState();
-
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/${bookId}`)
@@ -33,17 +30,19 @@ const ChapterUpdate = () => {
             chapterContent: chapter.content,
           });
         } else {
-          console.error("Chapter not found");
+          return alert("Chapitre non trouvé !");
         }
       })
-      .catch((error) => console.error("Error fetching chapter data", error));
+      .catch((error) => {
+        return alert(
+          "Une erreur est survenue lors de la récupération du livre."
+        );
+      });
   }, [bookId, chapterId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-    setErr("");
-    setMessage("");
   };
 
   const handleQuill = (chapterContent, delta, source, editor) => {
@@ -57,7 +56,7 @@ const ChapterUpdate = () => {
       inputs.chapterContent.trim() === "" ||
       inputs.chapterTitle.trim() === ""
     ) {
-      return setErr("Veuillez remplir tous les champs");
+      return alert("Veuillez remplir tous les champs");
     }
 
     const chapter = {
@@ -81,16 +80,15 @@ const ChapterUpdate = () => {
         }
       )
       .then((res) => {
-        setMessage(res.data.message);
+        alert(res.data.message);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        return alert(error.response.data.message);
       });
   };
 
   return (
     <main>
-      {message && <span className="success">{message}</span>}
       <section className="section-style2">
         <img src={rotate} alt="image-lune" className="rotate-gif3" />
         <img src={rotate2} alt="image-lune" className="rotate-gif2" />
@@ -117,7 +115,6 @@ const ChapterUpdate = () => {
 
           <button className="form-button">Valider</button>
         </form>
-        {err && <span>{err}</span>}
       </section>{" "}
     </main>
   );

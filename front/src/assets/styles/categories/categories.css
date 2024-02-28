@@ -4,9 +4,8 @@
   align-items: center;
   margin: 0.3em;
   padding: 1em;
-  border-radius: 10px;
   max-width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   color: var(--mediumGreen);
 }
 
@@ -24,7 +23,7 @@
   box-shadow: var(--ombre);
   border-radius: 0.5em;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 1em;
 }
 
 .category-title h1 {

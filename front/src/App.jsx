@@ -26,7 +26,6 @@ import ChapterAdd from "./pages/post/ChapterAdd";
 import AddComment from "./pages/comments/AddComment";
 import Comments from "./pages/comments/Comments";
 import Comment from "./pages/comments/Comment";
-import UpdateComment from "./pages/comments/UpdateComment";
 import ProfileUser from "./pages/profile/ProfileUser";
 import Category from "./pages/categories/Category";
 import UpdateCategory from "./pages/categories/UpdateCategory";
@@ -64,10 +63,6 @@ function App() {
 
         <Route path="/" element={<PrivateRoute roles={["admin", "user"]} />}>
           <Route path="/ajouter-commentaire/:bookId" element={<AddComment />} />
-          <Route
-            path="/modifier-commentaire/:bookId/:commentId"
-            element={<UpdateComment />}
-          />
 
           <Route
             path="/modifier-chapitre/:bookId/:chapterId"

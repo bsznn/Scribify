@@ -31,8 +31,6 @@ const Profile = () => {
   const [totalLikes, setTotalLikes] = useState(0);
 
   const [err, setErr] = useState();
-  const [successMessage, setSuccessMessage] = useState("");
-
   const navigate = useNavigate();
 
   const auth = useAuth();
@@ -43,13 +41,11 @@ const Profile = () => {
         headers: token(),
       })
       .then((res) => {
-        console.log(res);
         setBooks(res.data);
         setCategories(res.data);
       })
       .catch((res) => {
-        console.log(res);
-        setErr("Impossible de charger les données");
+        setErr("Impossible de charger les livres de l'utilisateur !");
       });
   }, []);
 
@@ -64,7 +60,7 @@ const Profile = () => {
       })
       .catch((err) => {
         console.log(err);
-        setErr(err);
+        setErr("Impossible de charger les données de l'utilisateur !");
       });
   }, []);
 
@@ -77,8 +73,7 @@ const Profile = () => {
         setTotalViews(res.data.totalViews);
       })
       .catch((error) => {
-        console.error(error);
-        setErr("Impossible de charger les données");
+        setErr("Impossible de charger les nombres de vues !");
       });
   }, [auth.user._id]);
 
@@ -91,8 +86,7 @@ const Profile = () => {
         setTotalLikes(res.data.totalLikes);
       })
       .catch((error) => {
-        console.error(error);
-        setErr("Impossible de charger les données");
+        setErr("Impossible de charger le nombre total de likes !");
       });
   }, [auth.user._id]);
 
@@ -100,12 +94,10 @@ const Profile = () => {
     axios
       .get("http://localhost:9000/books/newest-books")
       .then((res) => {
-        console.log(res);
         setNewBooks(res.data);
       })
       .catch((res) => {
-        console.log(res);
-        setErr("Impossible de charger les données");
+        setErr("Impossible de charger les nouveaux livres !");
       });
   }, []);
 
@@ -120,12 +112,11 @@ const Profile = () => {
           headers: token(),
         })
         .then((res) => {
-          console.log(res.data.message);
-          setSuccessMessage("Le livre a été supprimé avec succès");
+          alert("Le livre a été supprimé avec succès !");
           setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
         })
         .catch((err) => {
-          console.error(err);
+          alert("Impossible de supprimer le livre !");
         });
     }
   };
@@ -155,7 +146,7 @@ const Profile = () => {
           }
         })
         .catch((err) => {
-          console.error(err);
+          alert("Impossible de supprimer l'utilisateur !");
         });
     }
   };
@@ -170,8 +161,8 @@ const Profile = () => {
 
   return (
     <main className="home">
-      {successMessage && <span className="success">{successMessage}</span>}
       <section className="p-section1">
+        {err && <span>{err}</span>}
         <img src={back} alt="caroussel-fond" className="fond1" />
         {auth.user.login && (
           <>
@@ -330,7 +321,7 @@ const Profile = () => {
       </section>
 
       {books.length === 0 && (
-        <section className="p-sous-section2" id="none-book">
+        <article className="p-sous-section" id="none-book">
           <h1>Votre profil est encore vierge de publications.</h1>
           <p>
             Il semble que vous n'ayez pas encore eu l'occasion de partager vos
@@ -368,7 +359,7 @@ const Profile = () => {
           </p>
 
           <img src={logo} alt="logo-img" className="p-logo-img" />
-        </section>
+        </article>
       )}
 
       <aside className="p-aside">

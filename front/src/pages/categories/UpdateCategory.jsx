@@ -15,8 +15,7 @@ const UpdateCategory = () => {
     image: null,
   });
 
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     axios
@@ -25,7 +24,7 @@ const UpdateCategory = () => {
         setInputs(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setErr("Impossible de récupérer la catégorie !");
       });
   }, [id]);
 
@@ -45,7 +44,7 @@ const UpdateCategory = () => {
     e.preventDefault();
 
     if (inputs.name.trim() === "" || inputs.description.trim() === "") {
-      setError("Veuillez remplir tous les champs");
+      alert("Veuillez remplir tous les champs");
       return;
     }
 
@@ -62,23 +61,24 @@ const UpdateCategory = () => {
         headers: token(),
       })
       .then((res) => {
-        setMessage("La catégorie a bien été mise à jour !");
         setInputs((prevInputs) => ({
           ...prevInputs,
           name: "",
           description: "",
           image: null,
         }));
+        alert("La catégorie a bien été mise à jour !");
       })
       .catch((err) => {
-        console.log(err);
+        alert("Impossible de modifier la catégorie !");
       });
   };
 
   return (
     <main>
-      {message && <span className="success">{message}</span>}
       <section className="section-style2" id="section-detail">
+        {err && <span>{err}</span>}
+
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
@@ -117,7 +117,6 @@ const UpdateCategory = () => {
             Valider
           </button>
         </form>
-        {error && <span>{error}</span>}
       </section>
     </main>
   );

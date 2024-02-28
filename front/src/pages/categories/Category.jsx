@@ -9,7 +9,7 @@ const Category = () => {
   const { categoryId } = useParams();
   const [category, setCategory] = useState([]);
   const [books, setBooks] = useState([]);
-  const [error, setError] = useState(null);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
     axios
@@ -20,7 +20,7 @@ const Category = () => {
         setBooks(res.data.books);
       })
       .catch((error) => {
-        setError(
+        setErr(
           "Impossible de charger la catégorie ou les livres de la catégorie"
         );
       });
@@ -36,7 +36,7 @@ const Category = () => {
 
   return (
     <main className="m-container">
-      {error && <p>{error}</p>}
+      {err && <p>{err}</p>}
 
       <section className="cat-title" id="list-first">
         <h1 className="cat-h1">{category.name}</h1>

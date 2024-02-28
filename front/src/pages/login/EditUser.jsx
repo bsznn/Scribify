@@ -20,7 +20,6 @@ const EditUser = () => {
   const { id } = useParams();
 
   const [err, setErr] = useState();
-  const [message, setMessage] = useState();
   const [descriptionError, setDescriptionError] = useState(false);
 
   useEffect(() => {
@@ -30,7 +29,9 @@ const EditUser = () => {
         setInputs(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setErr(
+          "Une erreur est survenue lors de la récupération de l'utilisateur."
+        );
       });
   }, []);
 
@@ -62,11 +63,11 @@ const EditUser = () => {
       inputs.email.trim() === "" ||
       inputs.description.trim() === ""
     ) {
-      return setErr("Merci de renseigner au moins un champ !");
+      return alert("Merci de renseigner au moins un champ !");
     }
 
     if (descriptionError) {
-      return setErr("La description ne peut pas dépasser 200 caractères.");
+      return alert("La description ne peut pas dépasser 250 caractères.");
     }
 
     const formData = new FormData();
@@ -82,7 +83,6 @@ const EditUser = () => {
       })
       .then((res) => {
         console.log(res);
-        setMessage("L'utilisateur a bien été modifié !");
         setInputs((prevInputs) => ({
           ...prevInputs,
           login: "",
@@ -91,9 +91,12 @@ const EditUser = () => {
           image: null,
         }));
         userData(res);
+        alert("Vos informations ont bien été modifiées !");
       })
       .catch((err) => {
-        console.log(err);
+        return alert(
+          "Une erreur est survenue lors de la modification de vos données."
+        );
       });
   };
 
@@ -114,13 +117,8 @@ const EditUser = () => {
 
   return (
     <main>
-      {message && <span className="success">{message}</span>}
-      {descriptionError && (
-        <span className="error">
-          La description ne peut pas dépasser {MAX_DESCRIPTION_LENGTH}
-          caractères.
-        </span>
-      )}
+      {err && <span>{err}</span>}
+
       <section className="section-style2" id="section-detail">
         {inputs && (
           <>
@@ -181,8 +179,6 @@ const EditUser = () => {
             </form>
           </>
         )}
-
-        {err && <span>{err}</span>}
       </section>
     </main>
   );

@@ -75,6 +75,15 @@
   padding-top: 1em;
 }
 
+.books-section3 {
+  margin-bottom: 0;
+}
+
+#p-btn1,
+#p-btn2 {
+  background-color: var(--white);
+}
+
 @media screen and (min-width: 720px) {
   .books-h1 {
     display: none;

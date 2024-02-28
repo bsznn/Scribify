@@ -35,8 +35,7 @@ export const getOneBook = async (req, res) => {
 
     res.status(200).json(book);
   } catch (error) {
-    console.log(error);
-    res.status(400).json({
+    res.status(500).json({
       message: "Une erreur est survenue lors de la récupération du livre",
     });
   }
@@ -102,10 +101,12 @@ export const addBook = async (req, res) => {
 
     await book.save();
 
-    res.status(200).json({ message: "Livre bien créé" });
+    res.status(200).json({ message: "Votre livre a bien été créé !" });
   } catch (error) {
     console.error("Error creating a book:", error);
-    res.status(500).json({ message: "Impossible de créer un livre" });
+    res
+      .status(500)
+      .json({ message: "Impossible d'ajouter un nouveau livre !" });
   }
 };
 

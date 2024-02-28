@@ -21,33 +21,27 @@ const PostEdit = () => {
 
   const { id } = useParams();
 
-  const [err, setErr] = useState();
-  const [message, setMessage] = useState();
-
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/${id}`)
       .then((res) => {
-        // Ajoutez une vérification pour s'assurer que les données existent avant la mise à jour du state
-
         setInputs(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        return alert(
+          "Une erreur est survenue lors de la récupération du livre."
+        );
       });
 
     axios
       .get("http://localhost:9000/categories")
       .then((res) => {
-        // setInputs((input) => ({
-        //   ...input,
-        //   categories: res.data,
-        // }));
         setCategories(res.data);
-        console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        return alert(
+          "Une erreur est survenue lors de la récupération des catégories."
+        );
       });
   }, [id]);
 
@@ -64,8 +58,6 @@ const PostEdit = () => {
     } else {
       setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
     }
-
-    console.log(inputs);
   };
 
   const handleSubmit = (e) => {
@@ -76,7 +68,7 @@ const PostEdit = () => {
       inputs.description.trim() === "" ||
       inputs.categoryId.length <= 0
     ) {
-      return setErr("Veuillez remplir tous les champs");
+      return alert("Veuillez remplir tous les champs");
     }
 
     const formData = new FormData();
@@ -92,24 +84,21 @@ const PostEdit = () => {
       })
       .then((res) => {
         console.log(res);
-        setMessage("Le livre a bien été modifié !");
         setInputs((prevInputs) => ({
           ...prevInputs,
           title: "",
           description: "",
-          // categoryId: [],
-          // categories: [],
           image: null,
         }));
+        alert("Votre livre a été modifié avec succès !");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        return alert("Impossible de modifier le livre !");
       });
   };
 
   return (
     <main>
-      {message && <span className="success">{message}</span>}
       <section className="section-style2" id="section-detail">
         {inputs._id && (
           <>
@@ -175,8 +164,6 @@ const PostEdit = () => {
             </form>
           </>
         )}
-
-        {err && <span>{err}</span>}
       </section>
     </main>
   );

@@ -16,7 +16,6 @@ const DashboardAdmin = () => {
   const [userBooksCount, setUserBooksCount] = useState({});
   const [userViewsCount, setUserViewsCount] = useState({});
   const [userLikesCount, setUserLikesCount] = useState({});
-  const [message, setMessage] = useState("");
   const [err, setErr] = useState();
 
   useEffect(() => {
@@ -41,11 +40,9 @@ const DashboardAdmin = () => {
                 [user._id]: books.length, // Utilisez la longueur du tableau de livres pour obtenir le nombre de livres
               }));
             })
-            .catch((error) => {
-              console.error(
-                "Erreur lors de la récupération des livres de l'utilisateur",
-                user.login,
-                error
+            .catch((err) => {
+              setErr(
+                "Erreur lors de la récupération des livres de l'utilisateur"
               );
             });
 
@@ -60,11 +57,9 @@ const DashboardAdmin = () => {
                 [user._id]: totalViews,
               }));
             })
-            .catch((error) => {
-              console.error(
-                "Erreur lors de la récupération du nombre total de vues de l'utilisateur",
-                user.login,
-                error
+            .catch((err) => {
+              setErr(
+                "Erreur lors de la récupération du nombre total de vues de l'utilisateur"
               );
             });
 
@@ -79,11 +74,9 @@ const DashboardAdmin = () => {
                 [user._id]: totalLikes,
               }));
             })
-            .catch((error) => {
-              console.error(
-                "Erreur lors de la récupération du nombre total de likes de l'utilisateur",
-                user.login,
-                error
+            .catch((err) => {
+              setErr(
+                "Erreur lors de la récupération du nombre total de likes de l'utilisateur"
               );
             });
         });
@@ -92,23 +85,29 @@ const DashboardAdmin = () => {
         setUsers(allUsers);
       })
       .catch((err) => {
-        console.log(err);
-        setErr(err);
+        setErr("Impossible de récupérer les utilisateurs !");
       });
   }, []);
 
-  const handleRoleChange = async (userId, newRole) => {
-    try {
-      await axios.put(
-        `http://localhost:9000/users/edit-role/${userId}`,
-        { role: newRole },
-        { headers: token() }
-      );
-      setMessage("Le rôle a bien été mis à jour");
-      setNewRoles((prevRoles) => ({ ...prevRoles, [userId]: newRole }));
-    } catch (error) {
-      console.error(error);
-      setErr("Erreur lors de la modification du rôle de l'utilisateur");
+  const handleRoleChange = (userId, newRole) => {
+    const confirmChange = window.confirm(
+      "Êtes-vous sûr de vouloir changer le rôle de l'utilisateur ?"
+    );
+
+    if (confirmChange) {
+      axios
+        .put(
+          `http://localhost:9000/users/edit-role/${userId}`,
+          { role: newRole },
+          { headers: token() }
+        )
+        .then((res) => {
+          setNewRoles((prevRoles) => ({ ...prevRoles, [userId]: newRole }));
+          alert("Le rôle de l'utilisateur a bien été mis à jour !");
+        })
+        .catch((err) => {
+          alert("Erreur lors de la modification du rôle de l'utilisateur");
+        });
     }
   };
 

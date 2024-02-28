@@ -15,7 +15,6 @@ const AddCategory = () => {
   });
 
   const [err, setErr] = useState();
-  const [message, setMessage] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +25,6 @@ const AddCategory = () => {
     }
 
     setErr("");
-    setMessage("");
   };
 
   const handleSubmit = (e) => {
@@ -47,7 +45,6 @@ const AddCategory = () => {
         headers: token(),
       })
       .then((res) => {
-        setMessage(res.data.message);
         setInputs({
           ...inputs,
           name: "",
@@ -55,16 +52,15 @@ const AddCategory = () => {
           image: null,
         });
         console.log(inputs);
+        alert(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
+        alert("Impossible d'ajouter une nouvelle catégorie !");
       });
   };
 
   return (
     <main>
-      {message && <span className="success">{message}</span>}
-
       <section className="section-style2" id="section-detail">
         <img src={rotate} alt="image-lune" className="rotate-gif1" />
         <img src={rotate2} alt="image-lune" className="rotate-gif2" />
@@ -75,7 +71,13 @@ const AddCategory = () => {
           className="form-style2"
         >
           <label htmlFor="image">Couverture de catégorie : </label>
-          <input onChange={handleChange} type="file" id="image" name="image" />
+          <input
+            onChange={handleChange}
+            type="file"
+            id="image"
+            name="image"
+            className="file-input"
+          />
           <label htmlFor="name">Name : </label>
           <input
             className="form-input"

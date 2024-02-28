@@ -19,7 +19,7 @@ const Books = () => {
       .then((res) => {
         console.log(res);
         setBooks(res.data);
-        setCurrentBooks(res.data.slice(0, 5));
+        setCurrentBooks(res.data.slice(0, 6));
       })
       .catch((res) => {
         console.log(res);
@@ -36,16 +36,24 @@ const Books = () => {
   };
 
   const nextBook = () => {
-    setCurrentPage((prev) => {
-      const nextPage = prev + 5;
-      const endPage = nextPage + 5;
-      setCurrentBooks(books.slice(nextPage, endPage));
-    });
-    console.log(currentPage);
+    const nextPage = currentPage + 1;
+    const startIndex = nextPage * 6;
+    const endIndex = (nextPage + 1) * 6;
+
+    if (endIndex <= books.length) {
+      setCurrentBooks(books.slice(startIndex, endIndex));
+      setCurrentPage(nextPage);
+    } else if (startIndex < books.length) {
+      setCurrentBooks(books.slice(startIndex));
+      setCurrentPage(nextPage);
+    }
   };
 
   const prevBook = () => {
-    setCurrentPage((prev) => prev - 1);
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
+    const startIndex = Math.max((currentPage - 1) * 6, 0);
+    const endIndex = startIndex + 6;
+    setCurrentBooks(books.slice(startIndex, endIndex));
   };
 
   return (
@@ -130,8 +138,15 @@ const Books = () => {
             </section>
           </NavLink>
         ))}
-        <button onClick={prevBook}>Précédent</button>
-        <button onClick={nextBook}>Suivant</button>
+      </section>
+
+      <section className="books-section3">
+        <button onClick={prevBook} className="page-buttonL" id="p-btn1">
+          Précédent
+        </button>
+        <button onClick={nextBook} className="page-buttonR" id="p-btn2">
+          Suivant
+        </button>
       </section>
     </main>
   );

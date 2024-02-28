@@ -12,13 +12,11 @@ const AddAnswer = ({ handleAnswer }) => {
   const auth = useAuth();
 
   const [err, setErr] = useState();
-  const [message, setMessage] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
     setErr("");
-    setMessage("");
   };
 
   const handleSubmit = (e) => {
@@ -31,18 +29,17 @@ const AddAnswer = ({ handleAnswer }) => {
 
       handleAnswer(inputs.content);
 
-      setMessage("La réponse au commentaire a bien été ajoutée");
+      alert("La réponse au commentaire a bien été ajoutée");
       setInputs({
         content: "",
       });
     } catch (error) {
-      console.error(error);
-      setErr(error.message);
+      alert("Impossible d'ajouter la réponse au commentaire !");
     }
   };
   return (
     <section>
-      {message && <span className="success">{message}</span>}
+      {err && <span>{err}</span>}
 
       <form onSubmit={handleSubmit} className="form-answer">
         <article className="answer-article">
@@ -74,7 +71,6 @@ const AddAnswer = ({ handleAnswer }) => {
           </button>
         </article>
       </form>
-      {err && <span>{err}</span>}
     </section>
   );
 };
