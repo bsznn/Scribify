@@ -108,6 +108,7 @@ const Books = () => {
                     <NavLink to={`/livre/${oneBook._id}`}>
                       <h3 className="books-sous-title">{oneBook.title}</h3>
                     </NavLink>
+                    <pre className="bk-author2">Par {oneBook.userId.login}</pre>
                   </li>
                 </ul>
               </article>

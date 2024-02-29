@@ -222,8 +222,7 @@
     transform: scale(1.01);
   }
 
-  .bk-author,
-  .bk-author2 {
+  .bk-author {
     color: var(--panelBlue);
   }
 
@@ -242,9 +241,9 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre portée */
   }
 
-  .bk-title {
+  /* .bk-title {
     text-align: start;
-  }
+  } */
 
   .bk-section {
     background-color: var(--white);
