@@ -134,7 +134,6 @@ const Profile = () => {
         })
         .then((res) => {
           console.log(res.data.message);
-          setSuccessMessage("L'utilisateur a été supprimé avec succès");
           setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
           if (res.data.message) {
             setTimeout(() => {
@@ -146,17 +145,9 @@ const Profile = () => {
           }
         })
         .catch((err) => {
-          alert("Impossible de supprimer l'utilisateur !");
+          alert("Impossible de supprimer l'utilisateur");
         });
     }
-  };
-
-  // Fonction pour tronquer la description à 250 caractères
-  const truncateDescription = (description) => {
-    if (description.length > 250) {
-      return description.substring(0, 250) + "...";
-    }
-    return description;
   };
 
   return (
@@ -272,9 +263,7 @@ const Profile = () => {
 
                 <article className="books-article2">
                   <ul>
-                    <li className="description">
-                      {truncateDescription(oneBook.description)}
-                    </li>
+                    <li className="description">{oneBook.description}</li>
                     <li className="categories">
                       {oneBook.categoryId &&
                         oneBook.categoryId.map((category, index) => (

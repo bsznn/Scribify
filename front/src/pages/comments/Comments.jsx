@@ -31,6 +31,12 @@ const Comments = ({ bookId }) => {
     <main>
       <h2 className="label-comment">Tous les commentaires :</h2>
 
+      {comments.length === 0 && (
+        <p className="ul-prebooks">
+          Il semble que cette publication n'ait encore reçu aucun commentaire.
+        </p>
+      )}
+
       {comments.map((oneComment) => (
         <section key={oneComment._id}>
           <Comment bookId={bookId} commentId={oneComment._id} />

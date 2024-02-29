@@ -32,10 +32,6 @@
 
 .fond1 {
   display: none;
-  position: absolute;
-  height: 24.6em;
-  left: 0;
-  top: 0;
 }
 
 .lune-fond,
@@ -45,7 +41,7 @@
 
 .p-article1 img {
   height: 4em;
-  width: em;
+  width: 4em;
   border-radius: 50%;
   object-fit: cover;
   animation: zoomIn 1s ease-in-out;
@@ -271,11 +267,6 @@
     font-size: 1em;
   }
 
-  .fond1,
-  .fond2 {
-    height: 20.6em;
-  }
-
   .lune-fond2 {
     display: flex;
     width: 5em;
@@ -428,9 +419,14 @@
   }
 
   .fond1 {
+    display: flex;
     width: 50%;
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
+    position: absolute;
+    height: 18em;
+    left: 0;
+    top: 0;
   }
 
   .fond2 {

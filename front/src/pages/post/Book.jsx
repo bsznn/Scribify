@@ -121,6 +121,7 @@ const Book = () => {
                 <ul className="bk-ul1">
                   <li>
                     <h2 className="bk-title">{book.title}</h2>
+                    <pre className="bk-author"> Par {book.userId.login}</pre>
                   </li>
 
                   <ul className="bk-ul2">
@@ -173,8 +174,9 @@ const Book = () => {
                         />
                       </li>
                     </ul>
-                    {(auth && auth.user) ||
-                    auth.user._id === book.userId._id ? (
+                    {auth.user &&
+                    (auth.user.role === "admin" ||
+                      auth.user.id === book.userId._id) ? (
                       <ul className="bk-ul5">
                         <li>
                           <Link
@@ -202,7 +204,9 @@ const Book = () => {
                 ))}
 
               <article className="bk-article3">
-                {auth.user && (
+                {auth.user &&
+                (auth.user.role === "admin" ||
+                  auth.user.id === book.userId._id) ? (
                   <>
                     <ul className="bk-ul6">
                       <span>
@@ -224,7 +228,7 @@ const Book = () => {
                       </li>
                     </ul>
                   </>
-                )}
+                ) : null}
               </article>
             </section>
           </>

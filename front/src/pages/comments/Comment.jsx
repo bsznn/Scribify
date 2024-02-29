@@ -64,9 +64,8 @@ const Comment = ({ bookId, commentId, total }) => {
       }));
 
       setShowUpdateForm(false); // Hide the update form after successful update
-    } catch (error) {
-      console.error(error);
-      setErr(error.message);
+    } catch (err) {
+      alert("Impossible de modifier le commentaire !");
     }
   };
 
@@ -82,14 +81,13 @@ const Comment = ({ bookId, commentId, total }) => {
           { headers: token() }
         )
         .then((res) => {
-          console.log(res.data.message);
-          setSuccessMessage("Le commentaire a été supprimé avec succès");
           setComments((prevComments) =>
             prevComments.filter((comment) => comment._id !== commentId)
           );
+          alert(res.data.message);
         })
         .catch((err) => {
-          console.error(err);
+          alert("Impossible de supprimer le commentaire !");
         });
     }
   };
@@ -142,10 +140,10 @@ const Comment = ({ bookId, commentId, total }) => {
               <span>
                 <img
                   className="comment-img"
-                  src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-                  alt={auth.user.image.alt}
+                  src={`http://localhost:9000/assets/img/${comment.userId.image.src}`}
+                  alt={comment.userId.image.alt}
                 />
-                <h5 className="name-none">{auth.user.login}</h5>
+                <h5 className="name-noneplus">{comment.userId.login}</h5>
               </span>
 
               {showUpdateForm ? (
@@ -172,17 +170,21 @@ const Comment = ({ bookId, commentId, total }) => {
               {new Date(comment.date).toLocaleTimeString()}
             </article>
 
-            {auth.user.id === comment.userId._id && (
+            {
               <article>
                 <ul className="comment-article3">
-                  <li onClick={toggleUpdateForm}>
-                    <IoIosSettings className="profile-icon" />
-                    <p className="name-none">⚙️ Modifier</p>
-                  </li>
-                  <li onClick={handleDelete}>
-                    <MdDelete className="profile-icon" />
-                    <p className="name-none">🗑️ Supprimer</p>
-                  </li>
+                  {auth.user.id === comment.userId._id && (
+                    <>
+                      <li onClick={toggleUpdateForm}>
+                        <IoIosSettings className="profile-icon" />
+                        <p className="name-none">⚙️ Modifier</p>
+                      </li>
+                      <li onClick={handleDelete}>
+                        <MdDelete className="profile-icon" />
+                        <p className="name-none">🗑️ Supprimer</p>
+                      </li>
+                    </>
+                  )}
                   <li onClick={toggleAnswerInput}>
                     <RiQuestionAnswerFill className="orange-icon" />
                     <p className="name-none">🗨️ Réponses</p>
@@ -197,7 +199,7 @@ const Comment = ({ bookId, commentId, total }) => {
                   />
                 )}
               </article>
-            )}
+            }
 
             {showAnswerInput && (
               <section>

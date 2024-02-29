@@ -14,6 +14,8 @@ import imageForm from "../../assets/images/forms/form3.png";
 import lune from "../../assets/images/forms/lune-error.png";
 import { Link } from "react-router-dom";
 
+const MAX_DESCRIPTION_LENGTH = 250;
+
 const Post = () => {
   const [inputs, setInputs] = useState({
     title: "",
@@ -24,6 +26,8 @@ const Post = () => {
     chapterContent: "",
     chapterTitle: "",
   });
+
+  const [descriptionError, setDescriptionError] = useState(false);
 
   const auth = useAuth();
 
@@ -44,7 +48,15 @@ const Post = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "image") {
+
+    if (name === "description") {
+      if (value.length <= MAX_DESCRIPTION_LENGTH) {
+        setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
+        setDescriptionError(false);
+      } else {
+        setDescriptionError(true);
+      }
+    } else if (name === "image") {
       setInputs({ ...inputs, image: e.target.files[0] });
     } else if (name === "categories") {
       //transformer un objet en tableau
@@ -72,6 +84,10 @@ const Post = () => {
       inputs.chapterTitle.trim() === ""
     ) {
       return alert("Veuillez remplir tous les champs !");
+    }
+
+    if (descriptionError) {
+      return alert("La description ne peut pas dépasser 250 caractères.");
     }
 
     const formData = new FormData();

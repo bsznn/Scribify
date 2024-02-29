@@ -52,7 +52,7 @@ const AddAnswer = ({ handleAnswer }) => {
               />
             </li>
             <li>
-              <h5 className="name-none">{auth.user.login}</h5>
+              <h5 className="name-noneplus">{auth.user.login}</h5>
             </li>
           </ul>
 

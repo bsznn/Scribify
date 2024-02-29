@@ -33,7 +33,6 @@ const ProfileUser = () => {
   const [newBooks, setNewBooks] = useState([]);
   const [totalViews, setTotalViews] = useState(0);
   const [totalLikes, setTotalLikes] = useState(0);
-  const [successMessage, setSuccessMessage] = useState("");
 
   const [err, setErr] = useState();
   const navigate = useNavigate();
@@ -138,13 +137,14 @@ const ProfileUser = () => {
         })
         .then((res) => {
           console.log(res.data.message);
-          setSuccessMessage("Le livre a été supprimé avec succès");
           setBooks((prevBooks) =>
             prevBooks.filter((book) => book._id !== userId)
           );
+
+          alert("Le livre a été supprimé avec succès !");
         })
         .catch((err) => {
-          console.error(err);
+          alert("Impossible de supprimer le livre ! ");
         });
     }
   };
@@ -162,7 +162,6 @@ const ProfileUser = () => {
         })
         .then((res) => {
           console.log(res.data.message);
-          setSuccessMessage("L'utilisateur a été supprimé avec succès");
           setUser((prevUsers) =>
             prevUsers.filter((user) => user._id !== userId)
           );
@@ -176,22 +175,13 @@ const ProfileUser = () => {
           }
         })
         .catch((err) => {
-          console.error(err);
+          alert("Impossible de supprimer l'utilisateur");
         });
     }
   };
 
-  // Fonction pour tronquer la description à 250 caractères
-  const truncateDescription = (description) => {
-    if (description.length > 250) {
-      return description.substring(0, 250) + "...";
-    }
-    return description;
-  };
-
   return (
     <main className="home">
-      {successMessage && <span className="success">{successMessage}</span>}
       <section className="p-section1">
         <img src={back} alt="caroussel-fond" className="fond1" />
         {user && user.image && (
@@ -211,13 +201,6 @@ const ProfileUser = () => {
 
               <article>
                 <p className="description">{user.description}</p>
-                {/* {user.description &&
-            user.description.length > MAX_DESCRIPTION_LENGTH
-              ? `${user.description.substring(
-                  0,
-                  MAX_DESCRIPTION_LENGTH
-                )}...`
-              : user.description} */}
               </article>
             </section>
 

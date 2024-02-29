@@ -7,6 +7,8 @@ import "../../assets/styles/forms/forms.css";
 import rotate from "../../assets/images/forms/lune.png";
 import rotate2 from "../../assets/images/forms/lune2.png";
 
+const MAX_DESCRIPTION_LENGTH = 250;
+
 const AddCategory = () => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -15,10 +17,19 @@ const AddCategory = () => {
   });
 
   const [err, setErr] = useState();
+  const [descriptionError, setDescriptionError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "image") {
+
+    if (name === "description") {
+      if (value.length <= MAX_DESCRIPTION_LENGTH) {
+        setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
+        setDescriptionError(false);
+      } else {
+        setDescriptionError(true);
+      }
+    } else if (name === "image") {
       setInputs({ ...inputs, image: e.target.files[0] });
     } else {
       setInputs({ ...inputs, [name]: value });
@@ -78,7 +89,7 @@ const AddCategory = () => {
             name="image"
             className="file-input"
           />
-          <label htmlFor="name">Name : </label>
+          <label htmlFor="name">Nom de la catégorie : </label>
           <input
             className="form-input"
             onChange={handleChange}

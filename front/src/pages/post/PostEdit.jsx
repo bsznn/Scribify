@@ -9,6 +9,8 @@ import "../../assets/styles/forms/forms.css";
 import rotate from "../../assets/images/forms/lune.png";
 import rotate2 from "../../assets/images/forms/lune2.png";
 
+const MAX_DESCRIPTION_LENGTH = 250;
+
 const PostEdit = () => {
   const [inputs, setInputs] = useState({
     title: "",
@@ -18,6 +20,7 @@ const PostEdit = () => {
     image: null,
   });
   const [categories, setCategories] = useState([]);
+  const [descriptionError, setDescriptionError] = useState(false);
 
   const { id } = useParams();
 
@@ -48,7 +51,14 @@ const PostEdit = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "image") {
+    if (name === "description") {
+      if (value.length <= MAX_DESCRIPTION_LENGTH) {
+        setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
+        setDescriptionError(false);
+      } else {
+        setDescriptionError(true);
+      }
+    } else if (name === "image") {
       setInputs((prevInputs) => ({ ...prevInputs, image: e.target.files[0] }));
     } else if (name === "categories") {
       const options = Array.from(e.target.selectedOptions).map(
@@ -69,6 +79,10 @@ const PostEdit = () => {
       inputs.categoryId.length <= 0
     ) {
       return alert("Veuillez remplir tous les champs");
+    }
+
+    if (descriptionError) {
+      return alert("La description ne peut pas dépasser 250 caractères.");
     }
 
     const formData = new FormData();

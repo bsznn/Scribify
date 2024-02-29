@@ -32,6 +32,15 @@
   text-align: center;
 }
 
+.bk-author,
+.bk-author2 {
+  text-transform: uppercase;
+  color: var(--blue);
+  text-align: center;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
 .bk-section ul {
   margin: 0;
 }
@@ -211,6 +220,11 @@
 
   .section-chapitre:hover {
     transform: scale(1.01);
+  }
+
+  .bk-author,
+  .bk-author2 {
+    color: var(--panelBlue);
   }
 
   .article-livre img {

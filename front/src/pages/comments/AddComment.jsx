@@ -16,7 +16,6 @@ const AddComment = ({ bookId }) => {
   const auth = useAuth();
 
   const [err, setErr] = useState();
-  const [message, setMessage] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,21 +42,19 @@ const AddComment = ({ bookId }) => {
           headers: token(),
         })
         .then((res) => {
-          setMessage("Le commentaire a bien été ajouté");
           setInputs({
             content: "",
           });
+          alert("Le commentaire a bien été ajouté");
         });
     } catch (error) {
       console.error(error);
-      setErr("Impossible d'ajouter le chapitre");
+      alert("Impossible d'ajouter le commentaire !");
     }
   };
 
   return (
     <section>
-      {message && <span className="success">{message}</span>}
-
       {auth && auth.user && (
         <form onSubmit={handleSubmit} className="form-style2">
           <label htmlFor="content" className="label-comment">
@@ -74,7 +71,7 @@ const AddComment = ({ bookId }) => {
                 />
               </li>
               <li>
-                <h5 className="name-none">{auth.user.login}</h5>
+                <h5 className="name-noneplus">{auth.user.login}</h5>
               </li>
             </ul>
 

@@ -34,6 +34,12 @@ const Answers = ({ bookId, commentId }) => {
     <main>
       <h5 className="label-answer">Réponses au commentaire :</h5>
 
+      {answers.length === 0 && (
+        <p className="none-answer">
+          Il semble que ce commentaire n'ait encore reçu aucune réponse.
+        </p>
+      )}
+
       {answers.map((oneAnswer) => (
         <section key={oneAnswer._id}>
           <Answer

@@ -10,7 +10,7 @@ import "../../assets/styles/book/comment.css";
 
 const Answer = ({ bookId, commentId, answerId }) => {
   const [answer, setAnswer] = useState("");
-  const [editMode, setEditMode] = useState(false);
+  const [showUpdateForm, setShowUpdateForm] = useState(false); // Add state to toggle update form
   const [updateContent, setUpdateContent] = useState(""); // Add state for update content
   const [err, setErr] = useState(null); // Add state for errors
 
@@ -36,36 +36,87 @@ const Answer = ({ bookId, commentId, answerId }) => {
     }
   };
 
-  const toggleEditMode = async () => {
-    setEditMode(!editMode);
-    await fetchAnswerData();
-    setUpdateContent(answer.content);
-  };
-
-  const handleUpdateSuccess = () => {
-    toggleEditMode();
-    fetchAnswerData();
-  };
-
-  const fetchAnswerData = async () => {
-    try {
-      const response = await axios.get(
+  useEffect(() => {
+    axios
+      .get(
         `http://localhost:9000/books/comment/answer/${bookId}/${commentId}/${answerId}`,
         {
           headers: token(),
         }
+      )
+      .then((res) => {
+        setAnswer(res.data);
+        setUpdateContent(res.data.content);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setErr("Impossible de charger la réponse");
+      });
+  }, [bookId, commentId]);
+
+  const handleUpdate = async () => {
+    try {
+      if (updateContent.trim() === "") {
+        throw new Error("Veuillez remplir tous les champs");
+      }
+
+      const updatedAnswer = {
+        content: updateContent,
+      };
+
+      await axios.put(
+        `http://localhost:9000/books/comment/answer/edit/${bookId}/${commentId}/${answerId}`,
+        updatedAnswer,
+        {
+          headers: token(),
+        }
       );
-      setAnswer(response.data);
-      setUpdateContent(response.data.content); // Set initial content for update form
-    } catch (error) {
-      console.error(error);
-      setErr("Failed to fetch answer data");
+
+      setAnswer((prevAnswer) => ({
+        ...prevAnswer,
+        content: updateContent,
+      }));
+
+      setShowUpdateForm(false); // Hide the update form after successful update
+    } catch (err) {
+      alert("Impossible de modifier la réponse !");
     }
   };
 
-  useEffect(() => {
-    fetchAnswerData();
-  }, [bookId, commentId, answerId]);
+  const toggleUpdateForm = () => {
+    setShowUpdateForm(!showUpdateForm);
+  };
+
+  // const toggleEditMode = async () => {
+  //   setEditMode(!editMode);
+  //   await fetchAnswerData();
+  //   setUpdateContent(answer.content);
+  // };
+
+  // const handleUpdateSuccess = () => {
+  //   setAnswer({ ...answer, content: updateContent }); // Mise à jour de la réponse avec le contenu modifié
+  //   toggleEditMode(); // Fermer le mode édition après la mise à jour réussie
+  // };
+
+  // const fetchAnswerData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:9000/books/comment/answer/${bookId}/${commentId}/${answerId}`,
+  //       {
+  //         headers: token(),
+  //       }
+  //     );
+  //     setAnswer(response.data);
+  //     setUpdateContent(response.data.content); // Set initial content for update form
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErr("Failed to fetch answer data");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchAnswerData();
+  // }, [bookId, commentId, answerId]);
 
   return (
     <main>
@@ -82,11 +133,11 @@ const Answer = ({ bookId, commentId, answerId }) => {
                   />
                 </li>
                 <li>
-                  <h5 className="name-none">{auth.user.login}</h5>
+                  <h5 className="name-noneplus">{auth.user.login}</h5>
                 </li>
               </ul>
 
-              {editMode ? (
+              {showUpdateForm ? (
                 <ul className="answer-ul">
                   <li>
                     <textarea
@@ -97,7 +148,7 @@ const Answer = ({ bookId, commentId, answerId }) => {
                   </li>
 
                   <li>
-                    <button onClick={() => handleUpdateSuccess()}>
+                    <button onClick={handleUpdate}>
                       <IoIosSend className="icon-none" />
                       <p className="name-none"> ↪️ Valider</p>
                     </button>
@@ -118,7 +169,7 @@ const Answer = ({ bookId, commentId, answerId }) => {
             {auth.user.id === answer.userId._id && (
               <article>
                 <ul className="answer-article3">
-                  <li onClick={toggleEditMode}>
+                  <li onClick={toggleUpdateForm}>
                     <IoIosSettings className="profile-icon" />
                     <p className="name-none">⚙️ Modifier</p>
                   </li>
