@@ -1,5 +1,3 @@
-/* @react-refresh */
-
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -25,7 +23,7 @@ const Header = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
       if (window.innerWidth >= 1024) {
-        setToggle(false); // Close toggle if screen size increases
+        setToggle(false);
       }
     };
 

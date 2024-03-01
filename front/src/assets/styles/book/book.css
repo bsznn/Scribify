@@ -160,6 +160,18 @@
   color: var(--hoverBlue);
 }
 
+.page-buttonL,
+.page-buttonR,
+.profile-icon,
+.bk-text-none,
+.chapter-button,
+.btn-likecounter {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
 /* Like Counter */
 
 .btn-likecounter {
@@ -240,10 +252,6 @@
     transform: rotateY(-20deg); /* Rotation de l'image sur l'axe Y */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre portée */
   }
-
-  /* .bk-title {
-    text-align: start;
-  } */
 
   .bk-section {
     background-color: var(--white);

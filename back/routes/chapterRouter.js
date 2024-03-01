@@ -8,8 +8,10 @@ import {
   updateChapter,
 } from "../controllers/chaptersController.js";
 
+// Router pour gérer les routes relatives aux chapitres
 const chapterRouter = express.Router();
 
+// Récupérer tous les chapitres d'un livre
 chapterRouter.get(
   "/books/chapters/:bookId",
   isLogged,
@@ -17,6 +19,7 @@ chapterRouter.get(
   getAllChaptersByBook
 );
 
+// Récupérer un chapitre spécifique d'un livre
 chapterRouter.get(
   "/books/chapter/:bookId/:chapterId",
   isLogged,
@@ -24,6 +27,7 @@ chapterRouter.get(
   getOneChapterByBook
 );
 
+// Ajouter un nouveau chapitre à un livre
 chapterRouter.post(
   "/books/chapter/new/:bookId",
   isLogged,
@@ -31,6 +35,7 @@ chapterRouter.post(
   addChapter
 );
 
+// Mettre à jour un chapitre existant d'un livre
 chapterRouter.put(
   "/books/chapter/edit/:bookId/:chapterId",
   isLogged,
@@ -38,6 +43,7 @@ chapterRouter.put(
   updateChapter
 );
 
+// Supprimer un chapitre d'un livre
 chapterRouter.delete(
   "/books/chapter/delete/:bookId/:chapterId",
   isLogged,

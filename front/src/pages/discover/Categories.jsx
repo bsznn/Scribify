@@ -110,6 +110,8 @@ const Categories = () => {
                   src={`http://localhost:9000/assets/img/${category.image.src}`}
                   alt={category.image.alt}
                   className="category-img"
+                  aria-label="category-image"
+                  title={category.image.alt}
                 />
               )}
             </article>

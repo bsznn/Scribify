@@ -68,10 +68,18 @@ const Readers = () => {
                   src={`http://localhost:9000/assets/img/${oneReader.image.src}`}
                   alt={oneReader.image.alt}
                   className="reader-img"
+                  aria-label="default-image"
+                  title={oneReader.image.alt}
                 />
               )}
               {!oneReader.image && (
-                <img src={userImage} alt="user-image" className="reader-img" />
+                <img
+                  src={userImage}
+                  alt="default-image"
+                  className="author-img"
+                  aria-label="default-image"
+                  title="default-image"
+                />
               )}
             </article>
 

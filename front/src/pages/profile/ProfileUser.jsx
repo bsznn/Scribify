@@ -191,6 +191,9 @@ const ProfileUser = () => {
                 <article className="p-article1">
                   <img
                     src={`http://localhost:9000/assets/img/${user.image.src}`}
+                    alt={auth.user.image.alt}
+                    aria-label="user-image"
+                    title={auth.user.image.alt}
                   />
                 </article>
 
@@ -246,7 +249,6 @@ const ProfileUser = () => {
             </article>
           </>
         )}
-        <img src={back} alt="caroussel-fond" className="fond2" />
       </section>
 
       <span className="home-title1">
@@ -272,6 +274,8 @@ const ProfileUser = () => {
                         src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
                         alt={oneBook.image.alt}
                         className="books-img"
+                        aria-label="book-image"
+                        title={oneBook.image.alt}
                       />
                     </li>
 
@@ -292,9 +296,7 @@ const ProfileUser = () => {
 
                 <article className="books-article2">
                   <ul>
-                    <li className="description">
-                      {truncateDescription(oneBook.description)}
-                    </li>
+                    <li className="description">{oneBook.description}</li>
                     <li className="categories">
                       {oneBook.categoryId &&
                         oneBook.categoryId.map((category, index) => (
@@ -386,7 +388,13 @@ const ProfileUser = () => {
               vous accueillir dans notre communauté d'écrivains. À vos plumes !
             </p>
 
-            <img src={logo} alt="logo-img" className="p-logo-img" />
+            <img
+              src={logo}
+              alt="logo-image"
+              className="p-logo-img"
+              aria-label="logo-image"
+              title="logo-image"
+            />
           </article>
         )}
       </section>
@@ -417,6 +425,8 @@ const ProfileUser = () => {
                         src={`http://localhost:9000/assets/img/${oneAuthor.image.src}`}
                         alt={oneAuthor.image.alt}
                         className="p-author-img"
+                        aria-label="author-image"
+                        title={oneAuthor.image.alt}
                       />
                     </li>
                   )}
@@ -424,8 +434,10 @@ const ProfileUser = () => {
                     <li>
                       <img
                         src={userImage}
-                        alt="user-image"
+                        alt="default-image"
                         className="p-author-img"
+                        aria-label="default-image"
+                        title="default-image"
                       />
                     </li>
                   )}
@@ -472,6 +484,8 @@ const ProfileUser = () => {
                         className="p-book-img"
                         src={`http://localhost:9000/assets/img/${oneNewBook.image.src}`}
                         alt={oneNewBook.image.alt}
+                        aria-label="book-image"
+                        title={oneNewBook.image.alt}
                       />
                     </li>
                     <li>

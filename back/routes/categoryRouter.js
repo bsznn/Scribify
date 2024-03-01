@@ -1,18 +1,16 @@
 import express from "express";
 import { isAuthorized, isLogged } from "../middlewares/auth.js";
 import {
-  // addBookCategory,
   addGeneralCategory,
   deleteCategoryByAdmin,
-  // deleteCategoryByUser,
   getAllCategories,
   getAllCategoriesWithBooks,
   getOneCategory,
   updateCategoryByAdmin,
-  // updateCategoryByUser,
 } from "../controllers/categoriesController.js";
 import upload from "../middlewares/multer.js";
 
+// Router pour gérer les routes relatives aux catégories
 const categoryRouter = express.Router();
 
 // Récupérer toutes les catégories
@@ -21,10 +19,10 @@ categoryRouter.get("/categories", getAllCategories);
 // Récupérer toutes les catégories avec les livres associés
 categoryRouter.get("/categories/withBooks", getAllCategoriesWithBooks);
 
-// Récupérer une seule catégorie
+// Récupérer une seule catégorie par son identifiant
 categoryRouter.get("/categories/:id", getOneCategory);
 
-// Ajouter une catégorie générale par l'administrateur
+// Ajouter une nouvelle catégorie générale (accessible aux administrateurs)
 categoryRouter.post(
   "/categories/new",
   isLogged,
@@ -33,23 +31,7 @@ categoryRouter.post(
   addGeneralCategory
 );
 
-// // Ajouter une catégorie à un livre
-// categoryRouter.post(
-//   "/books/categories/new",
-//   isLogged,
-//   isAuthorized(["user", "admin"]),
-//   addBookCategory
-// );
-
-// // Modifier une catégorie spécifique à un livre pour un utilisateur
-// categoryRouter.put(
-//   "books/categories/edit/:id",
-//   isLogged,
-//   isAuthorized(["user", "admin"]),
-//   updateCategoryByUser
-// );
-
-// Modifier une catégorie en général (pour l'administrateur)
+// Mettre à jour une catégorie générale existante (accessible aux administrateurs)
 categoryRouter.put(
   "/categories/edit/:id",
   isLogged,
@@ -58,15 +40,7 @@ categoryRouter.put(
   updateCategoryByAdmin
 );
 
-// // Supprimer une catégorie d'un livre pour un utilisateur
-// categoryRouter.delete(
-//   "books/categories/delete/:id/:bookId",
-//   isLogged,
-//   isAuthorized(["user", "admin"]),
-//   deleteCategoryByUser
-// );
-
-// Supprimer une catégorie en général (pour l'administrateur)
+// Supprimer une catégorie générale (accessible aux administrateurs)
 categoryRouter.delete(
   "/categories/delete/:id",
   isLogged,

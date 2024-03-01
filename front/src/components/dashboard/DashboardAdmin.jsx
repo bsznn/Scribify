@@ -155,7 +155,7 @@ const DashboardAdmin = () => {
                 </td>
                 <td>
                   <NavLink to={`/profil/${oneUser._id}`} className="see-more">
-                    <FaUser />
+                    <FaUser className="see-more-icon" />
                   </NavLink>
                 </td>
                 <td>

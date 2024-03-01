@@ -19,7 +19,13 @@ const Advice = () => {
         <h1 className="panel-h1">Conseils</h1>
         <ul className="panel-ul">
           <li>
-            <img src={panelImg} alt="panel-title" className="panel-title-img" />
+            <img
+              src={panelImg}
+              alt="panel-title"
+              className="panel-title-img"
+              aria-label="panel-title"
+              title="panel-title"
+            />
           </li>
           <li>
             <p className="panel-none">

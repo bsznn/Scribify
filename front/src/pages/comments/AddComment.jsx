@@ -21,7 +21,6 @@ const AddComment = ({ bookId }) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
     setErr("");
-    setMessage("");
   };
 
   const handleSubmit = async (e) => {

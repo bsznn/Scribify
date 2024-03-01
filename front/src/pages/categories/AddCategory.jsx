@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { token } from "../../context/token";
 
 import "../../assets/styles/forms/forms.css";
@@ -18,6 +19,8 @@ const AddCategory = () => {
 
   const [err, setErr] = useState();
   const [descriptionError, setDescriptionError] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,6 +67,7 @@ const AddCategory = () => {
         });
         console.log(inputs);
         alert(res.data.message);
+        navigate("/categories");
       })
       .catch((err) => {
         alert("Impossible d'ajouter une nouvelle catégorie !");

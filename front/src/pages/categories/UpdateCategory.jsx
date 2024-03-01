@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 import { token } from "../../context/token";
 
@@ -19,6 +19,8 @@ const UpdateCategory = () => {
 
   const [err, setErr] = useState("");
   const [descriptionError, setDescriptionError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -79,6 +81,7 @@ const UpdateCategory = () => {
           image: null,
         }));
         alert("La catégorie a bien été mise à jour !");
+        navigate("/categories");
       })
       .catch((err) => {
         alert("Impossible de modifier la catégorie !");

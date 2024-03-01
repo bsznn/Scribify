@@ -27,7 +27,8 @@
   margin-left: 4em;
 }
 
-.name-none {
+.name-none,
+.name-noneplus {
   display: none;
 }
 

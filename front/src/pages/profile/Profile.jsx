@@ -30,6 +30,8 @@ const Profile = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [totalLikes, setTotalLikes] = useState(0);
 
+  const [author, setAuthor] = useState(null);
+
   const [err, setErr] = useState();
   const navigate = useNavigate();
 
@@ -72,7 +74,7 @@ const Profile = () => {
       .then((res) => {
         setTotalViews(res.data.totalViews);
       })
-      .catch((error) => {
+      .catch((err) => {
         setErr("Impossible de charger les nombres de vues !");
       });
   }, [auth.user._id]);
@@ -85,7 +87,7 @@ const Profile = () => {
       .then((res) => {
         setTotalLikes(res.data.totalLikes);
       })
-      .catch((error) => {
+      .catch((err) => {
         setErr("Impossible de charger le nombre total de likes !");
       });
   }, [auth.user._id]);
@@ -162,6 +164,9 @@ const Profile = () => {
                 <article className="p-article1">
                   <img
                     src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
+                    alt={auth.user.image.alt}
+                    aria-label="user-image"
+                    title={auth.user.image.alt}
                   />
                 </article>
 
@@ -243,6 +248,8 @@ const Profile = () => {
                         src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
                         alt={oneBook.image.alt}
                         className="books-img"
+                        aria-label="book-image"
+                        title={oneBook.image.alt}
                       />
                     </li>
 
@@ -347,7 +354,13 @@ const Profile = () => {
             accueillir dans notre communauté d'écrivains. À vos plumes !
           </p>
 
-          <img src={logo} alt="logo-img" className="p-logo-img" />
+          <img
+            src={logo}
+            alt="logo-image"
+            className="p-logo-img"
+            aria-label="logo-image"
+            title="logo-image"
+          />
         </article>
       )}
 
@@ -373,19 +386,25 @@ const Profile = () => {
                 <ul className="p-author-image">
                   {oneAuthor.image && (
                     <li>
-                      <img
-                        src={`http://localhost:9000/assets/img/${oneAuthor.image.src}`}
-                        alt={oneAuthor.image.alt}
-                        className="p-author-img"
-                      />
+                      <Link to={`/profil/${oneAuthor._id}`}>
+                        <img
+                          src={`http://localhost:9000/assets/img/${oneAuthor.image.src}`}
+                          alt={oneAuthor.image.alt}
+                          className="p-author-img"
+                          aria-label="author-image"
+                          title={oneAuthor.image.alt}
+                        />{" "}
+                      </Link>
                     </li>
                   )}
                   {!oneAuthor.image && (
                     <li>
                       <img
                         src={userImage}
-                        alt="user-image"
+                        alt="default-image"
                         className="p-author-img"
+                        aria-label="default-image"
+                        title="default-image"
                       />
                     </li>
                   )}
@@ -432,6 +451,8 @@ const Profile = () => {
                         className="p-book-img"
                         src={`http://localhost:9000/assets/img/${oneNewBook.image.src}`}
                         alt={oneNewBook.image.alt}
+                        aria-label="book-image"
+                        title={oneNewBook.image.alt}
                       />
                     </li>
                     <li>

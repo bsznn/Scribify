@@ -1,7 +1,7 @@
 import Book from "../models/bookModel.js";
 import mongoose from "mongoose";
 
-// Ajouter un chapitre
+// Ajouter un nouveau chapitre à un livre existant
 export const addChapter = async (req, res) => {
   try {
     const { bookId } = req.params;
@@ -9,16 +9,19 @@ export const addChapter = async (req, res) => {
 
     const { chapterTitle, chapterContent } = req.body.chapters[0];
 
+    // Vérifier si l'utilisateur est autorisé à ajouter un chapitre
     if (!bookId || !req.userId) {
       return res.status(401).json({ message: "Non autorisé" });
     }
 
+    // Vérifier si l'utilisateur est l'auteur du livre
     if (book.userId != req.userId) {
       throw new Error(
         "Vous ne pouvez ajouter des chapitres qu'à vos propres livres"
       );
     }
 
+    // Vérifier si les champs du chapitre sont vides
     if (chapterTitle.trim() === "" || chapterContent.trim() === "") {
       return res
         .status(401)
@@ -28,7 +31,7 @@ export const addChapter = async (req, res) => {
     const chapter = {
       content: chapterContent,
       title: chapterTitle,
-      date: new Date(), // Permet d'avoir la date actuelle du serveur
+      date: new Date(), // Date actuelle du serveur
     };
 
     await Book.updateOne({ _id: bookId }, { $push: { chapters: chapter } });
@@ -43,7 +46,7 @@ export const addChapter = async (req, res) => {
   }
 };
 
-// Modifier un chapitre
+// Modifier un chapitre existant dans un livre
 export const updateChapter = async (req, res) => {
   try {
     const { bookId, chapterId } = req.params;
@@ -53,12 +56,12 @@ export const updateChapter = async (req, res) => {
 
     const chapter = book.chapters.id(chapterId);
 
+    // Vérifier si le chapitre existe
     if (!chapter) {
-      res.status(404).json({ message: "Ce chapitre est introuvable" });
+      return res.status(404).json({ message: "Ce chapitre est introuvable" });
     }
 
-    console.log(req.body);
-
+    // Mettre à jour les champs du chapitre si fournis dans la requête
     if (chapterTitle) {
       chapter.title = chapterTitle;
     }
@@ -68,7 +71,6 @@ export const updateChapter = async (req, res) => {
     }
 
     await book.save();
-    console.log(chapter);
 
     res
       .status(200)
@@ -79,7 +81,7 @@ export const updateChapter = async (req, res) => {
   }
 };
 
-// Supprimer un chapitre
+// Supprimer un chapitre d'un livre
 export const deleteChapter = async (req, res) => {
   try {
     const { bookId, chapterId } = req.params;
@@ -98,7 +100,7 @@ export const deleteChapter = async (req, res) => {
   }
 };
 
-// Récupérer tous les chapitres d'un livre
+// Récupérer tous les chapitres d'un livre spécifique
 export const getAllChaptersByBook = async (req, res) => {
   try {
     const { bookId } = req.params;
@@ -108,8 +110,10 @@ export const getAllChaptersByBook = async (req, res) => {
       return res.status(404).json({ message: "Livre non trouvé" });
     }
 
+    // Récupérer les chapitres du livre
     const chapters = book.chapters;
 
+    // Peupler les données de l'auteur du chapitre
     const populatedChapters = await Book.populate(chapters, {
       path: "userId",
       select: "-password",
@@ -124,7 +128,7 @@ export const getAllChaptersByBook = async (req, res) => {
   }
 };
 
-// Récupérer un chapitre d'un livre
+// Récupérer un chapitre spécifique d'un livre
 export const getOneChapterByBook = async (req, res) => {
   try {
     const { bookId, chapterId } = req.params;
@@ -135,6 +139,7 @@ export const getOneChapterByBook = async (req, res) => {
       return res.status(404).json({ message: "Livre non trouvé" });
     }
 
+    // Trouver le chapitre par son ID
     const chapter = book.chapters.find(
       (chapter) => chapter._id.toString() === chapterId
     );
@@ -143,6 +148,7 @@ export const getOneChapterByBook = async (req, res) => {
       return res.status(404).json({ message: "Chapitre non trouvé" });
     }
 
+    // Peupler les données de l'auteur du chapitre
     await Book.populate(chapter, {
       path: "userId",
       select: "-password",

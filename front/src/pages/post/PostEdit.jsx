@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { token } from "../../context/token";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
 import rotate from "../../assets/images/forms/lune.png";
@@ -23,6 +23,7 @@ const PostEdit = () => {
   const [descriptionError, setDescriptionError] = useState(false);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -105,6 +106,7 @@ const PostEdit = () => {
           image: null,
         }));
         alert("Votre livre a été modifié avec succès !");
+        navigate("/profil");
       })
       .catch((error) => {
         return alert("Impossible de modifier le livre !");

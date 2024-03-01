@@ -12,7 +12,7 @@ import { useAuth } from "../../context/AuthContext";
 
 import imageForm from "../../assets/images/forms/form3.png";
 import lune from "../../assets/images/forms/lune-error.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -30,6 +30,9 @@ const Post = () => {
   const [descriptionError, setDescriptionError] = useState(false);
 
   const auth = useAuth();
+  const navigate = useNavigate();
+
+  const { id } = useParams();
 
   useEffect(() => {
     axios
@@ -119,9 +122,10 @@ const Post = () => {
           image: null,
         });
         alert(res.data.message);
+        navigate(`/profil`);
       })
-      .catch((error) => {
-        alert(error.response.data.message);
+      .catch((err) => {
+        alert("Une erreur est survenue lors de la publication du livre !");
       });
   };
 

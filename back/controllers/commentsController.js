@@ -1,29 +1,31 @@
 import Book from "../models/bookModel.js";
 import mongoose from "mongoose";
 
-// Ajouter un commentaire
+// Ajouter un nouveau commentaire à un livre
 export const addComment = async (req, res) => {
   try {
     const { userId, bookId } = req.params;
-
     const { content } = req.body;
 
+    // Vérifier si le contenu du commentaire est vide
     if (content.trim() === "") {
       return res
         .status(401)
         .json({ message: "Veuillez remplir tous les champs" });
     }
 
+    // Créer un nouvel objet commentaire
     const comment = {
       userId: req.userId,
       content,
       date: new Date(),
     };
 
+    // Ajouter le commentaire au livre spécifié
     await Book.updateOne(
       { _id: new mongoose.Types.ObjectId(bookId) },
       { $push: { comments: comment } }
-    ).populate("userId", "-password");
+    );
 
     res.status(200).json({ message: "Le commentaire a bien été ajouté" });
   } catch (error) {
@@ -32,34 +34,33 @@ export const addComment = async (req, res) => {
   }
 };
 
-// Modifier un commentaire
-
+// Modifier un commentaire existant dans un livre
 export const updateComment = async (req, res) => {
   try {
     const { bookId, commentId } = req.params;
     const { content } = req.body;
 
     const book = await Book.findById(bookId);
-
     const comment = book.comments.id(commentId);
-    console.log(new mongoose.Types.ObjectId(req.userId));
-    console.log(comment.userId);
 
+    // Vérifier si le commentaire existe
     if (!comment) {
       return res
         .status(404)
         .json({ message: "Ce commentaire est introuvable" });
     }
 
+    // Vérifier si l'utilisateur est l'auteur du commentaire
     if (req.userId.toString() !== comment.userId.toString()) {
       return res
         .status(403)
         .json({ message: "Vous ne pouvez pas éditer ce commentaire" });
     }
 
+    // Mettre à jour le contenu du commentaire et sa date
     if (content) {
       comment.content = content;
-      comment.date = new Date(); // Mettre à jour la date du commentaire
+      comment.date = new Date();
     }
 
     await book.save();
@@ -73,19 +74,16 @@ export const updateComment = async (req, res) => {
   }
 };
 
-// Supprimer un commentaire
-
+// Supprimer un commentaire d'un livre
 export const deleteComment = async (req, res) => {
   try {
     const { bookId, commentId } = req.params;
-    const book = await Book.updateOne(
+
+    // Supprimer le commentaire du livre spécifié
+    await Book.updateOne(
       { _id: bookId },
       { $pull: { comments: { _id: commentId } } }
     );
-
-    if (!book) {
-      return res.status(404).json({ message: "Livre non trouvé" });
-    }
 
     res
       .status(200)
@@ -95,7 +93,7 @@ export const deleteComment = async (req, res) => {
   }
 };
 
-// Récupérer tous les commentaires d'un livre
+// Récupérer tous les commentaires d'un livre spécifique
 export const getAllCommentsByBook = async (req, res) => {
   try {
     const { bookId } = req.params;
@@ -105,8 +103,10 @@ export const getAllCommentsByBook = async (req, res) => {
       return res.status(404).json({ message: "Livre non trouvé" });
     }
 
+    // Récupérer les commentaires du livre
     const comments = book.comments;
 
+    // Peupler les données de l'utilisateur auteur du commentaire
     const populatedComments = await Book.populate(comments, {
       path: "userId",
       select: "-password",
@@ -121,7 +121,7 @@ export const getAllCommentsByBook = async (req, res) => {
   }
 };
 
-// Récupérer un commentaire d'un livre
+// Récupérer un commentaire spécifique d'un livre
 export const getOneCommentByBook = async (req, res) => {
   try {
     const { bookId, commentId } = req.params;
@@ -132,6 +132,7 @@ export const getOneCommentByBook = async (req, res) => {
       return res.status(404).json({ message: "Livre non trouvé" });
     }
 
+    // Trouver le commentaire par son ID
     const comment = book.comments.find(
       (comment) => comment._id.toString() === commentId
     );
@@ -140,6 +141,7 @@ export const getOneCommentByBook = async (req, res) => {
       return res.status(404).json({ message: "Commentaire non trouvé" });
     }
 
+    // Peupler les données de l'utilisateur auteur du commentaire
     await Book.populate(comment, {
       path: "userId",
       select: "-password",

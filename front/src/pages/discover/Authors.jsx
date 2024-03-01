@@ -62,10 +62,18 @@ const Authors = () => {
                   src={`http://localhost:9000/assets/img/${oneAuthor.image.src}`}
                   alt={oneAuthor.image.alt}
                   className="author-img"
+                  aria-label="author-image"
+                  title={oneAuthor.image.alt}
                 />
               )}
               {!oneAuthor.image && (
-                <img src={userImage} alt="user-image" className="author-img" />
+                <img
+                  src={userImage}
+                  alt="default-image"
+                  className="author-img"
+                  aria-label="default-image"
+                  title="default-image"
+                />
               )}
             </article>
 

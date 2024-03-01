@@ -27,14 +27,6 @@ const Books = () => {
       });
   }, []);
 
-  // Fonction pour tronquer la description à 250 caractères
-  const truncateDescription = (description) => {
-    if (description.length > 250) {
-      return description.substring(0, 250) + "...";
-    }
-    return description;
-  };
-
   const nextBook = () => {
     const nextPage = currentPage + 1;
     const startIndex = nextPage * 6;
@@ -102,6 +94,8 @@ const Books = () => {
                       className="books-img"
                       src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
                       alt={oneBook.image.alt}
+                      aria-label="books-image"
+                      title={oneBook.image.alt}
                     />
                   </li>
                   <li>
@@ -115,9 +109,7 @@ const Books = () => {
 
               <article className="books-article2">
                 <ul>
-                  <li className="description">
-                    {truncateDescription(oneBook.description)}
-                  </li>
+                  <li className="description">{oneBook.description}</li>
                   <li className="categories">
                     {oneBook.categoryId &&
                       oneBook.categoryId.map((category, index) => (

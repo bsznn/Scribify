@@ -25,7 +25,6 @@ const Book = () => {
   const [categories, setCategories] = useState([]);
   const [chapters, setChapters] = useState([]);
   const [err, setErr] = useState();
-  const [sucessMessage, setSuccessMessage] = useState();
   const [showComments, setShowComments] = useState(false);
   const [currentChapter, setCurrentChapter] = useState(0);
   const [handleCurrentChapter, setHandleCurrentChapter] = useState([]);
@@ -175,8 +174,8 @@ const Book = () => {
                       </li>
                     </ul>
                     {auth.user &&
-                    (auth.user.role === "admin" ||
-                      auth.user.id === book.userId._id) ? (
+                    (auth.user.id === book.userId._id ||
+                      auth.user.role === "admin") ? (
                       <ul className="bk-ul5">
                         <li>
                           <Link
@@ -204,32 +203,36 @@ const Book = () => {
                 ))}
 
               <article className="bk-article3">
-                {auth.user &&
-                (auth.user.role === "admin" ||
-                  auth.user.id === book.userId._id) ? (
-                  <>
-                    <ul className="bk-ul6">
-                      <span>
+                <ul className="bk-ul6">
+                  <span>
+                    {auth.user &&
+                      (auth.user.role === "admin" ||
+                        auth.user.id === book.userId._id) && (
                         <li>
                           <Link to={`/ajouter-chapitre/${book._id}`}>
                             <IoIosAddCircle className="chapter-button" />
                             <p className="bk-text-none">Nouveau</p>
                           </Link>
                         </li>
-                        <li>
-                          <LikeCounter />
-                        </li>
-                      </span>
-                    </ul>
-                    <ul className="bk-ul7">
+                      )}
+
+                    {auth.user && (
                       <li>
-                        <AddComment bookId={id} />
-                        <p>{showComments && <Comments bookId={id} />}</p>
+                        <LikeCounter />
                       </li>
-                    </ul>
-                  </>
-                ) : null}
+                    )}
+                  </span>
+                </ul>
               </article>
+
+              {auth.user && (
+                <ul className="bk-ul7">
+                  <li>
+                    <AddComment bookId={id} />
+                    <p>{showComments && <Comments bookId={id} />}</p>
+                  </li>
+                </ul>
+              )}
             </section>
           </>
         )}

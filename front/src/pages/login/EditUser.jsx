@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { token } from "../../context/token";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
 import rotate from "../../assets/images/forms/lune.png";
@@ -16,6 +16,8 @@ const EditUser = () => {
     description: "",
     image: null,
   });
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -92,6 +94,7 @@ const EditUser = () => {
         }));
         userData(res);
         alert("Vos informations ont bien été modifiées !");
+        navigate("/profil");
       })
       .catch((err) => {
         return alert(

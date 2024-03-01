@@ -10,15 +10,15 @@ import "../../assets/styles/book/comment.css";
 
 const Answer = ({ bookId, commentId, answerId }) => {
   const [answer, setAnswer] = useState("");
-  const [showUpdateForm, setShowUpdateForm] = useState(false); // Add state to toggle update form
-  const [updateContent, setUpdateContent] = useState(""); // Add state for update content
-  const [err, setErr] = useState(null); // Add state for errors
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [updateContent, setUpdateContent] = useState("");
+  const [err, setErr] = useState(null);
 
   const auth = useAuth();
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this answer?"
+      "Êtes-vous sûr de vouloir supprimer la réponse ?"
     );
 
     if (confirmDelete) {
@@ -29,9 +29,11 @@ const Answer = ({ bookId, commentId, answerId }) => {
             headers: token(),
           }
         );
+        setAnswer(null);
+        alert("Votre réponse a bien été supprimée !");
       } catch (err) {
         console.error(err);
-        setErr("Failed to delete the answer");
+        alert("Impossible de supprimer la réponse");
       }
     }
   };
@@ -77,7 +79,7 @@ const Answer = ({ bookId, commentId, answerId }) => {
         content: updateContent,
       }));
 
-      setShowUpdateForm(false); // Hide the update form after successful update
+      setShowUpdateForm(false);
     } catch (err) {
       alert("Impossible de modifier la réponse !");
     }
@@ -86,37 +88,6 @@ const Answer = ({ bookId, commentId, answerId }) => {
   const toggleUpdateForm = () => {
     setShowUpdateForm(!showUpdateForm);
   };
-
-  // const toggleEditMode = async () => {
-  //   setEditMode(!editMode);
-  //   await fetchAnswerData();
-  //   setUpdateContent(answer.content);
-  // };
-
-  // const handleUpdateSuccess = () => {
-  //   setAnswer({ ...answer, content: updateContent }); // Mise à jour de la réponse avec le contenu modifié
-  //   toggleEditMode(); // Fermer le mode édition après la mise à jour réussie
-  // };
-
-  // const fetchAnswerData = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:9000/books/comment/answer/${bookId}/${commentId}/${answerId}`,
-  //       {
-  //         headers: token(),
-  //       }
-  //     );
-  //     setAnswer(response.data);
-  //     setUpdateContent(response.data.content); // Set initial content for update form
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErr("Failed to fetch answer data");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchAnswerData();
-  // }, [bookId, commentId, answerId]);
 
   return (
     <main>
@@ -130,6 +101,8 @@ const Answer = ({ bookId, commentId, answerId }) => {
                     className="style-base2"
                     src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
                     alt={auth.user.image.alt}
+                    aria-label="user-image"
+                    title={auth.user.image.alt}
                   />
                 </li>
                 <li>

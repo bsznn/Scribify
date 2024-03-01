@@ -26,14 +26,6 @@ const Category = () => {
       });
   }, [categoryId]);
 
-  // Fonction pour tronquer la description à 250 caractères
-  const truncateDescription = (description) => {
-    if (description.length > 250) {
-      return description.substring(0, 250) + "...";
-    }
-    return description;
-  };
-
   return (
     <main className="m-container">
       {err && <p>{err}</p>}
@@ -49,6 +41,8 @@ const Category = () => {
               alt="category-title"
               className="list-title-img"
               id="cat-title-img"
+              aria-label="category-image"
+              title="category-image"
             />
           </li>
           <li>
@@ -92,9 +86,7 @@ const Category = () => {
 
               <article className="cat-article2">
                 <ul>
-                  <li className="description">
-                    {truncateDescription(book.description)}
-                  </li>
+                  <li className="description">{book.description}</li>
                   <li className="b-article-pre" id="cat-pre">
                     <pre>
                       Créé le: {new Date(book.createdAt).toLocaleDateString()}

@@ -15,9 +15,8 @@ import { IoIosSend } from "react-icons/io";
 import "../../assets/styles/book/book.css";
 import "../../assets/styles/book/comment.css";
 
-const Comment = ({ bookId, commentId, total }) => {
+const Comment = ({ bookId, commentId }) => {
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState("");
   const [answers, setAnswers] = useState("");
   const [showAnswerInput, setShowAnswerInput] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false); // Add state to toggle update form
@@ -81,9 +80,7 @@ const Comment = ({ bookId, commentId, total }) => {
           { headers: token() }
         )
         .then((res) => {
-          setComments((prevComments) =>
-            prevComments.filter((comment) => comment._id !== commentId)
-          );
+          setComment(null); // Supprime le commentaire de l'état local
           alert(res.data.message);
         })
         .catch((err) => {
@@ -142,6 +139,8 @@ const Comment = ({ bookId, commentId, total }) => {
                   className="comment-img"
                   src={`http://localhost:9000/assets/img/${comment.userId.image.src}`}
                   alt={comment.userId.image.alt}
+                  aria-label="user-image"
+                  title={comment.userId.image.alt}
                 />
                 <h5 className="name-noneplus">{comment.userId.login}</h5>
               </span>
@@ -179,12 +178,12 @@ const Comment = ({ bookId, commentId, total }) => {
                         <IoIosSettings className="profile-icon" />
                         <p className="name-none">⚙️ Modifier</p>
                       </li>
-                      <li onClick={handleDelete}>
-                        <MdDelete className="profile-icon" />
-                        <p className="name-none">🗑️ Supprimer</p>
-                      </li>
                     </>
                   )}
+                  <li onClick={handleDelete}>
+                    <MdDelete className="profile-icon" />
+                    <p className="name-none">🗑️ Supprimer</p>
+                  </li>
                   <li onClick={toggleAnswerInput}>
                     <RiQuestionAnswerFill className="orange-icon" />
                     <p className="name-none">🗨️ Réponses</p>

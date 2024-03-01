@@ -162,6 +162,8 @@ const Home = () => {
                         className="h-img1"
                         src={`http://localhost:9000/assets/img/${oneBookPopular.image.src}`}
                         alt={oneBookPopular.image.alt}
+                        aria-label="popular-books"
+                        title={oneBookPopular.image.alt}
                       />
                       <p className="h-title">{oneBookPopular.title}</p>
                     </span>
@@ -202,6 +204,8 @@ const Home = () => {
                         className="h-img1"
                         src={`http://localhost:9000/assets/img/${oneNewBook.image.src}`}
                         alt={oneNewBook.image.alt}
+                        aria-label="new-books"
+                        title={oneNewBook.image.alt}
                       />
                       <p className="h-title">{oneNewBook.title}</p>
                     </span>

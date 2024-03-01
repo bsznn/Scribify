@@ -8,15 +8,18 @@ import {
   getOneAnswerByComment,
 } from "../controllers/answersController.js";
 
+// Router pour gérer les réponses aux commentaires des livres
 const answerRouter = express.Router();
 
+// Récupérer toutes les réponses à un commentaire spécifique d'un livre
 answerRouter.get(
   "/books/comment/answers/:bookId/:commentId",
-  isLogged,
-  isAuthorized(["admin", "user"]),
+  isLogged, // Vérifie si l'utilisateur est connecté
+  isAuthorized(["admin", "user"]), // Vérifie si l'utilisateur est autorisé (admin ou user)
   getAllAnswersByComment
 );
 
+// Récupérer une réponse spécifique à un commentaire d'un livre
 answerRouter.get(
   "/books/comment/answer/:bookId/:commentId/:answerId",
   isLogged,
@@ -24,6 +27,7 @@ answerRouter.get(
   getOneAnswerByComment
 );
 
+// Ajouter une nouvelle réponse à un commentaire d'un livre
 answerRouter.post(
   "/books/comment/answer/new/:bookId/:commentId",
   isLogged,
@@ -31,6 +35,7 @@ answerRouter.post(
   addAnswer
 );
 
+// Modifier une réponse à un commentaire d'un livre
 answerRouter.put(
   "/books/comment/answer/edit/:bookId/:commentId/:answerId",
   isLogged,
@@ -38,6 +43,7 @@ answerRouter.put(
   updateAnswer
 );
 
+// Supprimer une réponse à un commentaire d'un livre (accessible à l'admin et à l'utilisateur)
 answerRouter.delete(
   "/books/comment/answer/delete/:bookId/:commentId/:answerId",
   isLogged,
@@ -45,10 +51,11 @@ answerRouter.delete(
   deleteAnswer
 );
 
+// Supprimer une réponse à un commentaire d'un livre (accessible uniquement à l'admin)
 answerRouter.delete(
   "/books/comment/answer-by-admin/delete/:bookId/:commentId/:answerId",
   isLogged,
-  isAuthorized(["admin"]),
+  isAuthorized(["admin"]), // Seuls les admins sont autorisés
   deleteAnswer
 );
 
