@@ -1,3 +1,4 @@
+/* Style de base pour la section principale */
 .bk-section {
   width: 95%;
   background-color: var(--panelBlue);
@@ -7,13 +8,15 @@
   box-shadow: var(--ombre);
   padding: 0 1em;
   margin-top: 2em;
-
   transition: transform 0.3s ease;
-  &:hover {
-    transform: scale(1.01);
-  }
 }
 
+/* Effet de transformation au survol de la section principale */
+.bk-section:hover {
+  transform: scale(1.01);
+}
+
+/* Styles sur la mise en forme pour les articles */
 .bk-article1,
 .bk-article2,
 .bk-article3 {
@@ -26,12 +29,14 @@
   transition: transform 0.3s ease-in-out;
 }
 
+/* Styles pour les titres de livre */
 .bk-title {
   color: var(--hoverOrange);
   padding-top: 1em;
   text-align: center;
 }
 
+/* Styles pour les noms d'auteurs */
 .bk-author,
 .bk-author2 {
   text-transform: uppercase;
@@ -41,21 +46,25 @@
   font-style: italic;
 }
 
+/* Styles pour les listes à puces */
 .bk-section ul {
   margin: 0;
 }
 
+/* Styles spécifiques pour certaines listes à puces */
 .bk-ul2,
 .bk-ul4 {
   text-align: center;
 }
 
+/* Styles sur la mise en forme pour les descriptions dans les listes à puces */
 .bk-ul2 .description,
 .bk-ul4 .description {
   text-align: justify;
   padding: 0;
 }
 
+/* Styles  sur la mise en forme et le contenu pour les catégories dans les listes à puces */
 .bk-ul2 .categories {
   font-size: 0.7em;
   margin-top: 2em;
@@ -63,6 +72,7 @@
   color: var(--blue);
 }
 
+/* Styles sur la mise en forme pour les listes à puces et les éléments */
 .bk-ul3,
 .bk-ul3 li {
   display: flex;
@@ -71,10 +81,12 @@
   cursor: pointer;
 }
 
+/* Style d'agrandissement pour l'icône "book" */
 .book-icon {
   width: 2em;
 }
 
+/* Changement de couleur pour les icônes */
 #bic1 {
   color: var(--blue);
 }
@@ -87,17 +99,20 @@
   color: var(--hoverGreen);
 }
 
+/* Styles pour le contenu des balises pre */
 .b-article-pre {
   padding-left: 1em;
   font-style: italic;
   font-size: 0.8em;
 }
 
+/* Ajout de pseudo-éléments après certains articles */
 .bk-article1::after,
 .bk-article2::after {
   content: "⚘ ⚘ ⚘";
 }
 
+/* Dissimulation de l'image du premier article */
 .article-livre img {
   display: none;
 }

@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import AboutUs from "./pages/discover/AboutUs";
-import Authors from "./pages/discover/Authors";
-import Books from "./pages/discover/Books";
-import Categories from "./pages/discover/Categories";
-import Readers from "./pages/discover/Readers";
+import AboutUs from "./pages/menu/AboutUs";
+import Authors from "./pages/menu/Authors";
+import Books from "./pages/menu/Books";
+import Categories from "./pages/menu/Categories";
+import Readers from "./pages/menu/Readers";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Post from "./pages/post/Post";

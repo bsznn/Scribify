@@ -7,8 +7,6 @@ import recrutementImage from "../../assets/images/home/recrutement.png";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 
-import { IoEllipsisVerticalOutline } from "react-icons/io5";
-
 import arrow1 from "../../assets/images/home/arrow2.png";
 import arrow2 from "../../assets/images/home/arrow1.png";
 import back from "../../assets/images/home/fond.png";
@@ -19,7 +17,6 @@ const Home = () => {
   const [newBooks, setNewBooks] = useState([]);
   const [lastUpdates, setLastUpdates] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [scrollPosition, setScrollPosition] = useState(0);
 
   const [err, setErr] = useState();
 
@@ -76,16 +73,6 @@ const Home = () => {
         setErr("Impossible de charger les données");
       });
   }, []);
-
-  // const handleScrollLeft = () => {
-  //   const newScrollPosition = Math.max(scrollPosition - 200, 0); // Ajustez la valeur selon vos besoins
-  //   setScrollPosition(newScrollPosition);
-  // };
-
-  // const handleScrollRight = () => {
-  //   const newScrollPosition = scrollPosition + 200; // Ajustez la valeur selon vos besoins
-  //   setScrollPosition(newScrollPosition);
-  // };
 
   return (
     <>
@@ -150,9 +137,6 @@ const Home = () => {
             />
           </span>
           <section className="h-popular-section">
-            {/* <button className="scroll-button left" onClick={handleScrollLeft}>
-            <IoIosArrowDropleftCircle />
-          </button> */}
             <section className="h-section2">
               {booksPopulars.map((oneBookPopular) => (
                 <article key={oneBookPopular._id} className="book-item">
@@ -171,10 +155,6 @@ const Home = () => {
                 </article>
               ))}
             </section>
-
-            {/* <button className="scroll-button right" onClick={handleScrollRight}>
-            <IoIosArrowDroprightCircle />
-          </button>          */}
           </section>
 
           <span className="home-title1">
@@ -191,10 +171,6 @@ const Home = () => {
             />
           </span>
           <section className="h-popular-section">
-            {/* <button className="scroll-button">
-            <IoIosArrowDropleftCircle />
-          </button> */}
-
             <section className="h-section2">
               {newBooks.map((oneNewBook) => (
                 <article key={oneNewBook._id} className="book-item">
@@ -213,9 +189,6 @@ const Home = () => {
                 </article>
               ))}
             </section>
-            {/* <button className="scroll-button">
-            <IoIosArrowDroprightCircle />
-          </button> */}
           </section>
 
           <aside className="h-aside">
