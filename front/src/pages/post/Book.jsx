@@ -25,6 +25,7 @@ const Book = () => {
   const [categories, setCategories] = useState([]);
   const [chapters, setChapters] = useState([]);
   const [err, setErr] = useState();
+  const [commentUpdate, setCommentUpdate] = useState(0);
   const [showComments, setShowComments] = useState(false);
   const [currentChapter, setCurrentChapter] = useState(0);
   const [handleCurrentChapter, setHandleCurrentChapter] = useState([]);
@@ -46,7 +47,8 @@ const Book = () => {
       .catch((res) => {
         setErr("Impossible de récuperer le livre !");
       });
-  }, [id]);
+    getComments();
+  }, [id, commentUpdate]);
 
   const handleDelete = (bookId, chapterId) => {
     const confirmDelete = window.confirm(
@@ -69,6 +71,11 @@ const Book = () => {
           return alert(error.response.data.message);
         });
     }
+  };
+
+  const handleComment = (id) => {
+    setShowComments(!showComments);
+    location.hash = id;
   };
 
   // const scrollToComments = () => {
@@ -98,6 +105,14 @@ const Book = () => {
     } else {
       setHandleCurrentChapter([chapters[currentChapter - 1]]);
     }
+  };
+
+  const getComments = () => {
+    return true;
+  };
+
+  const handleCommentUpdate = () => {
+    setCommentUpdate((prev) => prev + 1);
   };
 
   return (
@@ -148,7 +163,7 @@ const Book = () => {
                     <FaComment
                       className="book-icon"
                       id="bic3"
-                      onClick={() => setShowComments(!showComments)}
+                      onClick={() => handleComment("bk-ul7")}
                     />
                     <pre>{book.comments.length}</pre>
                   </li>
@@ -226,10 +241,18 @@ const Book = () => {
               </article>
 
               {auth.user && (
-                <ul className="bk-ul7">
+                <ul className="bk-ul7" id="bk-ul7">
                   <li>
-                    <AddComment bookId={id} />
-                    <p>{showComments && <Comments bookId={id} />}</p>
+                    <AddComment bookId={id} commentAdd={handleCommentUpdate} />
+                    <p>
+                      {showComments && (
+                        <Comments
+                          bookId={id}
+                          commentUpdate={commentUpdate}
+                          key={commentUpdate}
+                        />
+                      )}
+                    </p>
                   </li>
                 </ul>
               )}

@@ -10,20 +10,22 @@ import arrow2 from "../../assets/images/home/arrow1.png";
 
 import userImage from "../../assets/images/users/default-profil.png";
 
+// Composant pour récupérer les données des autres auteurs et des nouveaux livres
 const GetAsideMenu = () => {
-  const [authors, setAuthors] = useState([]);
-  const [newBooks, setNewBooks] = useState([]);
+  const [authors, setAuthors] = useState([]); // État pour stocker les auteurs
+  const [newBooks, setNewBooks] = useState([]); // État pour stocker les nouveaux livres
+  const [err, setErr] = useState(); // État pour gérer les erreurs
+  // Utilisation du contexte d'authentification
+  const auth = useAuth();
 
-  const [err, setErr] = useState();
-
+  // Effet pour récupérer les auteurs depuis l'API
   useEffect(() => {
     axios
       .get("http://localhost:9000/users", { headers: token() })
       .then((response) => {
         const allUsers = response.data;
         const authors = allUsers.authors || [];
-
-        setAuthors(authors);
+        setAuthors(authors); // Mise à jour de la liste des auteurs
       })
       .catch((err) => {
         console.log(err);
@@ -31,11 +33,12 @@ const GetAsideMenu = () => {
       });
   }, []);
 
+  // Effet pour récupérer les nouveaux livres depuis l'API
   useEffect(() => {
     axios
       .get("http://localhost:9000/books/newest-books")
       .then((res) => {
-        setNewBooks(res.data);
+        setNewBooks(res.data); // Mise à jour de la liste des nouveaux livres
       })
       .catch((res) => {
         setErr("Impossible de charger les nouveaux livres !");
@@ -44,8 +47,11 @@ const GetAsideMenu = () => {
 
   return (
     <>
+      {/* Section pour afficher les autres auteurs et les nouveaux livres */}
       <aside className="p-aside">
+        {/* Section pour afficher les autres auteurs */}
         <section className="p-aside-section">
+          {/* Titre de la section des autres auteurs */}
           <span className="home-title1">
             <img
               src={arrow1}
@@ -53,16 +59,17 @@ const GetAsideMenu = () => {
               className="title-left-arrow"
             />
             <h2>Autres Auteurs</h2>
-
             <img
               src={arrow2}
               alt="title-right-arrow"
               className="title-right-arrow"
             />
           </span>
+          {/* Liste des autres auteurs */}
           <section className="p-section3">
             {authors.map((oneAuthor, i) => (
               <article key={oneAuthor._id} className="p-author-article">
+                {/* Image de l'auteur */}
                 <ul className="p-author-image">
                   {oneAuthor.image ? (
                     <li>
@@ -78,7 +85,6 @@ const GetAsideMenu = () => {
                     </li>
                   ) : (
                     <li>
-                      {console.log(!oneAuthor.image)}
                       <Link to={`/profil/${oneAuthor._id}`}>
                         <img
                           src={userImage}
@@ -91,7 +97,7 @@ const GetAsideMenu = () => {
                     </li>
                   )}
                 </ul>
-
+                {/* Nom de l'auteur */}
                 <ul className="p-author-text">
                   <li>
                     <Link
@@ -107,7 +113,9 @@ const GetAsideMenu = () => {
           </section>
         </section>
 
+        {/* Section pour afficher les nouveaux livres */}
         <section className="p-aside-section">
+          {/* Titre de la section des nouveaux livres */}
           <span className="home-title1">
             <img
               src={arrow1}
@@ -115,19 +123,20 @@ const GetAsideMenu = () => {
               className="title-left-arrow"
             />
             <h2>Nouveautés</h2>
-
             <img
               src={arrow2}
               alt="title-right-arrow"
               className="title-right-arrow"
             />
           </span>
-
+          {/* Liste des nouveaux livres */}
           <section className="p-section4">
             {newBooks.map((oneNewBook) => (
               <article key={oneNewBook._id} className="p-book-article">
+                {/* lien vers le détail du livre */}
                 <Link to={`/livre/${oneNewBook._id}`}>
                   <ul>
+                    {/* Image du nouveau livre */}
                     <li>
                       <img
                         className="p-book-img"
@@ -137,6 +146,7 @@ const GetAsideMenu = () => {
                         title={oneNewBook.image.alt}
                       />
                     </li>
+                    {/* Titre du nouveau livre */}
                     <li>
                       <p className="p-book-title">{oneNewBook.title}</p>
                     </li>

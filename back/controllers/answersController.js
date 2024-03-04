@@ -1,3 +1,6 @@
+import Book from "../models/bookModel.js";
+import mongoose from "mongoose";
+
 // Ajouter une réponse à un commentaire
 export const addAnswer = async (req, res) => {
   try {

@@ -1,7 +1,10 @@
+/* La classe .home est appliquée au conteneur principal de la page. */
 .home {
   font-family: var(--fontRegular);
   position: relative;
 }
+
+/* La classe .p-section1 stylise une section spécifique de la page. Elle la centre verticalement et horizontalement, définit sa couleur de fond, sa taille, sa police, sa couleur de texte, et une animation de fondu à l'entrée. */
 
 .p-section1 {
   display: flex;
@@ -30,6 +33,7 @@
   display: flex;
 }
 
+/* La classe .fond1 est utilisée pour masquer un élément. */
 .fond1 {
   display: none;
 }
@@ -39,12 +43,13 @@
   display: none;
 }
 
+/* La classe .p-article1 stylise une image spécifique en définissant sa taille, son arrondi, son ajustement d'objet.*/
+
 .p-article1 img {
   height: 4em;
   width: 4em;
   border-radius: 50%;
   object-fit: cover;
-  animation: zoomIn 1s ease-in-out;
 }
 
 .p-section1 h3 {
@@ -84,10 +89,14 @@
   margin-left: 0.5em;
 }
 
+/* La classe .heart-icon stylise les icônes de cœur en définissant leur couleur et leur marge à droite. */
+
 .heart-icon {
   color: var(--orange);
   margin-right: 0.4em;
 }
+
+/* La classe .book-icon stylise les icônes de livre en définissant leur couleur. */
 
 .book-icon {
   color: var(--hoverGreen);
@@ -98,11 +107,15 @@
   margin-right: 0.3em;
 }
 
+/* Ces classes définissent la non-affichage pour certains éléments. */
+
 .p-text-none,
 .no-text-icon,
 .p-aside {
   display: none;
 }
+
+/* La classe .p-sous-section stylise une sous-section de la page en définissant son affichage, sa couleur de fond, sa police, sa couleur de texte, sa taille, sa bordure, sa ombre, sa marge et une animation de fondu à l'entrée. */
 
 .p-sous-section {
   display: flex;
@@ -222,13 +235,13 @@
   }
 }
 
+/* Media query pour les écrans d'une largeur minimale de 480px */
 @media screen and (min-width: 480px) {
   .p-sous-section .p-couverture {
     display: flex;
     height: 12em;
     width: 8em;
     box-shadow: var(--ombre);
-    animation: zoomIn 1s ease-in-out;
   }
 
   .p-text-none {
@@ -244,17 +257,13 @@
   .ul-prebooks li {
     margin-left: 0.5em;
   }
-
-  /* .profile-icon {
-    font-size: 1.6em;
-  } */
 }
 
+/* Media query pour les écrans d'une largeur minimale de 720px */
 @media screen and (min-width: 720px) {
   .p-section1 {
     display: grid;
     grid-template-columns: 60% 30% 5%;
-    /* justify-content: center; */
     height: 18em;
     align-items: center;
   }
@@ -360,6 +369,7 @@
   }
 }
 
+/* Media query pour les écrans d'une largeur minimale de 990px */
 @media screen and (min-width: 990px) {
   .p-section1 {
     grid-template-columns: 50% 30% 13%;
@@ -409,6 +419,7 @@
   }
 }
 
+/* Media query pour les écrans d'une largeur minimale de 1200px */
 @media screen and (min-width: 1200px) {
   .p-section1 {
     border-radius: 1em;
@@ -526,14 +537,5 @@
     color: var(--darkGreen);
     text-transform: capitalize;
     font-weight: bold;
-  }
-}
-
-@media screen and (min-width: 1250px) {
-  .p-section1 {
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.02);
-    }
   }
 }

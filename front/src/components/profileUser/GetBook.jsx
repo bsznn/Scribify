@@ -34,7 +34,7 @@ const GetBook = () => {
         console.log(res);
         setErr("Impossible de charger les données");
       });
-  }, []);
+  }, [id]);
 
   const handleDelete = (userId, id) => {
     const confirmDelete = window.confirm(

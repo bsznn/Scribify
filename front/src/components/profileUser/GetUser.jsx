@@ -30,19 +30,18 @@ const GetUser = () => {
   const auth = useAuth();
 
   useEffect(() => {
+    // Requête GET pour récupérer les données de l'utilisateur avec l'ID spécifié
     axios
       .get(`http://localhost:9000/users/${id}`, {
-        headers: token(),
+        headers: token(), // Envoi du token d'authentification dans les headers
       })
       .then((res) => {
-        console.log(res);
-        setUser(res.data);
+        setUser(res.data); // Mise à jour de l'état 'user' avec les données récupérées
       })
       .catch((res) => {
-        console.log(res);
-        setErr("Impossible de charger les données");
+        setErr("Impossible de charger les données"); // Gestion de l'erreur en mettant à jour l'état 'err'
       });
-  }, []);
+  }, [id]); // Cet effet ne dépend d'aucune variable et ne doit être exécuté qu'une seule fois après le rendu initial
 
   useEffect(() => {
     axios
@@ -88,13 +87,16 @@ const GetUser = () => {
           setUser((prevUsers) =>
             prevUsers.filter((user) => user._id !== userId)
           );
+
+          alert("L'utilisateur a été supprimé avec succès !");
+
           if (res.data.message) {
             setTimeout(() => {
-              auth.logout();
-              navigate("/");
-            }, 3000);
-
-            alert("L'utilisateur a été supprimé avec succès !");
+              if (auth.user.role !== "admin") {
+                auth.logout();
+              }
+              window.location.href = "/";
+            }, 1000);
           }
         })
         .catch((err) => {

@@ -1,5 +1,6 @@
 @import "../root.css";
 
+/* Réinitialisation des styles */
 body,
 html {
   margin: 0;
@@ -8,6 +9,7 @@ html {
   box-sizing: border-box;
 }
 
+/* Style du header */
 header {
   display: flex;
   flex-direction: column;
@@ -19,6 +21,7 @@ header {
   animation: fadeIn 1s ease-in-out;
 }
 
+/* Style de la première section de la barre de navigation */
 .navbar_first {
   width: 8rem;
   position: fixed;
@@ -33,6 +36,7 @@ header {
   z-index: 1;
 }
 
+/* Style de la seconde section de la barre de navigation */
 .navbar_second {
   display: flex;
   align-items: center;
@@ -41,6 +45,7 @@ header {
   padding-right: 0.5em;
 }
 
+/* Bouton de menu */
 .navbar_burger {
   z-index: 2;
   background: none;
@@ -52,6 +57,7 @@ header {
   padding-left: 2em;
 }
 
+/* Styles au survol des liens, boutons, et icônes */
 .navbar_burger:hover,
 .header-icon:hover,
 .navbar_link:hover,
@@ -61,6 +67,7 @@ header {
   transition: var(--transitionBG), var(--transitionColor);
 }
 
+/* Réinitialisation des listes et des liens */
 ul {
   list-style: none;
   padding: 0;
@@ -70,12 +77,14 @@ a {
   text-decoration: none;
 }
 
+/* Style des boutons dans le header */
 header button {
   background-color: var(--mediumGreen);
   border: none;
   cursor: pointer;
 }
 
+/* Style des liens et boutons dans la barre de navigation */
 .navbar_link,
 .navbar_button {
   color: var(--darkGreen);
@@ -83,6 +92,7 @@ header button {
   text-transform: uppercase;
 }
 
+/* Style des icônes dans le header */
 .header-icon {
   display: inline-block;
   font-size: 1.9em;
@@ -91,6 +101,7 @@ header button {
   transition: color 0.3s ease-in-out;
 }
 
+/* Styles pour les éléments qui sont normalement cachés */
 .text,
 .input,
 .logo-text,
@@ -99,20 +110,13 @@ header button {
   display: none;
 }
 
-header label {
-  display: flex;
-}
-
-.input-active {
-  width: 10em;
-  margin-left: 5.5em;
-}
-
+/* Style du logo */
 .h-logo {
   width: 4em;
   margin-bottom: 1em;
 }
 
+/* Style de l'image de profil */
 .img-profil {
   width: 2em;
   height: 2em;
@@ -120,6 +124,7 @@ header label {
   border-radius: 50%;
 }
 
+/* Animation de fadeIn */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -132,9 +137,14 @@ header label {
 }
 
 @media screen and (min-width: 720px) {
+  /* Media queries pour les écrans de taille moyenne (à partir de 720px de largeur) */
+
+  /* Affichage du logo */
   .logo {
     display: flex;
   }
+
+  /* Style du texte du logo */
   .logo h1 {
     display: flex;
     font-family: var(--fontItalic);
@@ -143,30 +153,36 @@ header label {
     margin-left: 0.3em;
   }
 
+  /* Ajustement du padding du burger menu */
   .navbar_burger {
     padding-left: 5.3em;
   }
 
+  /* Ajustement de la largeur de la première section de la barre de navigation */
   .navbar_first {
     width: 10rem;
     padding-left: 3.8em;
   }
 
+  /* Affichage en ligne des éléments de la seconde section de la barre de navigation */
   .navbar_second {
     display: inline-block;
     flex-direction: row;
   }
 
+  /* Style des éléments utilisateur dans la barre de navigation */
   .navbar_user {
     display: flex;
     align-items: center;
   }
 
+  /* Style du texte de connexion */
   .h-login {
     display: flex;
     padding-left: 0.2em;
   }
 
+  /* Style des éléments dans la barre de navigation */
   .h-username,
   .nav-home,
   .nav-login,
@@ -176,12 +192,14 @@ header label {
     align-items: center;
   }
 
+  /* Style du texte */
   .text,
   .text-accueil {
     display: flex;
     padding-left: 0.3em;
   }
 
+  /* Container pour les liens dans la barre de navigation */
   .nav-links-container {
     display: flex;
     align-items: center;
@@ -189,29 +207,36 @@ header label {
     padding: 0;
   }
 
+  /* Espacement des liens et boutons dans la barre de navigation */
   .navbar_second .navbar_link,
   .navbar_user .navbar_button {
     margin-left: 0.5em;
   }
 
+  /* Taille du texte des boutons dans le header */
   header button p {
     font-size: 1.2em;
   }
 }
 
 @media screen and (min-width: 1024px) {
+  /* Media queries pour les écrans larges (à partir de 1024px de largeur) */
+
+  /* Masquer le burger menu */
   .navbar_burger {
     display: none;
   }
 
+  /* Ajustement de la largeur de la première section de la barre de navigation */
   .navbar_first {
-    width: 76%; /* Largeur du menu */
+    width: 76%; /* Largeur de la barre de navigation */
     height: 0;
     padding: 0; /* Retrait du padding */
     margin: 0; /* Retrait du margin */
     position: absolute;
   }
 
+  /* Style des éléments de la liste dans la barre de navigation */
   .navbar_first ul {
     display: flex;
     flex-direction: row; /* Alignement des éléments côte à côte */
@@ -222,12 +247,14 @@ header label {
     padding-top: 2em;
   }
 
+  /* Style des éléments de la liste dans la barre de navigation */
   .navbar_first li {
     list-style: none;
     margin: 0;
     padding: 0 0.3em;
   }
 
+  /* Style des liens dans la barre de navigation */
   .navbar_first li a {
     color: var(--darkGreen);
     font-family: var(--fontRegular);
@@ -235,6 +262,7 @@ header label {
     text-decoration: none;
   }
 
+  /* Style au survol des liens dans la barre de navigation */
   .navbar_first li a:hover {
     color: var(--hoverColor);
   }

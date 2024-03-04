@@ -14,17 +14,16 @@ import { FaEye } from "react-icons/fa6";
 import "../../assets/styles/profile/profile.css";
 import back from "../../assets/images/profile/fond.png";
 
+// Composant pour récupérer les informations sur l'utilisateur authentifié
 const GetAuthUser = () => {
-  const [books, setBooks] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [totalViews, setTotalViews] = useState(0);
-  const [totalLikes, setTotalLikes] = useState(0);
+  const [books, setBooks] = useState([]); // État pour stocker les livres de l'utilisateur
+  const [totalViews, setTotalViews] = useState(0); // État pour stocker le total de vues
+  const [totalLikes, setTotalLikes] = useState(0); // État pour stocker le total de likes
+  const [err, setErr] = useState(); // État pour gérer les erreurs
+  const navigate = useNavigate(); // Hook pour la navigation
+  const auth = useAuth(); // Hook pour l'authentification
 
-  const [err, setErr] = useState();
-  const navigate = useNavigate();
-
-  const auth = useAuth();
-
+  // Effet pour récupérer le total de vues de l'utilisateur
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/total-views/${auth.user.id}`, {
@@ -38,6 +37,7 @@ const GetAuthUser = () => {
       });
   }, [auth.user._id]);
 
+  // Effet pour récupérer le total de likes de l'utilisateur
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/total-likes/${auth.user.id}`, {
@@ -51,7 +51,7 @@ const GetAuthUser = () => {
       });
   }, [auth.user._id]);
 
-  // Fonction pour supprimer un utilisateur
+  // Fonction pour supprimer l'utilisateur
   const handleDeleteUser = (id) => {
     const confirmDelete = window.confirm(
       "Êtes-vous sûr de vouloir supprimer l'utilisateur ?"
@@ -64,8 +64,8 @@ const GetAuthUser = () => {
         })
         .then((res) => {
           console.log(res.data.message);
-          setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
           if (res.data.message) {
+            // Si l'utilisateur est supprimé, déconnectez-le et redirigez-le vers la page d'accueil
             setTimeout(() => {
               auth.logout();
               navigate("/");
@@ -82,14 +82,19 @@ const GetAuthUser = () => {
 
   return (
     <>
+      {/* Section pour afficher les informations sur l'utilisateur */}
       <section className="p-section1">
+        {/* Affichage des erreurs s'il y en a */}
         {err && <span>{err}</span>}
         <img src={back} alt="caroussel-fond" className="fond1" />
+        {/* Vérification de l'existence de l'utilisateur authentifié */}
         {auth.user.login && (
           <>
+            {/* Section pour afficher les informations de l'utilisateur */}
             <section className="p-section-bio">
               <span>
                 <article className="p-article1">
+                  {/* Affichage de l'image de l'utilisateur */}
                   <img
                     src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
                     alt={auth.user.image.alt}
@@ -97,17 +102,16 @@ const GetAuthUser = () => {
                     title={auth.user.image.alt}
                   />
                 </article>
-
                 <article className="p-article2">
                   <h3>{auth.user.login}</h3>
                 </article>
               </span>
-
+              {/* Affichage de la description de l'utilisateur */}
               <article className="p-description">
                 {auth.user.description}
               </article>
             </section>
-
+            {/* Section pour afficher les statistiques de l'utilisateur */}
             <article className="p-new-article">
               <ul>
                 <li>
@@ -125,9 +129,10 @@ const GetAuthUser = () => {
                 </li>
               </ul>
             </article>
-
+            {/* Section pour afficher les options de gestion de profil */}
             <article className="p-article-ul">
               <ul id="pic2">
+                {/* Lien pour modifier le profil */}
                 <li>
                   <Link
                     to={`/modifier-utilisateur/${auth.user.id}`}
@@ -137,6 +142,7 @@ const GetAuthUser = () => {
                     <p className="no-text-icon">⚙️ Modifier</p>
                   </Link>
                 </li>
+                {/* Bouton pour supprimer le profil */}
                 <li onClick={() => handleDeleteUser(auth.user.id)}>
                   <MdDelete className="profile-icon" />
                   <p className="no-text-icon">🗑️ Supprimer</p>

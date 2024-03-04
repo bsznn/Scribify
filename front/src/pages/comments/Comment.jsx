@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { token } from "../../context/token";
 import { Link } from "react-router-dom";
@@ -16,14 +16,16 @@ import "../../assets/styles/book/book.css";
 import "../../assets/styles/book/comment.css";
 
 const Comment = ({ bookId, commentId }) => {
+  // Déclaration des états locaux pour gérer les données du commentaire et des réponses, ainsi que les états pour afficher les formulaires de réponse et de modification.
   const [comment, setComment] = useState("");
   const [answers, setAnswers] = useState("");
   const [showAnswerInput, setShowAnswerInput] = useState(false);
-  const [showUpdateForm, setShowUpdateForm] = useState(false); // Add state to toggle update form
-  const [updateContent, setUpdateContent] = useState(""); // State to store updated content
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [updateContent, setUpdateContent] = useState("");
   const [err, setErr] = useState("");
   const auth = useAuth();
 
+  // Effet de chargement pour récupérer les détails du commentaire et initialiser le contenu de la mise à jour.
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/comment/${bookId}/${commentId}`, {
@@ -31,7 +33,7 @@ const Comment = ({ bookId, commentId }) => {
       })
       .then((res) => {
         setComment(res.data);
-        setUpdateContent(res.data.content); // Set initial content for update form
+        setUpdateContent(res.data.content); // Initialisation du contenu de la mise à jour
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -39,6 +41,7 @@ const Comment = ({ bookId, commentId }) => {
       });
   }, [bookId, commentId]);
 
+  // Fonction pour gérer la mise à jour du commentaire.
   const handleUpdate = async () => {
     try {
       if (updateContent.trim() === "") {
@@ -62,12 +65,13 @@ const Comment = ({ bookId, commentId }) => {
         content: updateContent,
       }));
 
-      setShowUpdateForm(false); // Hide the update form after successful update
+      setShowUpdateForm(false); // Cacher le formulaire de mise à jour après une mise à jour réussie
     } catch (err) {
       alert("Impossible de modifier le commentaire !");
     }
   };
 
+  // Fonction pour supprimer le commentaire.
   const handleDelete = () => {
     const confirmDelete = window.confirm(
       "Êtes-vous sûr de vouloir supprimer le commentaire ?"
@@ -89,14 +93,17 @@ const Comment = ({ bookId, commentId }) => {
     }
   };
 
+  // Fonction pour basculer l'affichage du formulaire de réponse.
   const toggleAnswerInput = () => {
     setShowAnswerInput(!showAnswerInput);
   };
 
+  // Fonction pour basculer l'affichage du formulaire de mise à jour.
   const toggleUpdateForm = () => {
     setShowUpdateForm(!showUpdateForm);
   };
 
+  // Fonction pour gérer l'ajout d'une réponse au commentaire.
   const handleAnswer = async (answerContent) => {
     try {
       const commentData = {
@@ -128,6 +135,7 @@ const Comment = ({ bookId, commentId }) => {
     }
   };
 
+  // Rendu du composant Comment.
   return (
     <main>
       <section className="comment-section">
@@ -147,6 +155,7 @@ const Comment = ({ bookId, commentId }) => {
 
               {showUpdateForm ? (
                 <>
+                  {/* Formulaire de mise à jour du commentaire */}
                   <textarea
                     className="comment-area"
                     value={updateContent}
@@ -164,14 +173,17 @@ const Comment = ({ bookId, commentId }) => {
               )}
             </article>
 
+            {/* Information sur la publication du commentaire */}
             <article className="b-article-pre" id="comment-pre">
               Posté le {new Date(comment.date).toLocaleDateString()} à{" "}
               {new Date(comment.date).toLocaleTimeString()}
             </article>
 
+            {/* Options de modification, suppression et réponses au commentaire */}
             {
               <article>
                 <ul className="comment-article3">
+                  {/* Bouton de modification du commentaire */}
                   {auth.user.id === comment.userId._id && (
                     <>
                       <li onClick={toggleUpdateForm}>
@@ -180,16 +192,19 @@ const Comment = ({ bookId, commentId }) => {
                       </li>
                     </>
                   )}
+                  {/* Bouton de suppression du commentaire */}
                   <li onClick={handleDelete}>
                     <MdDelete className="profile-icon" />
                     <p className="name-none">🗑️ Supprimer</p>
                   </li>
+                  {/* Bouton pour afficher/masquer le formulaire de réponse */}
                   <li onClick={toggleAnswerInput}>
                     <RiQuestionAnswerFill className="orange-icon" />
                     <p className="name-none">🗨️ Réponses</p>
                   </li>
                 </ul>
 
+                {/* Affichage du formulaire de réponse si showAnswerInput est vrai */}
                 {showAnswerInput && (
                   <AddAnswer
                     bookId={bookId}
@@ -197,9 +212,23 @@ const Comment = ({ bookId, commentId }) => {
                     handleAnswer={handleAnswer}
                   />
                 )}
+                {/* 
+<li>
+                    <AddComment bookId={id} commentAdd={handleCommentUpdate} />
+                    <p>
+                      {showComments && (
+                        <Comments
+                          bookId={id}
+                          commentUpdate={commentUpdate}
+                          key={commentUpdate}
+                        />
+                      )}
+                    </p>
+                  </li> */}
               </article>
             }
 
+            {/* Affichage des réponses si showAnswerInput est vrai */}
             {showAnswerInput && (
               <section>
                 <Answers bookId={bookId} commentId={commentId} />

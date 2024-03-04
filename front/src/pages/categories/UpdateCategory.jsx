@@ -10,49 +10,55 @@ import rotate2 from "../../assets/images/forms/lune2.png";
 const MAX_DESCRIPTION_LENGTH = 250;
 
 const UpdateCategory = () => {
+  // Récupération de l'identifiant de la catégorie à partir des paramètres d'URL
   const { id } = useParams();
+
+  // États pour stocker les données de la catégorie, les erreurs et la validation du champ description
   const [inputs, setInputs] = useState({
     name: "",
     description: "",
     image: null,
   });
-
   const [err, setErr] = useState("");
   const [descriptionError, setDescriptionError] = useState(false);
 
+  // Utilisation de useNavigate pour la redirection après la soumission du formulaire
   const navigate = useNavigate();
 
+  // Utilisation de useEffect pour charger les données de la catégorie à modifier
   useEffect(() => {
     axios
       .get(`http://localhost:9000/categories/${id}`)
       .then((res) => {
-        setInputs(res.data);
+        setInputs(res.data); // Mise à jour des données de la catégorie
       })
       .catch((err) => {
-        setErr("Impossible de récupérer la catégorie !");
+        setErr("Impossible de récupérer la catégorie !"); // Gestion des erreurs de chargement
       });
-  }, [id]);
+  }, [id]); // Déclenchement de useEffect à chaque changement de l'identifiant de la catégorie
 
+  // Gestionnaire de changement pour mettre à jour les valeurs des champs du formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "description") {
       if (value.length <= MAX_DESCRIPTION_LENGTH) {
         setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
-        setDescriptionError(false);
+        setDescriptionError(false); // Réinitialisation de l'erreur de description
       } else {
-        setDescriptionError(true);
+        setDescriptionError(true); // Activation de l'erreur de description si la limite est dépassée
       }
     } else if (name === "image") {
       setInputs((prevInputs) => ({
         ...prevInputs,
-        image: e.target.files[0],
+        image: e.target.files[0], // Mise à jour de l'image
       }));
     } else {
-      setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
+      setInputs((prevInputs) => ({ ...prevInputs, [name]: value })); // Mise à jour des autres champs
     }
   };
 
+  // Gestionnaire de soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -67,8 +73,6 @@ const UpdateCategory = () => {
     formData.append("description", inputs.description);
     formData.append("image", inputs.image);
 
-    console.log("FormData:", formData);
-
     axios
       .put(`http://localhost:9000/categories/edit/${id}`, formData, {
         headers: token(),
@@ -81,18 +85,18 @@ const UpdateCategory = () => {
           image: null,
         }));
         alert("La catégorie a bien été mise à jour !");
-        navigate("/categories");
+        navigate("/categories"); // Redirection vers la liste des catégories après la mise à jour
       })
       .catch((err) => {
-        alert("Impossible de modifier la catégorie !");
+        alert("Impossible de modifier la catégorie !"); // Gestion des erreurs lors de la modification
       });
   };
 
   return (
     <main>
       <section className="section-style2" id="section-detail">
-        {err && <span>{err}</span>}
-
+        {err && <span>{err}</span>} {/* Affichage de l'erreur si elle existe */}
+        {/* Formulaire de mise à jour de la catégorie */}
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"

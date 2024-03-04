@@ -1,5 +1,6 @@
 /* ESPACE COMMENTAIRE ET REPONSE DE LA PAGE LIVRE */
 
+/* Styles pour les titres des commentaires et des réponses */
 .label-comment,
 .label-answer {
   color: var(--blue);
@@ -15,6 +16,7 @@
   padding-top: 0.3em;
 }
 
+/* Styles pour les articles de commentaire et de réponse */
 .comment-article,
 .comment-article2,
 .answer-article {
@@ -27,11 +29,13 @@
   margin-left: 4em;
 }
 
+/* Styles pour masquer les noms des icônes et des boutons */
 .name-none,
 .name-noneplus {
   display: none;
 }
 
+/* Styles pour les images de profil */
 .comment-article img,
 .comment-article2 img,
 .answer-article img {
@@ -41,6 +45,7 @@
   border-radius: 50%;
 }
 
+/* Styles pour les zones de texte d'un input */
 .form-textarea2::placeholder,
 .textarea-3::placeholder {
   margin-top: 5em;

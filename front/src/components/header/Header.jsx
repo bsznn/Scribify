@@ -13,49 +13,53 @@ import userImage from "../../assets/images/users/default-profil.png";
 import "../../assets/styles/header/header.css";
 
 const Header = () => {
-  const [toggle, setToggle] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-  const [searchActive, setSearchActive] = useState(false);
-  const auth = useAuth();
-  const navigate = useNavigate();
+  const [toggle, setToggle] = useState(false); // État pour le menu déroulant
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024); // État pour la détection de l'appareil mobile
+  const auth = useAuth(); // Authentification de l'utilisateur
+  const navigate = useNavigate(); // Utilisé pour la navigation
 
   useEffect(() => {
+    // Fonction pour gérer le redimensionnement de la fenêtre
     const handleResize = () => {
+      // Mettre à jour l'état pour détecter si l'appareil est mobile en fonction de la largeur de la fenêtre
       setIsMobile(window.innerWidth < 1024);
+
+      // Fermer le menu déroulant lorsque la fenêtre est agrandie (si la largeur de la fenêtre est supérieure ou égale à 1024 pixels)
       if (window.innerWidth >= 1024) {
-        setToggle(false);
+        setToggle(false); // Mettre l'état du menu déroulant à false pour le fermer
       }
     };
 
+    // Ajouter un écouteur d'événement pour le redimensionnement de la fenêtre
     window.addEventListener("resize", handleResize);
 
+    // Nettoyer l'écouteur d'événement lorsque le composant est démonté pour éviter les fuites de mémoire
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, []); // Le tableau de dépendances est vide, ce qui signifie que cet effet ne dépend d'aucune variable et ne sera exécuté qu'une seule fois après le premier rendu du composant
 
   const handleClick = () => {
-    setToggle(!toggle);
-  };
-
-  const handleSearchClick = () => {
-    setSearchActive(!searchActive);
+    setToggle(!toggle); // Gérer l'état du menu déroulant
   };
 
   const handleLogout = () => {
-    auth.logout();
-    navigate("/");
+    auth.logout(); // Déconnexion de l'utilisateur
+    navigate("/"); // Redirection vers la page d'accueil
   };
 
   return (
     <header>
+      {/* Logo du site */}
       <span className="logo">
         <h1 className="logo-text">Scribify</h1>
         <img src={Logo} alt="logo" className="h-logo" />
       </span>
 
+      {/* Bouton du menu déroulant */}
       <button onClick={handleClick} className="navbar_burger">
         {toggle ? <GrClose /> : <RiMenu3Fill />}
       </button>
 
+      {/* Navigation principale */}
       <nav
         style={{
           display: isMobile ? (toggle ? "block" : "none") : "block",
@@ -63,6 +67,7 @@ const Header = () => {
         className="navbar_first"
       >
         <ul>
+          {/* Liens pour les utilisateurs connectés */}
           {auth.user && (
             <li>
               <NavLink to="/" className="navbar_link">
@@ -71,30 +76,27 @@ const Header = () => {
             </li>
           )}
 
+          {/* Liens pour tous les utilisateurs */}
           <li>
             <NavLink to="/livres" className="navbar_link">
               Livres
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/categories" className="navbar_link">
               Categories
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/auteurs" className="navbar_link">
               Auteurs
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/lecteurs" className="navbar_link">
               Lecteurs
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/publier" className="navbar_link">
               Publier
@@ -103,22 +105,11 @@ const Header = () => {
         </ul>
       </nav>
 
+      {/* Navigation secondaire */}
       <nav className="navbar_second">
-        {/* <label className="search-container">
-          <input
-            type="text"
-            className={searchActive ? "input-active" : "input"}
-          />
-          <IoSearchOutline
-            className="header-icon"
-            onClick={handleSearchClick}
-          />
-        </label> */}
-
         <ul>
+          {/* Boutons pour les utilisateurs connectés */}
           {auth.user ? (
-            // {auth.user.role === "admin" && ( lien vers dashboard)}
-            // Le lien sera dispo que si l'utilisateur est déconnecté
             <li>
               <span className="navbar_user">
                 <NavLink
@@ -127,12 +118,12 @@ const Header = () => {
                   onClick={handleClick}
                 >
                   <span className="h-username">
-                    {/* METTRE UNE IMAGE PAR DEFAUT  */}
+                    {/* Image de profil de l'utilisateur */}
                     {auth.user.image ? (
                       <img
                         className="img-profil"
                         src={`http://localhost:9000/assets/img/${auth.user.image.src}`}
-                        // alt="user-profile"
+                        alt={auth.user.image.alt}
                       />
                     ) : (
                       <img
@@ -141,10 +132,11 @@ const Header = () => {
                         alt="default-user-profile"
                       />
                     )}
-
+                    {/* Nom d'utilisateur */}
                     <p className="h-login"> {auth.user.login}</p>
                   </span>
                 </NavLink>
+                {/* Bouton de déconnexion */}
                 <button onClick={handleLogout} className="navbar_button">
                   <GrLogout className="header-icon" />
                   <p className="text">Se déconnecter</p>
@@ -152,14 +144,17 @@ const Header = () => {
               </span>
             </li>
           ) : (
+            /* Boutons pour les utilisateurs non connectés */
             <>
               <li className="nav-links-container">
                 <NavLink to={"/"} className="navbar_link" onClick={handleClick}>
+                  {/* Bouton Accueil */}
                   <span className="nav-home">
                     <IoHome className="header-icon" />
                     <p className="text-accueil">Accueil</p>
                   </span>
                 </NavLink>
+                {/* Bouton Se connecter */}
                 <NavLink
                   to={"/se-connecter"}
                   className="navbar_link"

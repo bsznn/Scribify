@@ -92,6 +92,10 @@ form select {
   transition: transform 0.3s ease; /* Add this line for the scaling effect */
 }
 
+.form-textarea {
+  width: 14em;
+}
+
 .file-input {
   border: none;
   color: var(--mediumGreen);
@@ -199,9 +203,12 @@ form span {
     width: 25em;
   }
 
-  .form-input2,
-  .form-textarea {
+  .form-input2 {
     width: 26em;
+  }
+
+  .form-textarea {
+    width: 22.5em;
   }
 
   .ql-toolbar.ql-snow {

@@ -1,101 +1,117 @@
+/* Style de la table du tableau de bord */
 .dashboard-table {
-  margin: 0 auto;
-  width: 90%;
-  border-collapse: collapse;
-  margin-bottom: 1em;
+  margin: 0 auto; /* Centrer la table horizontalement */
+  width: 90%; /* Largeur de la table */
+  border-collapse: collapse; /* Fusionner les bordures de la table */
+  margin-bottom: 1em; /* Marge en bas de la table */
 }
 
+/* Style des en-têtes de colonnes et des cellules de la table */
 .dashboard-table th,
 .dashboard-table td {
-  border: 1px solid var(--darkGreen);
-  color: var(--darkGreen);
-  text-align: center;
-  font-family: var(--fontRegular);
-  font-size: 0.9em;
+  border: 1px solid var(--darkGreen); /* Bordure des cellules */
+  color: var(--darkGreen); /* Couleur du texte */
+  text-align: center; /* Alignement du texte au centre */
+  font-family: var(--fontRegular); /* Police de caractères régulière */
+  font-size: 0.9em; /* Taille de la police */
 }
 
+/* Style des cellules de données */
 .dashboard-table td {
-  text-transform: capitalize;
+  text-transform: capitalize; /* Mettre la première lettre en majuscule */
 }
 
+/* Style des en-têtes de colonnes */
 .dashboard-table th {
-  background-color: var(--orange);
-  font-family: var(--fontItalic);
-  font-size: 1.2em;
-  padding: 0.5em;
+  background-color: var(--orange); /* Couleur de fond */
+  font-family: var(--fontItalic); /* Police de caractères en italique */
+  font-size: 1.2em; /* Taille de la police */
+  padding: 0.5em; /* Espacement intérieur */
 }
 
+/* Style des lignes de la table */
 .dashboard-table tbody tr:nth-child(even) {
-  background-color: var(--mediumGreen);
+  background-color: var(
+    --mediumGreen
+  ); /* Couleur de fond pour les lignes paires */
 }
 
 .dashboard-table tbody tr:nth-child(odd) {
-  background-color: var(--hoverGreen);
+  background-color: var(
+    --hoverGreen
+  ); /* Couleur de fond pour les lignes impaires */
 }
 
+/* Style du sélecteur de rôle */
 .dashboard-table select {
-  width: 100%;
-  padding: 0.3em;
-  color: var(--white);
-  border-radius: 0.5em;
-  border: 1px solid var(--darkGreen);
-  background-color: var(--orange);
-  box-sizing: border-box;
-  text-align: center;
+  width: 100%; /* Largeur du sélecteur */
+  padding: 0.3em; /* Espacement intérieur */
+  color: var(--white); /* Couleur du texte */
+  border-radius: 0.5em; /* Bordure arrondie */
+  border: 1px solid var(--darkGreen); /* Bordure */
+  background-color: var(--orange); /* Couleur de fond */
+  box-sizing: border-box; /* Boîte de dimensionnement */
+  text-align: center; /* Alignement du texte au centre */
 }
 
+/* Style du lien "Voir plus" vers le profil de l'utilisateur */
 .see-more {
-  color: var(--darkGreen);
-  font-size: 1.2em;
+  color: var(--darkGreen); /* Couleur du texte */
+  font-size: 1.2em; /* Taille de la police */
 }
 
+/* Style de l'icône "Voir plus" */
 .see-more-icon {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; /* Transition de l'effet au survol */
   &:hover {
-    transform: scale(1.05);
-    color: var(--orange);
+    transform: scale(1.05); /* Zoom au survol */
+    color: var(--orange); /* Changement de couleur au survol */
   }
 }
 
+/* Cacher les images, colonnes et cellules sur les petits écrans */
 .d-image-none,
 .th-none,
 .td-none {
-  display: none;
+  display: none; /* Cacher */
 }
 
+/* Média-query pour les écrans moyens */
 @media screen and (min-width: 480px) {
   .dashboard-table {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Transition de l'effet au survol */
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.05); /* Zoom au survol */
     }
   }
 }
 
+/* Média-query pour les écrans larges */
 @media screen and (min-width: 720px) {
   .th-none,
   .td-none {
-    display: table-cell;
-    border: 1px solid var(--darkGreen);
-    color: var(--darkGreen);
-    text-align: center;
-    font-family: var(--fontRegular);
-    font-size: 0.9em;
-    padding: 0.5em;
+    display: table-cell; /* Afficher */
+    border: 1px solid var(--darkGreen); /* Bordure des cellules */
+    color: var(--darkGreen); /* Couleur du texte */
+    text-align: center; /* Alignement du texte au centre */
+    font-family: var(--fontRegular); /* Police de caractères régulière */
+    font-size: 0.9em; /* Taille de la police */
+    padding: 0.5em; /* Espacement intérieur */
   }
 
   .td-none {
-    text-transform: capitalize;
+    text-transform: capitalize; /* Mettre la première lettre en majuscule */
   }
 
   .dashboard-table {
-    width: 42em;
-    margin: 0 auto;
+    width: 42em; /* Largeur de la table */
+    margin: 0 auto; /* Centrer la table horizontalement */
   }
 }
 
+/* Média-query pour les grands écrans */
 @media screen and (min-width: 1200px) {
   .dashboard-table {
-    margin-left: 3em;
+    margin-left: 3em; /* Marge à gauche */
   }
 }

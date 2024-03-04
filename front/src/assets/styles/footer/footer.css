@@ -1,212 +1,226 @@
+/* Importation des styles de base */
 @import "../root.css";
 
+/* Style du pied de page */
 footer {
-  background-color: var(--darkGreen);
-  color: var(--mediumGreen);
-  font-family: var(--fontRegular);
-  font-size: 0.9em;
-  margin: 0;
-  padding: 1em;
-  text-align: center;
-  animation: fadeIn 1s ease-in-out;
+  background-color: var(--darkGreen); /* Couleur de fond */
+  color: var(--mediumGreen); /* Couleur du texte */
+  font-family: var(--fontRegular); /* Police de caractères */
+  font-size: 0.9em; /* Taille de la police */
+  margin: 0; /* Marge extérieure */
+  padding: 1em; /* Espacement intérieur */
+  text-align: center; /* Alignement du texte */
+  animation: fadeIn 1s ease-in-out; /* Animation de fondu */
 }
 
+/* Images de fond */
 .lune-left,
-.vert-fond {
-  display: none;
+.lune-right {
+  display: none; /* Cacher par défaut */
 }
 
+/* Sections du pied de page */
 .f-first-section,
 .f-second-section {
-  display: block; /* Afficher les sections comme blocs sur les appareils mobiles */
+  display: block; /* Afficher comme bloc */
   margin-bottom: 1em; /* Ajouter un espace entre les sections */
 }
 
+/* Titres du pied de page */
 footer h3 {
-  text-transform: uppercase;
+  text-transform: uppercase; /* Mettre en majuscules */
 }
 
+/* Styles des articles */
 .f-article1 {
-  width: 18em;
-  margin: 0 auto;
+  width: 18em; /* Largeur */
+  margin: 0 auto; /* Centrer horizontalement */
 }
 
 .f-article1 img {
-  height: 3em;
-  margin-left: 0.3em;
+  height: 3em; /* Hauteur de l'image */
+  margin-left: 0.3em; /* Marge à gauche */
 }
 
+/* Styles des liens */
 .aboutus {
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-  color: var(--mediumGreen);
+  display: flex; /* Afficher en flexbox */
+  justify-content: center; /* Centrer horizontalement */
+  text-transform: uppercase; /* Mettre en majuscules */
+  color: var(--mediumGreen); /* Couleur du texte */
 }
 
 .f-article1 p {
-  text-align: justify;
+  text-align: justify; /* Alignement justifié */
 }
 
 .f-link {
-  color: var(--mediumGreen);
+  color: var(--mediumGreen); /* Couleur du lien */
 }
 
 .f-link:hover {
-  color: var(--hoverGreen);
-  transition: color 0.3s ease-in-out;
+  color: var(--hoverGreen); /* Changement de couleur au survol */
+  transition: color 0.3s ease-in-out; /* Transition fluide */
 }
 
+/* Styles des icônes */
 .f-article3 ul {
-  display: flex;
-  justify-content: center;
+  display: flex; /* Afficher en flexbox */
+  justify-content: center; /* Centrer horizontalement */
 }
 
 .f-article3 button {
-  background-color: var(--darkGreen);
-  border: none;
-  font-size: 2em;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  background-color: var(--darkGreen); /* Couleur de fond */
+  border: none; /* Pas de bordure */
+  font-size: 2em; /* Taille de la police */
+  cursor: pointer; /* Curseur de pointeur */
+  transition: transform 0.3s ease-in-out; /* Transition de transformation */
 }
 
 .f-article3 button:hover {
-  transform: rotate(360deg);
+  transform: rotate(360deg); /* Rotation au survol */
 }
 
-/* Appliquer l'animation de pulse aux icônes */
+/* Animation de pulse pour les icônes */
 .f-icon1,
 .f-icon2,
 .f-icon3,
 .f-icon4 {
-  animation: pulse 1s infinite alternate;
+  animation: pulse 1s infinite alternate; /* Animation de pulse */
 }
 
+/* Couleurs des icônes */
 .f-icon1 {
-  color: #1877f2;
+  color: #1877f2; /* Couleur de l'icône Facebook */
 }
 .f-icon2 {
-  color: #1da1f2;
+  color: #1da1f2; /* Couleur de l'icône Twitter */
 }
 .f-icon3 {
-  color: #d62976;
+  color: #d62976; /* Couleur de l'icône Instagram */
 }
 .f-icon4 {
-  color: #0e76a8;
+  color: #0e76a8; /* Couleur de l'icône LinkedIn */
 }
 
+/* Deuxième section du pied de page */
 .f-second-section {
-  font-family: var(--fontItalic);
-  font-size: 1.4em;
-  animation: slideIn 1s ease-in-out;
+  font-family: var(--fontItalic); /* Police de caractères en italique */
+  font-size: 1.4em; /* Taille de la police */
+  animation: slideIn 1s ease-in-out; /* Animation de défilement */
 }
 
 /* Animation de défilement pour la section 2 */
 @keyframes slideIn {
   from {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0; /* Opacité initiale */
+    transform: translateY(20px); /* Translation vers le haut */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Opacité finale */
+    transform: translateY(0); /* Pas de translation */
   }
 }
 
 /* Animation de pulse pour les icônes */
 @keyframes pulse {
   0% {
-    transform: scale(1);
+    transform: scale(1); /* Échelle normale */
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Échelle agrandie */
   }
   100% {
-    transform: scale(1);
+    transform: scale(1); /* Échelle normale */
   }
 }
 
+/* Animation de fondu */
 @keyframes fadeIn {
   from {
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 0; /* Opacité initiale */
+    transform: translateY(10px); /* Translation vers le haut */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Opacité finale */
+    transform: translateY(0); /* Pas de translation */
   }
 }
 
+/* Média queries pour les différents tailles d'écrans */
 @media screen and (min-width: 720px) {
+  /* Ajustements pour les écrans de taille moyenne */
   .f-main-section {
-    width: 47.5em;
-    margin: 0 auto;
+    width: 47.5em; /* Largeur */
+    margin: 0 auto; /* Centrer horizontalement */
   }
   .f-first-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: grid; /* Afficher en grille */
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes égales */
   }
 
   .f-article2 {
-    padding-left: 4em;
+    padding-left: 4em; /* Espacement à gauche */
   }
 
   .f-article3 h3 {
-    padding-left: 4em;
+    padding-left: 4em; /* Espacement à gauche */
   }
 
   .f-article3 ul {
-    justify-content: right;
+    justify-content: right; /* Alignement à droite */
   }
 }
 
 @media screen and (min-width: 990px) {
+  /* Ajustements pour les écrans larges */
   .f-main-section {
-    width: 67em;
+    width: 67em; /* Largeur */
   }
 
   .f-article1 p {
-    width: 27em;
-    padding-left: 1.5em;
+    width: 27em; /* Largeur */
+    padding-left: 1.5em; /* Espacement à gauche */
   }
 
   .f-article1 h3 {
-    padding-left: 7em;
+    padding-left: 7em; /* Espacement à gauche */
   }
 
   .f-article2 {
-    padding-left: 14em;
-    width: 14em;
+    padding-left: 14em; /* Espacement à gauche */
+    width: 14em; /* Largeur */
   }
 
   .f-article3 {
-    padding-right: 4em;
+    padding-right: 4em; /* Espacement à droite */
   }
 }
 
 @media screen and (min-width: 1400px) {
+  /* Ajustements pour les grands écrans */
   footer {
-    position: relative;
+    position: relative; /* Position relative */
   }
 
   .f-main-section {
-    position: relative;
+    position: relative; /* Position relative */
   }
-  .lune-left {
-    display: flex;
-    width: 14em;
-  }
-
-  .lune-left {
-    position: absolute;
-    left: -15em;
+  .lune-left,
+  .lune-right {
+    display: flex; /* Afficher en flexbox */
+    width: 14em; /* Largeur */
   }
 
-  .vert-fond {
-    display: flex;
-    position: absolute;
-    width: 19em;
-    height: 17.5em;
-    right: 0;
-    bottom: 0;
+  .lune-left {
+    position: absolute; /* Position absolue */
+    left: -15em; /* À gauche */
+  }
+
+  .lune-right {
+    position: absolute; /* Position absolue */
+    right: 3em; /* À droite */
+    bottom: 2.4em; /* En bas */
+    transform: scaleX(-1);
   }
 }

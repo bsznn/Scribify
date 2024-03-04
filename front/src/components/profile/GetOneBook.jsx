@@ -10,17 +10,17 @@ import { MdDelete } from "react-icons/md";
 import "../../assets/styles/profile/profile.css";
 import arrow1 from "../../assets/images/home/arrow2.png";
 import arrow2 from "../../assets/images/home/arrow1.png";
-
 import logo from "../../assets/images/logo/logo2.png";
 
+// Composant pour afficher les livres publiés par l'utilisateur
 const GetOneBook = () => {
-  const [books, setBooks] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [books, setBooks] = useState([]); // État pour stocker les livres de l'utilisateur
+  const [categories, setCategories] = useState([]); // État pour stocker les catégories des livres
 
-  const [err, setErr] = useState();
+  const [err, setErr] = useState(); // État pour gérer les erreurs
+  const auth = useAuth(); // Hook pour l'authentification
 
-  const auth = useAuth();
-
+  // Effet pour récupérer les livres publiés par l'utilisateur
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/my-book/${auth.user.id}`, {
@@ -35,6 +35,7 @@ const GetOneBook = () => {
       });
   }, []);
 
+  // Fonction pour supprimer un livre de l'utilisateur
   const handleDeleteBook = (id) => {
     const confirmDelete = window.confirm(
       "Êtes-vous sûr de vouloir supprimer le livre ?"
@@ -57,10 +58,10 @@ const GetOneBook = () => {
 
   return (
     <>
+      {/* Section pour afficher les livres publiés */}
       <span className="home-title1">
         <img src={arrow1} alt="title-left-arrow" className="title-left-arrow" />
         <h2>Publiés</h2>
-
         <img
           src={arrow2}
           alt="title-right-arrow"
@@ -69,12 +70,15 @@ const GetOneBook = () => {
       </span>
 
       <section className="p-section2">
+        {/* Boucle sur les livres pour les afficher */}
         {books.map((oneBook, i) => (
           <>
+            {/* Vérification de l'existence de l'image du livre */}
             {oneBook.image && (
               <section key={oneBook._id} className="p-sous-section">
                 <article className="books-section-bloc">
                   <ul className="books-article1">
+                    {/* Affichage de l'image du livre */}
                     <li>
                       <img
                         src={`http://localhost:9000/assets/img/${oneBook.image.src}`}
@@ -84,7 +88,7 @@ const GetOneBook = () => {
                         title={oneBook.image.alt}
                       />
                     </li>
-
+                    {/* Lien vers la page du livre */}
                     <li>
                       <Link
                         to={`/livre/${oneBook._id}`}
@@ -93,7 +97,7 @@ const GetOneBook = () => {
                         <h4> {oneBook.title}</h4>
                       </Link>
                     </li>
-
+                    {/* Affichage du nombre de chapitres */}
                     <li>
                       <pre>{oneBook.chapters.length} chapitre(s)</pre>
                     </li>
@@ -102,14 +106,16 @@ const GetOneBook = () => {
 
                 <article className="books-article2">
                   <ul>
+                    {/* Affichage de la description du livre */}
                     <li className="description">{oneBook.description}</li>
+                    {/* Affichage des catégories du livre */}
                     <li className="categories">
                       {oneBook.categoryId &&
                         oneBook.categoryId.map((category, index) => (
                           <span key={index}>#{category.name} </span>
                         ))}
                     </li>
-
+                    {/* Affichage des informations sur la création et la modification du livre */}
                     <span className="ul-prebooks">
                       <li>
                         <pre>
@@ -124,7 +130,7 @@ const GetOneBook = () => {
                         </pre>
                       </li>
                     </span>
-
+                    {/* Options pour modifier ou supprimer le livre */}
                     <ul className="span-align">
                       <li>
                         <Link
@@ -148,6 +154,7 @@ const GetOneBook = () => {
         ))}
       </section>
 
+      {/* Affichage d'un message si aucun livre n'est publié */}
       {books.length === 0 && (
         <article className="p-sous-section" id="none-book">
           <h1>Votre profil est encore vierge de publications.</h1>

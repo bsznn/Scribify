@@ -31,10 +31,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       maxlength: 250,
+      required: true,
+      default: "Veuillez ajouter une description !",
     },
     // Image associée à l'utilisateur (chemin source et texte alternatif)
     image: {
-      src: String,
+      src: {
+        type: String,
+        required: true,
+        default: "default-profil.png",
+      },
       alt: String,
     },
     // Rôle de l'utilisateur (parmi "admin" ou "user", par défaut "user")
