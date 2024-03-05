@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import LikeCounter from "../../components/likes/LikeCounter";
@@ -30,7 +30,6 @@ const Book = () => {
   const [currentChapter, setCurrentChapter] = useState(0);
   const [handleCurrentChapter, setHandleCurrentChapter] = useState([]);
   const { id } = useParams();
-  // const commentsRef = useRef(null);
 
   const auth = useAuth();
 
@@ -188,9 +187,7 @@ const Book = () => {
                         />
                       </li>
                     </ul>
-                    {auth.user &&
-                    (auth.user.id === book.userId._id ||
-                      auth.user.role === "admin") ? (
+                    {auth.user && auth.user.id === book.userId._id ? (
                       <ul className="bk-ul5">
                         <li>
                           <Link
@@ -220,16 +217,14 @@ const Book = () => {
               <article className="bk-article3">
                 <ul className="bk-ul6">
                   <span>
-                    {auth.user &&
-                      (auth.user.role === "admin" ||
-                        auth.user.id === book.userId._id) && (
-                        <li>
-                          <Link to={`/ajouter-chapitre/${book._id}`}>
-                            <IoIosAddCircle className="chapter-button" />
-                            <p className="bk-text-none">Nouveau</p>
-                          </Link>
-                        </li>
-                      )}
+                    {auth.user && auth.user.id === book.userId._id && (
+                      <li>
+                        <Link to={`/ajouter-chapitre/${book._id}`}>
+                          <IoIosAddCircle className="chapter-button" />
+                          <p className="bk-text-none">Nouveau</p>
+                        </Link>
+                      </li>
+                    )}
 
                     {auth.user && (
                       <li>

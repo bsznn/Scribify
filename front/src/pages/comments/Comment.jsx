@@ -18,9 +18,9 @@ import "../../assets/styles/book/comment.css";
 const Comment = ({ bookId, commentId }) => {
   // Déclaration des états locaux pour gérer les données du commentaire et des réponses, ainsi que les états pour afficher les formulaires de réponse et de modification.
   const [comment, setComment] = useState("");
-  const [answers, setAnswers] = useState("");
   const [showAnswerInput, setShowAnswerInput] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [answerUpdate, setAnswerUpdate] = useState(0);
   const [updateContent, setUpdateContent] = useState("");
   const [err, setErr] = useState("");
   const auth = useAuth();
@@ -39,7 +39,8 @@ const Comment = ({ bookId, commentId }) => {
         console.log(error.response.data);
         setErr("Impossible de charger le commentaire");
       });
-  }, [bookId, commentId]);
+    getAnswers();
+  }, [bookId, commentId, answerUpdate]);
 
   // Fonction pour gérer la mise à jour du commentaire.
   const handleUpdate = async () => {
@@ -103,36 +104,45 @@ const Comment = ({ bookId, commentId }) => {
     setShowUpdateForm(!showUpdateForm);
   };
 
-  // Fonction pour gérer l'ajout d'une réponse au commentaire.
-  const handleAnswer = async (answerContent) => {
-    try {
-      const commentData = {
-        content: answerContent,
-        pseudo: auth.user.login,
-      };
+  // // Fonction pour gérer l'ajout d'une réponse au commentaire.
+  // const handleAnswer = async (answerContent) => {
+  //   try {
+  //     const commentData = {
+  //       content: answerContent,
+  //       pseudo: auth.user.login,
+  //     };
 
-      await axios.post(
-        `http://localhost:9000/books/comment/answer/new/${bookId}/${commentId}`,
-        commentData,
-        {
-          headers: token(),
-        }
-      );
+  //     await axios.post(
+  //       `http://localhost:9000/books/comment/answer/new/${bookId}/${commentId}`,
+  //       commentData,
+  //       {
+  //         headers: token(),
+  //       }
+  //     );
+  //     console.log(commentData);
 
-      axios
-        .get(
-          `http://localhost:9000/books/comment/answers/${bookId}/${commentId}`,
-          {
-            headers: token(),
-          }
-        )
-        .then((res) => {
-          setAnswers(res.data.answers);
-        });
-    } catch (error) {
-      console.error(error);
-      setErr(error.message);
-    }
+  //     axios
+  //       .get(
+  //         `http://localhost:9000/books/comment/answers/${bookId}/${commentId}`,
+  //         {
+  //           headers: token(),
+  //         }
+  //       )
+  //       .then((res) => {
+  //         setAnswers(res.data.answers);
+  //       });
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErr(error.message);
+  //   }
+  // };
+
+  const getAnswers = () => {
+    return true;
+  };
+
+  const handleAnswerUpdate = () => {
+    setAnswerUpdate((prev) => prev + 1);
   };
 
   // Rendu du composant Comment.
@@ -209,7 +219,7 @@ const Comment = ({ bookId, commentId }) => {
                   <AddAnswer
                     bookId={bookId}
                     commentId={commentId}
-                    handleAnswer={handleAnswer}
+                    answerAdd={handleAnswerUpdate}
                   />
                 )}
                 {/* 
@@ -231,7 +241,11 @@ const Comment = ({ bookId, commentId }) => {
             {/* Affichage des réponses si showAnswerInput est vrai */}
             {showAnswerInput && (
               <section>
-                <Answers bookId={bookId} commentId={commentId} />
+                <Answers
+                  bookId={bookId}
+                  commentId={commentId}
+                  answerUpdate={answerUpdate}
+                />
               </section>
             )}
           </>

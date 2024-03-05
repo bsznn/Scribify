@@ -34,13 +34,6 @@ export const addAnswer = async (req, res) => {
       return res.status(404).json({ message: "Book or Comment not found" });
     }
 
-    // Vérification si l'utilisateur est le propriétaire du livre
-    if (book.userId.toString() !== req.userId) {
-      throw new Error(
-        "Vous ne pouvez ajouter des réponses qu'à vos propres livres"
-      );
-    }
-
     // Création de la réponse
     const answer = {
       userId: new mongoose.Types.ObjectId(req.userId),

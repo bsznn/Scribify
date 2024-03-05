@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "../../assets/styles/forms/forms.css";
 import { useAuth } from "../../context/AuthContext";
 import { IoIosSend } from "react-icons/io";
+import axios from "axios";
+import { token } from "../../context/token";
 
 // Définition du composant AddAnswer prenant en paramètre la fonction handleAnswer pour soumettre la réponse.
-const AddAnswer = ({ handleAnswer }) => {
+const AddAnswer = ({ bookId, commentId, answerAdd }) => {
   // Déclaration d'un état local pour stocker les données du formulaire.
   const [inputs, setInputs] = useState({
     content: "",
@@ -33,17 +35,32 @@ const AddAnswer = ({ handleAnswer }) => {
         throw new Error("Veuillez remplir tous les champs");
       }
 
-      // Appelle la fonction handleAnswer avec le contenu de la réponse.
-      handleAnswer(inputs.content);
+      // Création de l'objet commentaire à envoyer au serveur.
+      const answer = {
+        content: inputs.content,
+        pseudo: auth.user.login,
+      };
 
-      // Affiche une alerte pour confirmer que la réponse a été ajoutée avec succès.
-      alert("La réponse au commentaire a bien été ajoutée");
-
-      // Réinitialise le champ content après soumission.
-      setInputs({
-        content: "",
-      });
+      // Requête HTTP POST pour ajouter un nouveau commentaire.
+      axios
+        .post(
+          `http://localhost:9000/books/comment/answer/new/${bookId}/${commentId}`,
+          answer,
+          {
+            headers: token(),
+          }
+        )
+        .then((res) => {
+          // Réinitialisation du champ de contenu après la soumission du commentaire.
+          setInputs({
+            content: "",
+          });
+          // Affichage d'une notification pour indiquer que le commentaire a été ajouté avec succès.
+          alert("La réponse a bien été ajoutée");
+          answerAdd();
+        });
     } catch (error) {
+      console.log(error);
       // Affiche une alerte en cas d'erreur lors de la soumission.
       alert("Impossible d'ajouter la réponse au commentaire !");
     }

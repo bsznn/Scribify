@@ -10,7 +10,7 @@ import { token } from "../../context/token";
 import Answer from "./Answer";
 
 // Définition du composant Answers prenant en paramètres bookId et commentId.
-const Answers = ({ bookId, commentId }) => {
+const Answers = ({ bookId, commentId, updateAnswer }) => {
   // Déclaration de l'état local pour gérer les réponses et les erreurs.
   const [answers, setAnswers] = useState([]);
   const [err, setErr] = useState();
@@ -19,7 +19,7 @@ const Answers = ({ bookId, commentId }) => {
   const auth = useAuth();
 
   // Effet useEffect pour charger les réponses au commentaire au chargement du composant ou lors de la mise à jour des dépendances.
-  useEffect(() => {
+  const getAnswers = () => {
     axios
       .get(
         `http://localhost:9000/books/comment/answers/${bookId}/${commentId}`,
@@ -35,7 +35,12 @@ const Answers = ({ bookId, commentId }) => {
         console.log(res);
         setErr("Impossible de charger les données");
       });
-  }, [bookId, commentId]);
+  };
+
+  // Effet de chargement pour récupérer les réponses liés au livre
+  useEffect(() => {
+    getAnswers();
+  }, [bookId, commentId, updateAnswer]); // Déclenché à chaque changement de bookId
 
   // Rendu du composant Answers avec la liste des réponses.
   return (

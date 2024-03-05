@@ -103,6 +103,38 @@ const Category = () => {
           </NavLink>
         ))}
       </section>
+      {/* Affichage d'un message si aucun livre n'est publié dans la catégorie */}
+      {books.length === 0 && (
+        <article className="cat-sous-section2">
+          <h4>
+            Aucun livre n'a été posté dans cette catégorie pour le moment.
+          </h4>
+          <p>
+            Il semble que cette catégorie n'ait pas encore été explorée par nos
+            auteurs. Vous avez peut-être l'opportunité de devenir le premier à
+            partager votre histoire dans cette thématique !
+          </p>
+
+          <p>
+            L'exploration de nouveaux horizons littéraires est une aventure en
+            soi. Envisagez de commencer une nouvelle tendance en publiant votre
+            livre dès maintenant.
+          </p>
+
+          <p>
+            Chaque livre que vous partagez enrichit notre communauté et offre de
+            nouvelles perspectives aux lecteurs. N'hésitez pas à être le
+            pionnier dans cette catégorie et à inspirer les autres écrivains à
+            vous rejoindre.
+          </p>
+
+          <p>
+            Nous sommes impatients de découvrir les trésors que vous allez
+            apporter à cette catégorie. Commencez à écrire dès maintenant et
+            laissez votre marque dans le monde de la littérature.
+          </p>
+        </article>
+      )}
     </main>
   );
 };

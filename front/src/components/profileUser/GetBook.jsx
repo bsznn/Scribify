@@ -129,30 +129,34 @@ const GetBook = () => {
                       </li>
                     </span>
 
-                    {auth.user &&
-                    (auth.user.role === "admin" ||
-                      auth.user.id === auth.user) ? (
+                    {auth.user && (
                       <ul className="span-align">
-                        <li>
-                          <Link
-                            to={`/modifier-livre/${oneBook._id}`}
-                            className="link-bio"
+                        {auth.user.id === oneBook.userId._id && (
+                          <li>
+                            <Link
+                              to={`/modifier-livre/${oneBook._id}`}
+                              className="link-bio"
+                            >
+                              <IoIosSettings
+                                className="profile-icon"
+                                id="pic3"
+                              />
+                              <p className="no-text-icon">⚙️ Modifier</p>
+                            </Link>
+                          </li>
+                        )}
+                        {auth.user.role === "admin" && (
+                          <li
+                            onClick={() =>
+                              handleDelete(oneBook._id, oneBook.userId._id)
+                            }
                           >
-                            <IoIosSettings className="profile-icon" id="pic3" />
-                            <p className="no-text-icon">⚙️ Modifier</p>
-                          </Link>
-                        </li>
-                        <li
-                          onClick={() =>
-                            handleDelete(oneBook._id, oneBook.userId._id)
-                          }
-                        >
-                          {console.log(oneBook)}
-                          <MdDelete className="profile-icon" id="pic4" />
-                          <p className="no-text-icon">🗑️ Supprimer</p>
-                        </li>
+                            <MdDelete className="profile-icon" id="pic4" />
+                            <p className="no-text-icon">🗑️ Supprimer</p>
+                          </li>
+                        )}
                       </ul>
-                    ) : null}
+                    )}
                   </ul>
                 </article>
               </section>

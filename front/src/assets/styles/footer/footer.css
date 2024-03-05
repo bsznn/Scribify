@@ -219,7 +219,7 @@ footer h3 {
 
   .lune-right {
     position: absolute; /* Position absolue */
-    right: 3em; /* À droite */
+    right: 3.5em; /* À droite */
     bottom: 2.4em; /* En bas */
     transform: scaleX(-1);
   }

@@ -112,11 +112,7 @@ const Header = () => {
           {auth.user ? (
             <li>
               <span className="navbar_user">
-                <NavLink
-                  to={"/profil"}
-                  className="navbar_link"
-                  onClick={handleClick}
-                >
+                <NavLink to={"/profil"} className="navbar_link">
                   <span className="h-username">
                     {/* Image de profil de l'utilisateur */}
                     {auth.user.image ? (
@@ -147,7 +143,7 @@ const Header = () => {
             /* Boutons pour les utilisateurs non connectés */
             <>
               <li className="nav-links-container">
-                <NavLink to={"/"} className="navbar_link" onClick={handleClick}>
+                <NavLink to={"/"} className="navbar_link">
                   {/* Bouton Accueil */}
                   <span className="nav-home">
                     <IoHome className="header-icon" />
@@ -155,11 +151,7 @@ const Header = () => {
                   </span>
                 </NavLink>
                 {/* Bouton Se connecter */}
-                <NavLink
-                  to={"/se-connecter"}
-                  className="navbar_link"
-                  onClick={handleClick}
-                >
+                <NavLink to={"/se-connecter"} className="navbar_link">
                   <span className="nav-login">
                     <HiUser className="header-icon" />
                     <p className="text">Se connecter</p>

@@ -150,9 +150,8 @@ const GetUser = () => {
             </article>
 
             <article className="p-article-ul">
-              {auth.user &&
-              (auth.user.role === "admin" || auth.user.id === auth.user) ? (
-                <ul id="pic2">
+              <ul id="pic2">
+                {auth.user && auth.user.id === id && (
                   <li>
                     <Link
                       to={`/modifier-utilisateur/${id}`}
@@ -162,14 +161,17 @@ const GetUser = () => {
                       <p className="no-text-icon">⚙️ Modifier</p>
                     </Link>
                   </li>
+                )}
+                {auth.user &&
+                (auth.user.id === id || auth.user.role === "admin") ? (
                   <li onClick={() => handleDeleteUser(id)}>
                     <MdDelete className="profile-icon" />
                     <p className="no-text-icon">🗑️ Supprimer</p>
                   </li>
-                </ul>
-              ) : (
-                <img src={lune} alt="lune-fond" className="lune-fond" />
-              )}
+                ) : (
+                  <img src={lune} alt="lune-fond" className="lune-fond" />
+                )}
+              </ul>
             </article>
           </>
         )}
