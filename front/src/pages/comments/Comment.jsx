@@ -245,6 +245,7 @@ const Comment = ({ bookId, commentId }) => {
                   bookId={bookId}
                   commentId={commentId}
                   answerUpdate={answerUpdate}
+                  key={answerUpdate}
                 />
               </section>
             )}

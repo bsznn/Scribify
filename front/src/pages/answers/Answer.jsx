@@ -162,20 +162,22 @@ const Answer = ({ bookId, commentId, answerId }) => {
             </article>
 
             {/* Affichage des icônes de modification et de suppression pour l'utilisateur connecté */}
-            {auth.user.id === answer.userId._id && (
-              <article>
-                <ul className="answer-article3">
-                  <li onClick={toggleUpdateForm}>
-                    <IoIosSettings className="profile-icon" />
-                    <p className="name-none">⚙️ Modifier</p>
-                  </li>
-                  <li onClick={handleDelete}>
-                    <MdDelete className="profile-icon" />
-                    <p className="name-none">🗑️ Supprimer</p>
-                  </li>
-                </ul>
-              </article>
-            )}
+            {auth.user &&
+              (auth.user.id === answer.userId._id ||
+                auth.user.role === "admin") && (
+                <article>
+                  <ul className="answer-article3">
+                    <li onClick={toggleUpdateForm}>
+                      <IoIosSettings className="profile-icon" />
+                      <p className="name-none">⚙️ Modifier</p>
+                    </li>
+                    <li onClick={handleDelete}>
+                      <MdDelete className="profile-icon" />
+                      <p className="name-none">🗑️ Supprimer</p>
+                    </li>
+                  </ul>
+                </article>
+              )}
 
             {/* Affichage des erreurs s'il y en a */}
             {err && <span>{err}</span>}

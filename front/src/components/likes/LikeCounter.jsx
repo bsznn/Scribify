@@ -9,7 +9,7 @@ import "../../assets/styles/book/comment.css";
 import { useAuth } from "../../context/AuthContext";
 
 // Composant de compteur de likes
-const LikeCounter = ({}) => {
+const LikeCounter = ({ likeAdd }) => {
   // États locaux pour les likes et l'état de like
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -51,6 +51,7 @@ const LikeCounter = ({}) => {
         } else {
           alert("Vous avez enlevé votre like !");
         }
+        likeAdd();
       })
       .catch((err) => {
         console.error(err);

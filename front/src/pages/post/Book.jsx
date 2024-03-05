@@ -26,6 +26,7 @@ const Book = () => {
   const [chapters, setChapters] = useState([]);
   const [err, setErr] = useState();
   const [commentUpdate, setCommentUpdate] = useState(0);
+  const [likeUpdate, setLikeUpdate] = useState(0);
   const [showComments, setShowComments] = useState(false);
   const [currentChapter, setCurrentChapter] = useState(0);
   const [handleCurrentChapter, setHandleCurrentChapter] = useState([]);
@@ -112,6 +113,10 @@ const Book = () => {
 
   const handleCommentUpdate = () => {
     setCommentUpdate((prev) => prev + 1);
+  };
+
+  const handleLikeUpdate = () => {
+    setLikeUpdate((prev) => prev + 1);
   };
 
   return (
@@ -228,7 +233,7 @@ const Book = () => {
 
                     {auth.user && (
                       <li>
-                        <LikeCounter />
+                        <LikeCounter likeAdd={handleLikeUpdate} />
                       </li>
                     )}
                   </span>
