@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { token } from "../../context/token";
-import { useNavigate, useParams } from "react-router-dom";
-import "../../assets/styles/forms/forms.css";
+import { token } from "../../context/token"; // Import du token pour l'authentification
+import { useNavigate, useParams } from "react-router-dom"; // Import des hooks de navigation
+import "../../assets/styles/forms/forms.css"; // Import des styles pour le formulaire
 
-import rotate from "../../assets/images/forms/lune.png";
+import rotate from "../../assets/images/forms/lune.png"; // Import des images pour l'animation
 import rotate2 from "../../assets/images/forms/lune2.png";
 
+// Constante pour la longueur maximale de la description
 const MAX_DESCRIPTION_LENGTH = 250;
 
 const EditUser = () => {
+  // State pour les inputs du formulaire et les messages d'erreur
   const [inputs, setInputs] = useState({
     login: "",
     email: "",
@@ -17,18 +19,18 @@ const EditUser = () => {
     image: null,
   });
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook pour la navigation
+  const { id } = useParams(); // Récupération des paramètres de l'URL
 
-  const { id } = useParams();
-
-  const [err, setErr] = useState();
-  const [descriptionError, setDescriptionError] = useState(false);
+  const [err, setErr] = useState(); // State pour les erreurs
+  const [descriptionError, setDescriptionError] = useState(false); // State pour les erreurs de description
 
   useEffect(() => {
+    // Effect pour charger les données de l'utilisateur à éditer
     axios
-      .get(`http://localhost:9000/users/${id}`, { headers: token() })
+      .get(`http://localhost:9000/users/${id}`, { headers: token() }) // Requête GET pour récupérer les données de l'utilisateur
       .then((res) => {
-        setInputs(res.data);
+        setInputs(res.data); // Met à jour les inputs avec les données de l'utilisateur
       })
       .catch((err) => {
         setErr(
@@ -37,15 +39,16 @@ const EditUser = () => {
       });
   }, []);
 
+  // Fonction pour gérer les changements dans les champs du formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "description") {
       if (value.length <= MAX_DESCRIPTION_LENGTH) {
         setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
-        setDescriptionError(false);
+        setDescriptionError(false); // Réinitialise l'erreur de description si la longueur est correcte
       } else {
-        setDescriptionError(true);
+        setDescriptionError(true); // Active l'erreur si la longueur de la description dépasse la limite
       }
     } else if (name === "image") {
       setInputs((prevInputs) => ({ ...prevInputs, image: e.target.files[0] }));
@@ -53,10 +56,10 @@ const EditUser = () => {
       setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
     }
 
-    setErr("");
-    setMessage("");
+    setErr(""); // Efface les messages d'erreur
   };
 
+  // Fonction pour soumettre le formulaire d'édition d'utilisateur
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -72,8 +75,9 @@ const EditUser = () => {
       return alert("La description ne peut pas dépasser 250 caractères.");
     }
 
-    const formData = new FormData();
+    const formData = new FormData(); // Crée un objet FormData pour envoyer les données du formulaire
 
+    // Ajoute les données du formulaire à l'objet FormData
     formData.append("login", inputs.login);
     formData.append("email", inputs.email);
     formData.append("description", inputs.description);
@@ -82,9 +86,8 @@ const EditUser = () => {
     axios
       .put(`http://localhost:9000/users/edit/${id}`, formData, {
         headers: token(),
-      })
+      }) // Requête PUT pour mettre à jour les données de l'utilisateur
       .then((res) => {
-        console.log(res);
         setInputs((prevInputs) => ({
           ...prevInputs,
           login: "",
@@ -92,9 +95,9 @@ const EditUser = () => {
           description: "",
           image: null,
         }));
-        userData(res);
+        userData(res); // Met à jour les données de l'utilisateur dans le localStorage
         alert("Vos informations ont bien été modifiées !");
-        navigate("/profil");
+        navigate("/profil"); // Redirige vers la page de profil après la modification
       })
       .catch((err) => {
         return alert(
@@ -103,6 +106,7 @@ const EditUser = () => {
       });
   };
 
+  // Fonction pour mettre à jour les données de l'utilisateur dans le localStorage
   const userData = (res) => {
     const currentUser = JSON.parse(localStorage.getItem("user"));
     const newUser = {
@@ -130,9 +134,9 @@ const EditUser = () => {
               encType="multipart/form-data"
               className="form-style2"
             >
-              <img src={rotate} alt="rotate-gif" className="rotate-gif1" />
+              <img src={rotate} alt="rotate-gif" className="rotate-gif1" />{" "}
+              {/* Image de rotation pour le style */}
               <img src={rotate2} alt="rotate-gif" className="rotate-gif2" />
-
               <h2>Modifier un utilisateur</h2>
               <label htmlFor="image">Image de profil : </label>
               <input
@@ -142,7 +146,6 @@ const EditUser = () => {
                 id="image"
                 name="image"
               />
-
               <label htmlFor="login">Nom d'utilisateur : </label>
               <input
                 className="form-input2"
@@ -153,9 +156,7 @@ const EditUser = () => {
                 name="login"
                 placeholder="Nom d'utilisateur"
               />
-
               <label htmlFor="email">Email : </label>
-
               <input
                 className="form-input2"
                 onChange={handleChange}
@@ -165,9 +166,7 @@ const EditUser = () => {
                 name="email"
                 placeholder="Adresse Mail"
               />
-
               <label htmlFor="description">Description : </label>
-
               <textarea
                 className="form-textarea"
                 onChange={handleChange}
@@ -177,7 +176,6 @@ const EditUser = () => {
                 name="description"
                 placeholder="description"
               />
-
               <button className="form-button">Valider</button>
             </form>
           </>

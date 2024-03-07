@@ -16,7 +16,7 @@ import "../../assets/styles/book/book.css";
 import "../../assets/styles/book/comment.css";
 
 const Comment = ({ bookId, commentId }) => {
-  // Déclaration des états locaux pour gérer les données du commentaire et des réponses, ainsi que les états pour afficher les formulaires de réponse et de modification.
+  // Déclaration des états locaux pour gérer les données du commentaire et des réponses
   const [comment, setComment] = useState("");
   const [showAnswerInput, setShowAnswerInput] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
@@ -25,7 +25,7 @@ const Comment = ({ bookId, commentId }) => {
   const [err, setErr] = useState("");
   const auth = useAuth();
 
-  // Effet de chargement pour récupérer les détails du commentaire et initialiser le contenu de la mise à jour.
+  // Fonction pour récupérer les détails d'un commentaire d'un livre
   useEffect(() => {
     axios
       .get(`http://localhost:9000/books/comment/${bookId}/${commentId}`, {
@@ -104,39 +104,7 @@ const Comment = ({ bookId, commentId }) => {
     setShowUpdateForm(!showUpdateForm);
   };
 
-  // // Fonction pour gérer l'ajout d'une réponse au commentaire.
-  // const handleAnswer = async (answerContent) => {
-  //   try {
-  //     const commentData = {
-  //       content: answerContent,
-  //       pseudo: auth.user.login,
-  //     };
-
-  //     await axios.post(
-  //       `http://localhost:9000/books/comment/answer/new/${bookId}/${commentId}`,
-  //       commentData,
-  //       {
-  //         headers: token(),
-  //       }
-  //     );
-  //     console.log(commentData);
-
-  //     axios
-  //       .get(
-  //         `http://localhost:9000/books/comment/answers/${bookId}/${commentId}`,
-  //         {
-  //           headers: token(),
-  //         }
-  //       )
-  //       .then((res) => {
-  //         setAnswers(res.data.answers);
-  //       });
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErr(error.message);
-  //   }
-  // };
-
+  // Affichage sans rafraichissement
   const getAnswers = () => {
     return true;
   };

@@ -13,15 +13,19 @@ import back from "../../assets/images/home/fond.png";
 import lune from "../../assets/images/forms/lune5.png";
 
 const Home = () => {
+  // State pour stocker les données récupérées depuis l'API
   const [booksPopulars, setBooksPopulars] = useState([]);
   const [newBooks, setNewBooks] = useState([]);
   const [lastUpdates, setLastUpdates] = useState([]);
   const [categories, setCategories] = useState([]);
 
+  // State pour gérer les erreurs
   const [err, setErr] = useState();
 
+  // Utilisation du contexte d'authentification
   const auth = useAuth();
 
+  // Fonction pour récupérer les livres postés par un utilisateur
   useEffect(() => {
     axios
       .get("http://localhost:9000/books/popular-books")
@@ -35,6 +39,7 @@ const Home = () => {
       });
   }, []);
 
+  // Fonction pour récupérer les nouveaux livres
   useEffect(() => {
     axios
       .get("http://localhost:9000/books/newest-books")
@@ -48,6 +53,7 @@ const Home = () => {
       });
   }, []);
 
+  // Fonction pour récupérer les derniers chapitres
   useEffect(() => {
     axios
       .get("http://localhost:9000/books/latest-chapters")
@@ -61,6 +67,7 @@ const Home = () => {
       });
   }, []);
 
+  // Fonction pour récupérer les catégories
   useEffect(() => {
     axios
       .get("http://localhost:9000/categories")
@@ -77,9 +84,11 @@ const Home = () => {
   return (
     <>
       <main className="home">
+        {/* Section principale de la page d'accueil */}
         <section className="h-section1">
           <img src={back} alt="caroussel-fond" className="caroussel-fond1" />
           <img src={lune} alt="lune-fond" className="lune-bg" />
+          {/* Contenu de la première section */}
           <article className="h-article1">
             <p>
               Célébrez les mots avec Scribify : un voyage littéraire au cœur de
@@ -87,11 +96,11 @@ const Home = () => {
             </p>
             <ul className="h-section-ul">
               <li>
+                {/* Liens vers différentes sections en fonction de l'état de l'authentification */}
                 <Link to="/publier" className="h-link1">
                   Postez votre premier livre
                 </Link>
               </li>
-
               {!auth.user ? (
                 <li>
                   <Link to="/s-inscrire" className="h-link2">
@@ -107,6 +116,7 @@ const Home = () => {
               )}
             </ul>
           </article>
+          {/* Section pour les images des sections spéciales */}
           <article className="h-article2">
             <span className="images">
               <Link to="/concours">
@@ -122,7 +132,9 @@ const Home = () => {
           </article>
         </section>
 
+        {/* Section centrale de la page d'accueil */}
         <section className="home-center">
+          {/* Titre et contenu pour les livres populaires */}
           <span className="home-title1">
             <img
               src={arrow1}
@@ -138,6 +150,7 @@ const Home = () => {
           </span>
           <section className="h-popular-section">
             <section className="h-section2">
+              {/* Affichage des livres populaires */}
               {booksPopulars.map((oneBookPopular) => (
                 <article key={oneBookPopular._id} className="book-item">
                   <NavLink to={`/livre/${oneBookPopular._id}`}>
@@ -157,6 +170,7 @@ const Home = () => {
             </section>
           </section>
 
+          {/* Titre et contenu pour les nouveaux livres */}
           <span className="home-title1">
             <img
               src={arrow1}
@@ -172,6 +186,7 @@ const Home = () => {
           </span>
           <section className="h-popular-section">
             <section className="h-section2">
+              {/* Affichage des nouveaux livres */}
               {newBooks.map((oneNewBook) => (
                 <article key={oneNewBook._id} className="book-item">
                   <NavLink to={`/livre/${oneNewBook._id}`}>
@@ -191,7 +206,9 @@ const Home = () => {
             </section>
           </section>
 
+          {/* Contenu de la barre latérale */}
           <aside className="h-aside">
+            {/* Section pour les récents chapitres */}
             <section>
               <span className="home-title2">
                 <img
@@ -207,6 +224,7 @@ const Home = () => {
                 />
               </span>
               <section className="h-recent-section">
+                {/* Affichage des récents chapitres */}
                 {lastUpdates.map((oneLastUpdate) => (
                   <article key={oneLastUpdate._id} className="h-recent-article">
                     <NavLink to={`/livre/${oneLastUpdate._id}`}>
@@ -217,6 +235,7 @@ const Home = () => {
               </section>
             </section>
 
+            {/* Section pour les catégories */}
             <section>
               <span className="home-title2">
                 <img
@@ -232,6 +251,7 @@ const Home = () => {
                 />
               </span>
               <section className="h-category-section">
+                {/* Affichage des catégories */}
                 {categories.map((category) => (
                   <article key={category._id} className="h-category-article">
                     <NavLink to={`/categorie/${category._id}`}>
@@ -242,6 +262,7 @@ const Home = () => {
               </section>
             </section>
 
+            {/* Section pour les actualités */}
             <section className="aside-3">
               <span className="home-title2">
                 <img
@@ -257,6 +278,7 @@ const Home = () => {
                 />
               </span>
               <section className="h-news-section">
+                {/* Affichage des actualités */}
                 <article className="h-news-article">
                   <span>
                     <NavLink to="/concours">
@@ -267,7 +289,6 @@ const Home = () => {
                       préparez-vous à laisser libre cours à votre créativité. ❞
                     </blockquote>
                   </span>
-
                   <span>
                     <NavLink to="/conseils">
                       <h3>Conseils</h3>
@@ -278,7 +299,6 @@ const Home = () => {
                       vous aideront à affiner vos compétences littéraires. ❞
                     </blockquote>
                   </span>
-
                   <span>
                     <NavLink to="/recrutement">
                       <h3>Recrutement</h3>

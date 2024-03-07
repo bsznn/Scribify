@@ -13,6 +13,8 @@ import { FaEye } from "react-icons/fa6";
 
 import "../../assets/styles/profile/profile.css";
 import back from "../../assets/images/profile/fond.png";
+import badgeUser from "../../assets/images/profile/badge-user.png";
+import badgeAdmin from "../../assets/images/profile/badge-admin.png";
 
 import lune from "../../assets/images/forms/lune3.png";
 
@@ -28,6 +30,20 @@ const GetUser = () => {
   const { id } = useParams();
 
   const auth = useAuth();
+
+  // Effet pour récupérer les livres publiés par l'utilisateur
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/books/my-book/${id}`, {
+        headers: token(),
+      })
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((res) => {
+        setErr("Impossible de charger les livres de l'utilisateur !");
+      });
+  }, [id]);
 
   useEffect(() => {
     // Requête GET pour récupérer les données de l'utilisateur avec l'ID spécifié
@@ -122,7 +138,26 @@ const GetUser = () => {
                 </article>
 
                 <article className="p-article2">
-                  <h3>{user.login}</h3>
+                  <h3>
+                    {user.login}
+                    {user && user.role === "admin" ? (
+                      <img
+                        src={badgeAdmin}
+                        alt="admin-badge"
+                        aria-label="admin-badge"
+                        title="admin-badge"
+                        className="badge"
+                      />
+                    ) : (
+                      <img
+                        src={badgeUser}
+                        alt="user-badge"
+                        aria-label="user-badge"
+                        title="user-badge"
+                        className="badge"
+                      />
+                    )}
+                  </h3>
                 </article>
               </span>
 

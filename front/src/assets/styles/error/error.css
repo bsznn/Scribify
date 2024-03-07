@@ -1,39 +1,46 @@
+/* Style pour la section contenant le message d'erreur */
 #error-post {
-  color: var(--mediumGreen);
-  font-family: var(--fontRegular);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: justify;
+  color: var(--mediumGreen); /* Couleur du texte */
+  font-family: var(--fontRegular); /* Police de caractères */
+  display: flex; /* Affichage en mode flexbox */
+  flex-direction: column; /* Alignement en colonne des éléments enfants */
+  justify-content: center; /* Centrage vertical des éléments enfants */
+  align-items: center; /* Centrage horizontal des éléments enfants */
+  text-align: justify; /* Justification du texte */
 }
 
+/* Style pour le troisième paragraphe à l'intérieur de #error-post */
 #error-post p:nth-child(3) {
-  text-align: center;
+  text-align: center; /* Alignement du texte au centre */
 }
 
+/* Style pour le lien d'accueil en cas d'erreur */
 .error-link {
-  color: var(--orange);
-  font-family: var(--fontRegular);
-  font-weight: bold;
+  color: var(--orange); /* Couleur du lien */
+  font-family: var(--fontRegular); /* Police de caractères */
+  font-weight: bold; /* Gras */
 }
 
+/* Style pour l'image de la lune en cas d'erreur */
 .lune-error {
-  display: none;
+  display: none; /* Masquage de l'image par défaut */
 }
 
+/* Media queries pour différents points de rupture */
 @media screen and (min-width: 720px) {
+  /* Réaffichage de l'image de la lune à une certaine largeur d'écran */
   .lune-error {
-    display: flex;
-    width: 15em;
-    position: absolute;
-    top: 2em;
+    display: flex; /* Affichage de l'image en mode flexbox */
+    width: 15em; /* Largeur de l'image */
+    position: absolute; /* Position absolue */
+    top: 2em; /* Positionnement par rapport au haut de la page */
   }
 }
 
 @media screen and (min-width: 990px) {
+  /* Ajustements de position de l'image de la lune pour une plus grande largeur d'écran */
   .lune-error {
-    top: 4em;
-    left: 3em;
+    top: 4em; /* Positionnement par rapport au haut de la page */
+    left: 3em; /* Positionnement par rapport à la gauche de la page */
   }
 }

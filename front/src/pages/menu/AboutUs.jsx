@@ -8,6 +8,7 @@ import lune from "../../assets/images/forms/lune9.png";
 import { IoIosArrowForward } from "react-icons/io";
 
 const AboutUs = () => {
+  // Utilisation du hook useState pour gérer l'état des questions ouvertes/fermées
   const [isOpen, setIsOpen] = useState({
     question1: false,
     question2: false,
@@ -17,20 +18,24 @@ const AboutUs = () => {
     question6: false,
   });
 
+  // Fonction pour basculer l'état d'une question ouverte/fermée
   const toggleAnswer = (question) => {
     setIsOpen({ ...isOpen, [question]: !isOpen[question] });
   };
 
   return (
     <main className="m-container">
+      {/* Section principale */}
       <section className="faq-section" id="aboutus-section">
         <h2>À Propos</h2>
         <img src={lune} alt="faq-fond" className="aboutus-fond" />
         <article className="faq-article">
+          {/* Titre de la première question avec icône de flèche */}
           <h4 onClick={() => toggleAnswer("question1")}>
             <IoIosArrowForward className="arrow-aboutus" />
             Notre Mission
           </h4>
+          {/* Affichage de la réponse si la question est ouverte */}
           {isOpen.question1 && (
             <>
               <p className="faq-answer">

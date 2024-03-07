@@ -5,7 +5,6 @@ import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import { token } from "../../context/token";
 
-// Définition du composant AddAnswer prenant en paramètre la fonction handleAnswer pour soumettre la réponse.
 const AddAnswer = ({ bookId, commentId, answerAdd }) => {
   // Déclaration d'un état local pour stocker les données du formulaire.
   const [inputs, setInputs] = useState({

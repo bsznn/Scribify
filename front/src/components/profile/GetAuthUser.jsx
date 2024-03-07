@@ -13,6 +13,8 @@ import { FaEye } from "react-icons/fa6";
 
 import "../../assets/styles/profile/profile.css";
 import back from "../../assets/images/profile/fond.png";
+import badgeUser from "../../assets/images/profile/badge-user.png";
+import badgeAdmin from "../../assets/images/profile/badge-admin.png";
 
 // Composant pour récupérer les informations sur l'utilisateur authentifié
 const GetAuthUser = () => {
@@ -22,6 +24,20 @@ const GetAuthUser = () => {
   const [err, setErr] = useState(); // État pour gérer les erreurs
   const navigate = useNavigate(); // Hook pour la navigation
   const auth = useAuth(); // Hook pour l'authentification
+
+  // Effet pour récupérer les livres publiés par l'utilisateur
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/books/my-book/${auth.user.id}`, {
+        headers: token(),
+      })
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((res) => {
+        setErr("Impossible de charger les livres de l'utilisateur !");
+      });
+  }, []);
 
   // Effet pour récupérer le total de vues de l'utilisateur
   useEffect(() => {
@@ -103,7 +119,26 @@ const GetAuthUser = () => {
                   />
                 </article>
                 <article className="p-article2">
-                  <h3>{auth.user.login}</h3>
+                  <h3>
+                    {auth.user.login}
+                    {auth.user && auth.user.role === "admin" ? (
+                      <img
+                        src={badgeAdmin}
+                        alt="admin-badge"
+                        aria-label="admin-badge"
+                        title="admin-badge"
+                        className="badge"
+                      />
+                    ) : (
+                      <img
+                        src={badgeUser}
+                        alt="user-badge"
+                        aria-label="user-badge"
+                        title="user-badge"
+                        className="badge"
+                      />
+                    )}
+                  </h3>
                 </article>
               </span>
               {/* Affichage de la description de l'utilisateur */}

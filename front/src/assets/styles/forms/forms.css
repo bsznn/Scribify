@@ -31,6 +31,8 @@
   }
 }
 
+/* styles des titres h2 */
+
 .section-style h2,
 .section-style2 h2,
 .section-style3 h2 {
@@ -48,6 +50,7 @@
   display: none;
 }
 
+/* Styles de base de mes formulaires*/
 .form-style {
   width: 14em;
   background-color: var(--darkGreen);
@@ -64,6 +67,7 @@
   align-items: center;
 }
 
+/* Styles pour les label */
 form label {
   font-family: var(--fontRegular);
   color: var(--mediumGreen);
@@ -78,6 +82,7 @@ form label {
   display: none;
 }
 
+/* Styles de mes input, textarea & select */
 .form-input,
 .form-textarea,
 .form-input2,
@@ -117,6 +122,7 @@ form input:hover {
   transform: scale(1.05); /* Adjust the scale factor as needed */
 }
 
+/* Styles des boutons du formulaire */
 form button {
   background-color: var(--mediumGreen);
   color: var(--darkGreen);
@@ -147,6 +153,8 @@ form span {
 .form-button {
   margin-top: 2em;
 }
+
+/* Styles de l'input de texte Quill */
 
 .ql-editor {
   border: none;
@@ -197,6 +205,8 @@ form span {
   }
 }
 
+/* Styles pour les écrans d'au moins 480px de largeur */
+
 @media screen and (min-width: 480px) {
   .section-style2,
   .section-style3 {
@@ -222,6 +232,8 @@ form span {
     bottom: 1.5em;
   }
 }
+
+/* Styles pour les écrans d'au moins 720px de largeur */
 
 @media screen and (min-width: 720px) {
   .section-style2 {
@@ -280,6 +292,8 @@ form span {
     position: relative;
   }
 }
+
+/* Styles pour les écrans d'au moins 990px de largeur */
 
 @media screen and (min-width: 990px) {
   .form-style {

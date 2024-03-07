@@ -1,81 +1,86 @@
+/* Style de la section scrollable des lecteurs */
 .reader-scroll {
-  max-height: 25em;
-  overflow-y: auto;
+  max-height: 25em; /* Hauteur maximale de la section */
+  overflow-y: auto; /* Défilement vertical en cas de dépassement */
 }
 
+/* Style d'une section de lecteur */
 .reader-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow-y: auto;
-  background-color: var(--blue);
-  font-family: var(--fontRegular);
-  border-radius: 0.5em;
-  width: 14em;
-  margin: 0.5em;
-  margin-left: 0.8em;
-  margin-right: 1em;
-  box-shadow: var(--ombre);
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
+  display: flex; /* Affichage en flexbox */
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Alignement vertical */
+  overflow-y: auto; /* Défilement vertical en cas de dépassement */
+  background-color: var(--blue); /* Couleur de fond */
+  font-family: var(--fontRegular); /* Police de caractères régulière */
+  border-radius: 0.5em; /* Bordure arrondie */
+  width: 14em; /* Largeur de la section */
+  margin: 0.5em; /* Marge extérieure */
+  margin-left: 0.8em; /* Marge à gauche */
+  margin-right: 1em; /* Marge à droite */
+  box-shadow: var(--ombre); /* Ombre */
+  text-align: center; /* Alignement du texte au centre */
+  transition: transform 0.3s ease-in-out; /* Transition sur l'échelle */
 }
 
+/* Animation au survol d'une section de lecteur */
 .reader-section:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Agrandissement */
 }
 
+/* Style du titre de la section de lecteurs */
 .reader-title h1 {
-  color: var(--darkGreen);
-  background-color: var(--orange);
+  color: var(--darkGreen); /* Couleur du texte */
+  background-color: var(--orange); /* Couleur de fond */
 }
 
+/* Style des liens des lecteurs */
 .reader-link {
-  color: var(--white);
-  font-family: var(--fontRegular);
-  text-transform: uppercase;
-  font-size: 0.8em;
+  color: var(--white); /* Couleur du texte */
+  font-family: var(--fontRegular); /* Police de caractères régulière */
+  text-transform: uppercase; /* Conversion en majuscules */
+  font-size: 0.8em; /* Taille de police */
 }
 
+/* Style des images des lecteurs */
 .reader-img {
-  height: 8em;
-  object-fit: cover;
-  padding-top: 1em;
-  display: none;
+  height: 8em; /* Hauteur de l'image */
+  object-fit: cover; /* Redimensionnement de l'image pour couvrir */
+  padding-top: 1em; /* Remplissage en haut de l'image */
+  display: none; /* Masquage par défaut */
 }
 
+/* Style des icônes des lecteurs */
 .reader-icon {
-  width: 2em;
-  margin-right: 0.3em;
+  width: 2em; /* Largeur de l'icône */
+  margin-right: 0.3em; /* Marge à droite */
 }
 
+/* Style du titre de la section de lecteurs */
 .reader-title {
-  display: flex;
-  align-items: center;
-  position: relative;
+  display: flex; /* Affichage en flexbox */
+  align-items: center; /* Alignement vertical */
+  position: relative; /* Position relative */
 }
-/* .reader-none,
-.reader-title-img,
-.reader-fond-img {
-  display: none;
-} */
 
+/* Media queries pour les écrans de taille moyenne */
 @media screen and (min-width: 480px) {
   .reader-scroll {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-height: none;
+    display: grid; /* Affichage en grille */
+    grid-template-columns: 1fr 1fr; /* 2 colonnes */
+    max-height: none; /* Hauteur illimitée */
   }
 
   .reader-section {
-    width: 14em;
-    margin: 0.3em;
+    width: 14em; /* Largeur de la section */
+    margin: 0.3em; /* Marge extérieure */
   }
 
   .reader-title h1 {
-    width: 9em;
+    width: 9em; /* Largeur du titre */
   }
 }
 
+/* Media queries pour les écrans moyennement grands (tablettes) */
 @media screen and (min-width: 720px) {
   .reader-scroll {
     display: grid;
@@ -117,6 +122,7 @@
   }
 }
 
+/* Media queries pour les écrans grands */
 @media screen and (min-width: 990px) {
   .reader-scroll {
     display: grid;
@@ -135,6 +141,7 @@
   }
 }
 
+/* Media queries pour les très écrans grands */
 @media screen and (min-width: 1200px) {
   .reader-scroll {
     display: grid;

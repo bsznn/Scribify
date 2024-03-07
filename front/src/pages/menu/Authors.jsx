@@ -11,32 +11,38 @@ import panelImg from "../../assets/images/list/author.png";
 import lune from "../../assets/images/forms/lune5.png";
 
 const Authors = () => {
+  // Utilisation du hook useState pour gérer les auteurs et les erreurs
   const [authors, setAuthors] = useState([]);
   const [err, setErr] = useState(null);
 
+  // Utilisation du hook useEffect pour charger les auteurs au chargement de la page
   useEffect(() => {
     axios
-      .get("http://localhost:9000/users", { headers: token() })
+      .get("http://localhost:9000/users", { headers: token() }) // Requête GET pour récupérer les utilisateurs
       .then((response) => {
         const allUsers = response.data;
         const authors = allUsers.authors || [];
 
-        setAuthors(authors);
+        setAuthors(authors); // Mise à jour de la liste des auteurs
       })
       .catch((err) => {
         console.log(err);
-        setErr(err);
+        setErr(err); // Gestion des erreurs
       });
-  }, []);
+  }, []); // Les crochets vides signifient que ce hook ne dépend d'aucune variable
+
   return (
     <main className="m-container">
+      {/* Section de titre des auteurs */}
       <section className="author-title" id="list-first">
         <h1 className="author-h1">Auteurs</h1>
         <ul className="list-ul">
           <li>
+            {/* Image de l'entête auteur */}
             <img src={panelImg} alt="author-title" className="list-title-img" />
           </li>
           <li>
+            {/* Description de l'entête auteur */}
             <p className="list-none" id="author-none">
               Découvrez les profils d'auteurs sur Scribify : votre compagnon
               essentiel pour explorer une variété d'écrivains, chacun apportant
@@ -53,11 +59,13 @@ const Authors = () => {
         </ul>
       </section>
 
+      {/* Section affichant les auteurs */}
       <section className="author-scroll">
         {authors.map((oneAuthor, i) => (
           <section key={oneAuthor._id} className="author-section">
+            {/* Affichage de l'image de l'auteur */}
             <article className="author-image">
-              {oneAuthor.image && ( // Vérification si 'image' est défini
+              {oneAuthor.image && (
                 <img
                   src={`http://localhost:9000/assets/img/${oneAuthor.image.src}`}
                   alt={oneAuthor.image.alt}
@@ -77,12 +85,14 @@ const Authors = () => {
               )}
             </article>
 
+            {/* Affichage du nom de l'auteur avec un lien vers son profil */}
             <article className="author-text">
               <NavLink to={`/profil/${oneAuthor._id}`} className="author-link">
                 <h3 className="author-name">{oneAuthor.login}</h3>
               </NavLink>
             </article>
 
+            {/* Affichage du logo */}
             <article>
               <img src={logoImage} alt="logo-image" className="author-icon" />
             </article>

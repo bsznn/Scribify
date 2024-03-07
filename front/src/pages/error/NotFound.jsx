@@ -4,6 +4,7 @@ import lune from "../../assets/images/forms/lune-error.png";
 
 import { Link } from "react-router-dom";
 
+// Composant de la page d'erreur 404
 const NotFound = () => {
   return (
     <main>
@@ -13,6 +14,7 @@ const NotFound = () => {
           <img src={imageForm} alt="form-image" className="form-image" />
         </article>
 
+        {/* Section avec le message d'erreur et le lien vers l'accueil */}
         <article className="form-style" id="error-post">
           <h2>Erreur 404</h2>
 

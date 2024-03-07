@@ -1,47 +1,51 @@
+/* Style de la section FAQ */
 .faq-section {
-  text-align: justify;
-  padding: 2em;
-  margin-top: 1.5em;
-  background-color: var(--orange);
-  color: var(--darkGreen);
-  box-shadow: var(--ombre);
-  border-radius: 1em;
-  width: 80%;
+  text-align: justify; /* Justification du texte */
+  padding: 2em; /* Espacement intérieur */
+  margin-top: 1.5em; /* Marge supérieure */
+  background-color: var(--orange); /* Couleur de fond */
+  color: var(--darkGreen); /* Couleur du texte */
+  box-shadow: var(--ombre); /* Ombre */
+  border-radius: 1em; /* Bordure arrondie */
+  width: 80%; /* Largeur de la section */
 
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; /* Transition sur l'échelle */
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.02); /* Agrandissement au survol */
   }
 }
 
+/* Style des titres de questions au survol */
 .faq-section h4:hover {
-  color: var(--hoverGreen);
-  cursor: pointer;
-  transform: scale(1.05);
+  color: var(--hoverGreen); /* Changement de couleur */
+  cursor: pointer; /* Curseur pointeur */
+  transform: scale(1.05); /* Agrandissement */
 }
 
+/* Styles spécifiques pour chaque section */
 #contact-section {
-  background-color: var(--hoverBlue);
-  color: var(--white);
+  background-color: var(--hoverBlue); /* Couleur de fond */
+  color: var(--white); /* Couleur du texte */
 }
 
 #aboutus-section h4:hover {
-  color: var(--mediumGreen);
+  color: var(--mediumGreen); /* Couleur au survol */
 }
 
 #privacy-section {
-  background-color: var(--mediumGreen);
+  background-color: var(--mediumGreen); /* Couleur de fond */
 }
 
 #aboutus-section {
-  background-color: var(--hoverGreen);
+  background-color: var(--hoverGreen); /* Couleur de fond */
 }
 
 #term-section {
-  background-color: var(--blue);
-  color: var(--white);
+  background-color: var(--blue); /* Couleur de fond */
+  color: var(--white); /* Couleur du texte */
 }
 
+/* Styles communs pour les images de fond */
 .faq-fond,
 .faq-fond2,
 .privacy-fond,
@@ -52,44 +56,50 @@
 .aboutus-fond2,
 .contact-fond,
 .contact-fond2 {
-  display: none;
+  display: none; /* Masquage par défaut */
 }
 
+/* Style du titre de la section */
 .faq-section h2 {
-  text-align: center;
-  font-family: var(--fontItalic);
-  font-size: 2.3em;
-  margin: 0.5em;
+  text-align: center; /* Centrage */
+  font-family: var(--fontItalic); /* Police d'écriture */
+  font-size: 2.3em; /* Taille de police */
+  margin: 0.5em; /* Marge autour du titre */
 }
 
+/* Style de l'icône de flèche */
 .arrow-faq,
 .arrow-aboutus {
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  cursor: pointer; /* Curseur pointeur */
+  transition: transform 0.3s ease-in-out; /* Transition sur l'échelle */
 }
 
+/* Media queries pour les écrans de taille moyenne */
 @media screen and (min-width: 720px) {
   .faq-section {
-    width: 40em;
-    position: relative;
+    width: 40em; /* Largeur de la section */
+    position: relative; /* Position relative */
   }
 
   .faq-section article {
-    margin-left: 10em;
+    margin-left: 10em; /* Marge à gauche */
   }
 
   #privacy-section article {
-    margin-left: 11em;
+    margin-left: 11em; /* Marge à gauche */
   }
 
+  /* Positionnement des images de fond */
   .faq-fond,
   .privacy-fond,
   .term-fond,
   .aboutus-fond,
   .contact-fond {
-    display: flex;
-    position: absolute;
-    width: 12em;
+    display: flex; /* Affichage flex */
+    position: absolute; /* Position absolue */
+    width: 12em; /* Largeur de l'image */
+    left: 0; /* Position à gauche */
+    top: 1em; /* Position en haut */
   }
 
   .faq-fond,
@@ -102,31 +112,33 @@
   }
 }
 
+/* Media queries pour les grands écrans */
 @media screen and (min-width: 990px) {
   .faq-section {
-    width: 50em;
+    width: 50em; /* Largeur de la section */
   }
 
   .faq-section article {
-    margin-right: 10em;
-    margin-left: 13em;
+    margin-right: 10em; /* Marge à droite */
+    margin-left: 13em; /* Marge à gauche */
   }
 
   #privacy-section article,
   #aboutus-section article {
-    margin-left: 15em;
+    margin-left: 15em; /* Marge à gauche */
   }
 
+  /* Positionnement des images de fond */
   .faq-fond2,
   .privacy-fond2,
   .term-fond2,
   .aboutus-fond2,
   .contact-fond2 {
-    display: flex;
-    position: absolute;
-    width: 12em;
-    right: 0;
-    bottom: 1em;
-    transform: scaleX(-1);
+    display: flex; /* Affichage flex */
+    position: absolute; /* Position absolue */
+    width: 12em; /* Largeur de l'image */
+    right: 0; /* Position à droite */
+    bottom: 1em; /* Position en bas */
+    transform: scaleX(-1); /* Inversion horizontale */
   }
 }

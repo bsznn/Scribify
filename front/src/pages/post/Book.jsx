@@ -34,21 +34,27 @@ const Book = () => {
 
   const auth = useAuth();
 
+  let fetchData;
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:9000/books/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        setBook(res.data);
-        setCategories(res.data.categoryId);
-        setChapters(res.data.chapters);
-        setHandleCurrentChapter([res.data.chapters[0]]);
-      })
-      .catch((res) => {
-        setErr("Impossible de récuperer le livre !");
-      });
+    fetchData = () => {
+      axios
+        .get(`http://localhost:9000/books/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          setBook(res.data);
+          setCategories(res.data.categoryId);
+          setChapters(res.data.chapters);
+          setHandleCurrentChapter([res.data.chapters[0]]);
+        })
+        .catch((res) => {
+          setErr("Impossible de récuperer le livre !");
+        });
+    };
+
     getComments();
-  }, [id, commentUpdate]);
+    fetchData();
+  }, [id, commentUpdate, likeUpdate]);
 
   const handleDelete = (bookId, chapterId) => {
     const confirmDelete = window.confirm(
@@ -66,6 +72,10 @@ const Book = () => {
             prevChapters.filter((chapter) => chapter._id !== id)
           );
           alert(res.data.message);
+
+          // Après la suppression, redirection vers le chapitre 1
+          setCurrentChapter(0);
+          setHandleCurrentChapter([chapters[0]]);
         })
         .catch((error) => {
           return alert(error.response.data.message);
@@ -77,15 +87,6 @@ const Book = () => {
     setShowComments(!showComments);
     location.hash = id;
   };
-
-  // const scrollToComments = () => {
-  //   if (commentsRef.current) {
-  //     commentsRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
-
-  // const handleCurrentChapter = chapters.slice(0, 1);
-  // console.log(handleCurrentChapter);
 
   const nextChapter = () => {
     setCurrentChapter((prev) => prev + 1);
@@ -118,6 +119,13 @@ const Book = () => {
   const handleLikeUpdate = () => {
     setLikeUpdate((prev) => prev + 1);
   };
+
+  // const handleLikeUpdate = (newLikes) => {
+  //   setBook((prevBook) => ({
+  //     ...prevBook,
+  //     likes: newLikes,
+  //   }));
+  // };
 
   return (
     <main className="m-container">

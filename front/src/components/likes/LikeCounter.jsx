@@ -14,6 +14,7 @@ const LikeCounter = ({ likeAdd }) => {
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
   // Récupération de l'ID du livre depuis les paramètres de l'URL
+
   const { id } = useParams();
 
   const auth = useAuth();
@@ -45,12 +46,14 @@ const LikeCounter = ({ likeAdd }) => {
         console.log(res.data);
         setLikes(res.data.likes); // Mise à jour du nombre de likes
         setLiked((prevLiked) => !prevLiked); // Inversion de l'état de like
+
         // Affichage d'une alerte en fonction de l'action de like
         if (!liked) {
           alert("Vous avez liké avec succès le livre !");
         } else {
           alert("Vous avez enlevé votre like !");
         }
+
         likeAdd();
       })
       .catch((err) => {

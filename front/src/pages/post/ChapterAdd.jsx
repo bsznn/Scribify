@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { token } from "../../context/token";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/styles/forms/forms.css";
 
 import rotate from "../../assets/images/forms/lune.png";
@@ -14,6 +14,8 @@ const ChapterAdd = () => {
     chapterContent: "",
     chapterTitle: "",
   });
+
+  const navigate = useNavigate();
 
   const { bookId } = useParams();
 
@@ -61,6 +63,7 @@ const ChapterAdd = () => {
             chapterTitle: "",
           });
           alert("Le chapitre a bien été ajouté !");
+          navigate(`/livre/${bookId}`);
         });
     } catch (error) {
       console.error(error);

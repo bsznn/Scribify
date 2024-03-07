@@ -17,7 +17,7 @@ import logo from "../../assets/images/logo/logo2.png";
 const GetBook = () => {
   const [books, setBooks] = useState([]);
   const [err, setErr] = useState();
-  const { id, userId } = useParams();
+  const { id } = useParams();
 
   const auth = useAuth();
 

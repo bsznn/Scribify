@@ -9,7 +9,7 @@ import { token } from "../../context/token";
 // Importation du composant Answer.
 import Answer from "./Answer";
 
-// Définition du composant Answers prenant en paramètres bookId et commentId.
+// Composant Answers prenant en paramètres bookId et commentId.
 const Answers = ({ bookId, commentId, updateAnswer }) => {
   // Déclaration de l'état local pour gérer les réponses et les erreurs.
   const [answers, setAnswers] = useState([]);
@@ -18,7 +18,8 @@ const Answers = ({ bookId, commentId, updateAnswer }) => {
   // Utilisation du hook useAuth pour accéder aux informations d'authentification de l'utilisateur.
   const auth = useAuth();
 
-  // Effet useEffect pour charger les réponses au commentaire au chargement du composant ou lors de la mise à jour des dépendances.
+  // Effet useEffect pour charger les réponses au commentaire au chargement du composant
+  // ou lors de la mise à jour des dépendances.
   const getAnswers = () => {
     axios
       .get(

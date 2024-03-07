@@ -11,7 +11,6 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import PostEdit from "./pages/post/PostEdit";
 import Book from "./pages/post/Book";
-import User from "./pages/login/User";
 import Recruitement from "./pages/news/Recruitement";
 import Advice from "./pages/news/Advice";
 import Competition from "./pages/news/Competition";
@@ -84,8 +83,6 @@ function App() {
 
         <Route path="/se-connecter" element={<Login />} />
         <Route path="/s-inscrire" element={<Register />} />
-
-        <Route path="/utilisateur/:id" element={<User />} />
 
         <Route path="/recrutement" element={<Recruitement />} />
         <Route path="/conseils" element={<Advice />} />

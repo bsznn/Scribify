@@ -4,6 +4,7 @@ main {
   margin-bottom: 2em;
 }
 
+/* Styles pour la première section de la page d'accueil */
 .h-section1 {
   display: flex;
   flex-direction: column;
@@ -77,6 +78,7 @@ main {
   color: var(--darkGreen);
 }
 
+/* Styles pour les autres sections de la page d'accueil */
 .h-article2 {
   margin: 0;
   width: 17em;
@@ -87,14 +89,13 @@ main {
   height: 14em;
 }
 
+/* Styles pour animation header */
 .images {
   display: flex;
   animation-duration: 20s;
   animation-name: animationImages;
   animation-iteration-count: infinite;
 }
-
-/* Ajoutez ces styles à votre feuille de style existante */
 
 .home h2 {
   padding: 0.2em;
@@ -111,6 +112,8 @@ main {
   justify-content: center;
   align-items: center;
 }
+
+/* Les éléments ajoutés aux titres */
 .title-right-arrow,
 .title-left-arrow,
 .title-right-arrow3,
@@ -123,6 +126,7 @@ main {
   height: 2.85em;
 }
 
+/* Section pour les livres populaires */
 .h-popular-section {
   display: flex;
   align-items: center;
@@ -152,6 +156,8 @@ main {
 .h-section2::-webkit-scrollbar {
   display: none;
 }
+
+/* Styles pour les boutons */
 
 .h-popular-section button {
   background-color: white;
@@ -204,6 +210,8 @@ main {
   color: var(--mediumGreen);
 }
 
+/* Section pour les catégories */
+
 .h-category-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -225,36 +233,40 @@ main {
   color: var(--mediumGreen);
 }
 
+/* Dissimulation du menu aside */
 .aside-3 {
   display: none;
 }
 
+/* Animation pour le fondu fadeIn */
 @keyframes fadeIn {
   from {
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 0; /* Commence avec une opacité de 0 (invisibilité) */
+    transform: translateY(10px); /* Déplace légèrement vers le bas */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Termine avec une opacité de 1 (complètement visible) */
+    transform: translateY(0); /* Revenir à la position d'origine */
   }
 }
 
+/* Animation pour le défilement des images */
 @keyframes animationImages {
   0% {
-    transform: translateX(0);
+    transform: translateX(0); /* Aucun décalage horizontal au début */
   }
   35% {
-    transform: translateX(-22em);
+    transform: translateX(-21em); /* Décalage à gauche */
   }
-
   70% {
-    transform: translateX(-42em);
+    transform: translateX(-41em); /* Décalage plus loin à gauche */
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0); /* Revenir à la position d'origine */
   }
 }
+
+/* Media query pour les écrans d'une largeur minimale de 480px */
 
 @media screen and (min-width: 480px) {
   .h-section-ul {
@@ -282,7 +294,7 @@ main {
       transform: translateX(0);
     }
     35% {
-      transform: translateX(-22em);
+      transform: translateX(-22.5em);
     }
 
     70% {
@@ -293,6 +305,8 @@ main {
     }
   }
 }
+
+/* Media query pour les écrans d'une largeur minimale de 780px */
 
 @media screen and (min-width: 720px) {
   .h-section1 {
@@ -316,7 +330,7 @@ main {
   }
 
   .h-article2 {
-    width: 25em;
+    width: 23em;
   }
 
   .h-img1 {
@@ -337,6 +351,8 @@ main {
     margin: 0 auto;
   }
 
+  /* Menu aside */
+
   aside {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -354,17 +370,41 @@ main {
       transform: translateX(0);
     }
     35% {
-      transform: translateX(-24.8em);
+      transform: translateX(-22em);
     }
 
     70% {
-      transform: translateX(-51em);
+      transform: translateX(-45.3em);
     }
     100% {
       transform: translateX(0);
     }
   }
 }
+
+@media screen and (min-width: 990px) {
+  .h-article2 {
+    width: 25em;
+  }
+
+  @keyframes animationImages {
+    0% {
+      transform: translateX(0);
+    }
+    35% {
+      transform: translateX(-22em);
+    }
+
+    70% {
+      transform: translateX(-45.5em);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Media query pour les écrans d'une largeur minimale de 1200px */
 
 @media screen and (min-width: 1200px) {
   .home {
@@ -490,7 +530,7 @@ main {
       transform: translateX(0);
     }
     35% {
-      transform: translateX(-27em);
+      transform: translateX(-28.5em);
     }
 
     70% {
